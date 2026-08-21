@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "[YOUR-ONESIGNAL-APP-ID]",
+      notifyButton: { enable: false },
+      promptOptions: {},
+    });
+    OneSignal.Notifications.requestPermission();
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-XXXXXXXXXX");
+</script>
+
+<meta name="google-site-verification" content="4PX64C8NT2GtjAVzAKP6poDaOQJ1Its-Ccj8QOPVh0k" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Islamia School &amp; College Martung (ISCM) — Martung, Shangla</title>
+<meta name="description" content="Islamia School &amp; College Martung (ISCM) is a school in Martung, Shangla, Khyber Pakhtunkhwa, Pakistan, combining modern education with Islamic values — offering Nursery to Intermediate (FSc/FA), Quran, Tajweed, and character building.">
+<meta name="keywords" content="ISCM, Islamia School and College Martung, school in Martung, school in Shangla, Islamic school KPK, Quran school Shangla, best school Martung Shangla">
+<link rel="canonical" href="https://theiscm.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Islamia School &amp; College Martung (ISCM) — Martung, Shangla">
+<meta property="og:description" content="A school in Martung, Shangla combining modern education with Islamic values — Nursery to Intermediate (FSc/FA), Quran, Tajweed, and character building.">
+<meta property="og:url" content="https://theiscm.github.io/">
+<meta property="og:image" content="https://theiscm.github.io/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Islamia School &amp; College Martung (ISCM) — Martung, Shangla">
+<meta name="twitter:description" content="A school in Martung, Shangla combining modern education with Islamic values.">
+<meta name="twitter:image" content="https://theiscm.github.io/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#10193F;
+    --royal:#1B2C6B;
+    --gold:#C9A227;
+    --paper:#FAF6ED;
+    --ink:#1E2430;
+    --mist:#5B6478;
+    --line: rgba(16,25,63,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:500;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+  .display{font-family:'Amiri', serif;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 6vw;}
+
+  /* ---------- nav ---------- */
+  nav{
+    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;
+    padding:16px 6vw;
+    position:sticky; top:0; z-index:60;
+    background:rgba(250,246,237,0.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-actions{
+    display:flex; align-items:center; gap:8px;
+    flex-basis:100%; justify-content:center;
+    margin-top:12px;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand img{width:42px; height:42px; border-radius:50%;}
+  .brand .b-text{font-family:'Amiri', serif; font-weight:700; font-size:16px; line-height:1.2; color:var(--navy);}
+  .brand .b-text span{display:block; font-family:'Work Sans',sans-serif; font-size:10px; letter-spacing:.12em; color:var(--gold); font-weight:600;}
+  nav .links{display:flex; gap:26px; font-size:14px; font-weight:500; color:var(--navy);}
+  @media(max-width:800px){ nav .links{display:none;} }
+  .nav-cta{
+    background:var(--navy); color:var(--paper);
+    padding:9px 20px; border-radius:3px; font-size:13px; font-weight:600;
+  }
+
+  /* ---------- nav entrance + micro-interactions ---------- */
+  @keyframes navDown{ from{opacity:0; transform:translateY(-18px);} to{opacity:1; transform:translateY(0);} }
+  nav{animation:navDown .7s cubic-bezier(.2,.7,.25,1) both;}
+  .brand img{transition:transform .3s ease;}
+  .brand:hover img{transform:rotate(-8deg) scale(1.08);}
+  nav .links a{position:relative; padding-bottom:3px;}
+  nav .links a::after{
+    content:""; position:absolute; left:0; bottom:-3px; width:0; height:2px;
+    background:var(--gold); transition:width .28s ease;
+  }
+  nav .links a:hover::after{width:100%;}
+  .nav-cta, .nav-lang-btn{transition:transform .18s ease, box-shadow .18s ease;}
+  .nav-cta:hover, .nav-lang-btn:hover{transform:translateY(-2px) scale(1.03); box-shadow:0 4px 12px rgba(16,25,63,0.25);}
+  .nav-lang-btn{
+    background:var(--gold); color:var(--navy); border:none; cursor:pointer;
+    padding:9px 20px; border-radius:3px; font-size:13px; font-weight:600;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    background:radial-gradient(circle at 80% 10%, rgba(201,162,39,0.15), transparent 45%), var(--navy);
+    color:var(--paper);
+    padding:80px 6vw 0;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero-logo{width:250px; height:250px; border-radius:50%; margin-bottom:26px; box-shadow:0 0 0 4px rgba(201,162,39,0.35), 0 20px 34px rgba(0,0,0,0.45);}
+  @media(max-width:480px){ .hero-logo{width:190px; height:190px;} }
+  .hero-logo-wrap{
+    position:relative; display:inline-block; margin-bottom:26px;
+  }
+  .hero-logo-wrap .hero-logo{margin-bottom:0;}
+  .hero-logo-wrap::after{
+    content:""; position:absolute; left:50%; bottom:-14px;
+    width:70%; height:22px; transform:translateX(-50%);
+    background:radial-gradient(ellipse, rgba(0,0,0,0.45), transparent 70%);
+    filter:blur(3px); z-index:-1;
+  }
+  .eyebrow{
+    font-size:12px; letter-spacing:.25em; text-transform:uppercase; color:var(--gold);
+    margin-bottom:16px; font-weight:600;
+  }
+  .hero h1{
+    font-family:'Amiri', serif;
+    font-size:clamp(30px,5.2vw,50px);
+    font-weight:700;
+    line-height:1.2;
+    max-width:820px; margin:0 auto 10px;
+    background:linear-gradient(90deg, #fff 0%, #F3DFA0 25%, #fff 50%, #F3DFA0 75%, #fff 100%);
+    background-size:220% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:shimmerText 6s linear infinite;
+  }
+  @keyframes shimmerText{ to{background-position:-220% center;} }
+  @keyframes textPulseGlow{
+    0%,100%{transform:scale(1); filter:drop-shadow(0 0 0 rgba(201,162,39,0));}
+    50%{transform:scale(1.035); filter:drop-shadow(0 0 14px rgba(201,162,39,0.55));}
+  }
+  .hero .short{font-size:13px; letter-spacing:.1em; color:var(--gold); text-transform:uppercase; margin-bottom:22px; font-weight:600;}
+  .hero .tagline{
+    font-family:'Amiri', serif; font-style:italic;
+    font-size:19px; color:#D9DCEA; margin-bottom:8px;
+  }
+  .hero .loc{font-size:13.5px; color:#B9C0D6; margin-bottom:34px;}
+  .hero-cta{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; padding-bottom:60px;}
+
+  /* ---------- hero cinematic entrance ---------- */
+  @keyframes heroPop{ from{opacity:0; transform:translateY(26px) scale(.7);} to{opacity:1; transform:translateY(0) scale(1);} }
+  @keyframes heroUp{ from{opacity:0; transform:translateY(26px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes floatLogo{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-9px);} }
+  @keyframes glowPulse{ 0%,100%{opacity:.15; transform:scale(1);} 50%{opacity:.4; transform:scale(1.08);} }
+  @keyframes ringPulse{ 0%{box-shadow:0 0 0 0 rgba(201,162,39,.5);} 100%{box-shadow:0 0 0 26px rgba(201,162,39,0);} }
+  @keyframes sparkleFloat{
+    0%{transform:translateY(0) scale(1); opacity:0;}
+    10%{opacity:.8;} 90%{opacity:.5;}
+    100%{transform:translateY(-120px) scale(.4); opacity:0;}
+  }
+  .hero{position:relative;}
+  .hero::after{
+    content:""; position:absolute; top:-10%; right:-5%; width:60%; height:70%;
+    background:radial-gradient(circle, rgba(201,162,39,0.4), transparent 60%);
+    animation:glowPulse 5s ease-in-out infinite;
+    pointer-events:none; z-index:0;
+  }
+  .sparkle{
+    position:absolute; border-radius:50%; background:var(--gold);
+    pointer-events:none; z-index:0; opacity:.7;
+    animation:sparkleFloat linear infinite;
+  }
+  .hero-logo{opacity:0; transform:translateY(26px) scale(.7);}
+  .eyebrow{opacity:0; transform:translateY(26px);}
+  .hero h1{opacity:0; transform:translateY(26px);}
+  .hero .short{opacity:0; transform:translateY(26px);}
+  .hero .tagline{opacity:0; transform:translateY(26px);}
+  .hero .loc{opacity:0; transform:translateY(26px);}
+  .hero-cta .btn{opacity:0; transform:translateY(26px);}
+  .hero > *{position:relative; z-index:1;}
+  .hero .sparkle{z-index:0;}
+
+  body.hero-animate .hero-logo{
+    animation:heroPop .9s cubic-bezier(.34,1.56,.64,1) both, floatLogo 4s ease-in-out .9s infinite, ringPulse 2.6s ease-out .9s infinite;
+  }
+  body.hero-animate .eyebrow{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .12s both;}
+  body.hero-animate .hero h1{animation:shimmerText 6s linear infinite, textPulseGlow 3.4s ease-in-out infinite, heroUp .8s cubic-bezier(.2,.7,.25,1) .24s both;}
+  body.hero-animate .hero .short{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .34s both;}
+  body.hero-animate .hero .tagline{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .44s both;}
+  body.hero-animate .hero .loc{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .54s both;}
+  body.hero-animate .hero-cta .btn{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .66s both;}
+  body.hero-animate .hero-cta .btn:nth-child(2){animation-delay:.76s;}
+  body.hero-animate .hero-cta .btn:nth-child(3){animation-delay:.86s;}
+
+  .btn{
+    position:relative; overflow:hidden;
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 28px; border-radius:3px; font-weight:600; font-size:14.5px;
+    transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease;
+  }
+  .btn::before{
+    content:""; position:absolute; top:0; left:-75%; width:50%; height:100%;
+    background:linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform:skewX(-20deg);
+    transition:left .55s ease;
+  }
+  .btn:hover::before{left:130%;}
+  .btn:hover{transform:translateY(-3px) scale(1.03); box-shadow:0 8px 18px rgba(16,25,63,0.22);}
+  .btn-gold{background:var(--gold); color:var(--navy);}
+  .btn-outline{border:1px solid rgba(250,246,237,0.4); color:var(--paper);}
+  .btn-outline-light{border:1px solid var(--line); color:var(--navy); background:transparent;}
+
+  .arch-divider{display:block; width:100%; height:auto;}
+
+  /* ---------- section shared ---------- */
+  .section{position:relative; overflow:hidden; padding:74px 6vw;}
+  .section::before{
+    content:""; position:absolute; inset:0;
+    background:url('logo.png') center/cover no-repeat;
+    filter:blur(6px);
+    opacity:0.2;
+    z-index:0;
+    pointer-events:none;
+  }
+  .section > *{position:relative; z-index:1;}
+  .section.pillars::before, .section.contact::before{content:none;}
+  .section-head{text-align:center; max-width:700px; margin:0 auto 46px;}
+  .kicker{
+    font-size:12px; color:var(--gold); letter-spacing:.18em; text-transform:uppercase;
+    font-weight:700; margin-bottom:10px;
+  }
+  .section h2{
+    font-family:'Amiri', serif; font-size:clamp(26px,4vw,36px); font-weight:700;
+    margin-bottom:14px; position:relative; display:inline-block;
+    background:linear-gradient(100deg, #8a6a1f 0%, #d4af37 30%, #fff3c4 50%, #d4af37 70%, #8a6a1f 100%);
+    background-size:220% auto; -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:
+      1px 1px 0 #8a6a1f, 2px 2px 0 #7a5c19, 3px 3px 0 #6a4f14,
+      4px 4px 6px rgba(0,0,0,.35), 0 0 18px rgba(212,175,55,.5);
+    animation:shimmerText 6s linear infinite, textPulseGlow 3.4s ease-in-out infinite;
+  }
+  .pillars .section-head h2, .contact .section-head h2{
+    background:linear-gradient(100deg, #8a6a1f 0%, #d4af37 30%, #fff3c4 50%, #d4af37 70%, #8a6a1f 100%);
+    background-size:220% auto; -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:
+      1px 1px 0 #6a4f14, 2px 2px 0 #5a4210, 3px 3px 0 #4a370c,
+      4px 4px 8px rgba(0,0,0,.5), 0 0 20px rgba(255,243,196,.6);
+  }
+  .section h2::after{
+    content:""; position:absolute; left:50%; bottom:-8px; height:3px; width:0;
+    background:linear-gradient(90deg, var(--gold), #E9CE7A, var(--gold));
+    border-radius:2px; transform:translateX(-50%);
+    transition:width .7s cubic-bezier(.2,.7,.25,1) .15s;
+  }
+  .section-head.in-view h2::after{width:70px;}
+  .section p.lede{color:var(--mist); font-size:15.5px; line-height:1.75;}
+
+  /* ---------- intro ---------- */
+  .intro-grid{
+    display:grid; grid-template-columns:.85fr 1.15fr; gap:50px; align-items:start;
+    max-width:1000px; margin:0 auto;
+  }
+  @media(max-width:760px){ .intro-grid{grid-template-columns:1fr;} }
+  .iqra-badge{
+    background:var(--navy); color:var(--paper); border-radius:8px; padding:28px 24px;
+    text-align:center;
+  }
+  .iqra-badge .word{font-family:'Amiri', serif; font-size:38px; color:var(--gold); font-weight:700;}
+  .iqra-badge .mean{font-size:13px; color:#C7CCDE; margin-top:6px;}
+  .intro-grid p{font-size:15px; line-height:1.85; color:var(--ink); margin-bottom:16px;}
+
+  /* ---------- vision/mission ---------- */
+  .vm-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:30px;
+    max-width:1000px; margin:0 auto;
+  }
+  @media(max-width:720px){ .vm-grid{grid-template-columns:1fr;} }
+  .vm-card{
+    background:#fff; border:1px solid var(--line); border-radius:8px; padding:32px 28px;
+  }
+  .vm-card h3{font-family:'Amiri', serif; color:var(--navy); font-size:22px; margin-bottom:14px;}
+  .vm-card p{font-size:14.5px; color:var(--mist); line-height:1.75; margin-bottom:14px;}
+  .vm-card ul{padding-left:18px; font-size:14px; color:var(--ink); line-height:2;}
+
+  /* ---------- pillars (academic / islamic / character) ---------- */
+  .pillars{background:var(--navy); color:var(--paper);}
+  .pillars .kicker{color:var(--gold);}
+  .pillars .section-head h2{color:#fff;}
+  .pillar-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+    gap:1px; background:rgba(250,246,237,0.14);
+    border:1px solid rgba(250,246,237,0.14);
+    max-width:1100px; margin:0 auto;
+  }
+  .pillar-card{background:var(--navy); padding:34px 28px;}
+  .pillar-card .icon{font-size:26px; margin-bottom:16px; display:block;}
+  .pillar-card h3{font-family:'Amiri', serif; font-size:20px; margin-bottom:14px; color:var(--gold);}
+  .pillar-card ul{list-style:none; font-size:13.5px; color:#C7CCDE; line-height:2.1;}
+  .pillar-card ul li::before{content:"— "; color:var(--gold);}
+
+  /* ---------- character values ---------- */
+  .values-strip{
+    display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
+    max-width:900px; margin:0 auto;
+  }
+  .val-pill{
+    font-size:13px; border:1px solid var(--line); border-radius:20px;
+    padding:9px 20px; color:var(--navy); background:#fff; font-weight:500;
+  }
+
+  /* ---------- leadership ---------- */
+  .lead-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:36px; max-width:960px; margin:0 auto;
+  }
+  .lead-card{text-align:center;}
+  .arch-photo{
+    width:210px; height:210px; margin:0 auto 18px;
+    border-radius:12px;
+    overflow:hidden;
+    border:3px solid var(--gold);
+    background:#f4f1ea;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .arch-photo img{width:100%; height:100%; object-fit:contain;}
+  .lead-card h3{font-family:'Amiri', serif; color:var(--navy); font-size:19px; margin-bottom:4px;}
+  .lead-card .role{font-size:12.5px; color:var(--gold); letter-spacing:.08em; text-transform:uppercase; font-weight:600;}
+
+  /* ---------- discipline / partnership strip ---------- */
+  .two-col{
+    display:grid; grid-template-columns:1fr 1fr; gap:40px; max-width:1000px; margin:0 auto;
+  }
+  @media(max-width:720px){ .two-col{grid-template-columns:1fr;} }
+  .two-col .block h3{font-family:'Amiri', serif; color:var(--navy); font-size:20px; margin-bottom:12px;}
+  .two-col .block p{font-size:14.5px; color:var(--mist); line-height:1.8;}
+
+  /* ---------- gallery (auto-scrolling marquee) ---------- */
+  .gallery-scroll{
+    overflow:hidden; width:100%; max-width:100vw;
+    mask-image:linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  }
+  .gallery-grid{
+    display:flex; gap:16px; width:max-content;
+    animation:galleryScroll 70s linear infinite;
+  }
+  .gallery-scroll:hover .gallery-grid{animation-play-state:paused;}
+  .gallery-item{
+    flex:0 0 190px; width:190px;
+    border-radius:6px; overflow:hidden; border:1px solid var(--line); background:#fff;
+    box-shadow:0 8px 18px rgba(16,25,63,0.12);
+  }
+  .gallery-item img{width:100%; height:150px; object-fit:cover; display:block;}
+  .gallery-item .cap{
+    padding:8px 10px; font-size:11px; color:var(--mist); text-align:center;
+  }
+  @keyframes galleryScroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  @media(max-width:600px){ .gallery-item{flex:0 0 150px; width:150px;} .gallery-item img{height:120px;} }
+  @media (prefers-reduced-motion: reduce){
+    .gallery-grid{animation:none;}
+    .gallery-scroll{overflow-x:auto;}
+  }
+
+  /* ---------- academic calendar ---------- */
+  .cal-table{
+    width:100%; max-width:800px; margin:0 auto; border-collapse:collapse;
+    background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 4px rgba(16,25,63,0.05), 0 14px 28px rgba(16,25,63,0.11);
+  }
+  .cal-table th{
+    background:var(--navy); color:var(--paper); text-align:left; padding:12px 16px; font-size:13px;
+    font-family:'Amiri', serif; font-weight:700;
+  }
+  .cal-table td{
+    padding:12px 16px; font-size:14px; border-bottom:1px solid var(--line); color:var(--ink);
+  }
+  .cal-table tr:last-child td{border-bottom:none;}
+  .cal-table td:first-child{font-weight:600; color:var(--navy); width:45%;}
+  body[dir="rtl"] .cal-table th, body[dir="rtl"] .cal-table td{text-align:right;}
+  .cal-note{font-size:12.5px; color:var(--mist); text-align:center; margin-top:14px; max-width:700px; margin-left:auto; margin-right:auto;}
+
+  .calendar-cards{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:22px;
+    max-width:1100px; margin:0 auto;
+  }
+  .calendar-card{
+    background:#fff; border:1px solid var(--line); border-radius:8px;
+    padding:24px 22px; text-align:center; box-shadow:0 2px 4px rgba(16,25,63,0.05), 0 14px 28px rgba(16,25,63,0.11);
+    transition:transform .15s ease;
+  }
+  .calendar-card:hover{transform:translateY(-3px);}
+  .calendar-card h3{
+    font-family:'Amiri', serif; color:var(--navy); font-size:17px; font-weight:700; margin-bottom:10px;
+  }
+  .calendar-card p{font-size:13.5px; color:var(--mist); line-height:1.7; margin:0;}
+  .calendar-card p strong{display:block; color:var(--gold); font-size:13px; letter-spacing:.03em; margin-bottom:4px;}
+
+  /* ---------- news & events ---------- */
+  .news-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(270px,1fr)); gap:24px;
+    max-width:1100px; margin:0 auto;
+  }
+  .news-card{
+    background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden;
+    box-shadow:0 2px 4px rgba(16,25,63,0.05), 0 14px 28px rgba(16,25,63,0.11);
+  }
+  .news-tag{
+    display:inline-block; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--navy); background:rgba(201,162,39,0.16); padding:4px 12px; border-radius:20px; margin:20px 22px 0;
+  }
+  .news-card h3{
+    font-family:'Amiri', serif; color:var(--navy); font-size:18px; margin:14px 22px 8px; line-height:1.4;
+  }
+  .news-card .news-date{font-size:12px; color:var(--gold); font-weight:600; margin:0 22px 10px;}
+  .news-card p.news-body{font-size:13.5px; color:var(--mist); line-height:1.7; margin:0 22px 22px;}
+
+  .fb-feed-wrap{
+    max-width:560px; margin:44px auto 0; border-radius:8px; overflow:hidden;
+    border:1px solid var(--line); box-shadow:0 2px 4px rgba(16,25,63,0.05), 0 14px 28px rgba(16,25,63,0.11);
+  }
+  .fb-feed-wrap iframe{width:100%; border:0; display:block;}
+
+  /* ---------- student records (staff only) ---------- */
+  .records-box{
+    max-width:600px; margin:0 auto; background:#fff; border:1px solid var(--line);
+    border-radius:8px; padding:32px 26px; box-shadow:0 2px 4px rgba(16,25,63,0.05), 0 14px 28px rgba(16,25,63,0.11);
+  }
+  .records-gate{text-align:center;}
+  .records-gate input{
+    width:100%; max-width:280px; padding:11px 14px; border:1px solid var(--line); border-radius:4px;
+    font-size:14px; margin:14px 0; font-family:'Work Sans', sans-serif;
+  }
+  .records-gate .warn{font-size:12px; color:var(--mist); margin-top:6px;}
+  .records-form{
+    display:grid; grid-template-columns:1fr 1fr 1fr auto; gap:10px; margin-bottom:24px; align-items:end;
+  }
+  @media(max-width:640px){ .records-form{grid-template-columns:1fr;} }
+  .records-form label{display:block; font-size:11.5px; color:var(--mist); margin-bottom:4px; font-weight:600;}
+  .records-form input{
+    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:4px; font-size:13.5px;
+    font-family:'Work Sans', sans-serif;
+  }
+  .records-table-wrap{max-width:900px; margin:0 auto; overflow-x:auto;}
+  #recordsTable{width:100%; border-collapse:collapse; background:#fff; border-radius:8px; overflow:hidden;}
+  #recordsTable th{
+    background:var(--navy); color:var(--paper); text-align:left; padding:10px 14px; font-size:12.5px;
+    font-family:'Amiri', serif; font-weight:700;
+  }
+  #recordsTable td{padding:10px 14px; font-size:13.5px; border-bottom:1px solid var(--line); color:var(--ink);}
+  #recordsTable tr:last-child td{border-bottom:none;}
+  .rec-del{
+    background:none; border:1px solid var(--line); border-radius:4px; color:#B0413E; cursor:pointer;
+    font-size:12px; padding:4px 10px;
+  }
+  .rec-empty{text-align:center; color:var(--mist); font-size:13px; padding:20px;}
+  .rec-contact{display:flex; align-items:center; gap:10px;}
+  .rec-icon{
+    font-size:15px; text-decoration:none; padding:3px 6px; border-radius:4px; border:1px solid var(--line);
+    display:inline-flex; align-items:center;
+  }
+  .rec-icon:hover{background:var(--paper);}
+
+  /* ---------- welcome splash screen ---------- */
+  #splashScreen{
+    position:fixed; inset:0; z-index:9999;
+    background:#0d1a4a;
+    display:flex; align-items:center; justify-content:center;
+    transition:opacity .6s ease;
+    cursor:pointer;
+    overflow-y:auto;
+  }
+  #splashScreen .splash-inner{
+    display:flex; flex-direction:column; align-items:center;
+    padding: 30px 20px; text-align:center; max-width:420px;
+  }
+  #splashScreen .splash-logo{
+    width:64px; height:64px; border-radius:50%;
+    margin-bottom:10px; box-shadow:0 4px 16px rgba(0,0,0,0.3);
+  }
+  #splashScreen .splash-character{
+    width:170px; margin: 6px 0 14px;
+    animation: splashFloat 2.6s ease-in-out infinite;
+  }
+  #splashScreen .splash-student-photo{
+    width:100%; height:auto;
+    border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+    border: 3px solid rgba(212,160,23,0.8);
+    object-fit: cover;
+  }
+  @keyframes splashFloat{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-8px); }
+  }
+  #splashScreen .speech-bubble{
+    background:#fff; color:var(--navy, #0d1a4a);
+    border-radius:16px; padding:16px 20px;
+    position:relative; margin-bottom:8px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.25);
+  }
+  #splashScreen .speech-bubble::after{
+    content:''; position:absolute; top:-10px; left:50%; transform:translateX(-50%);
+    border-width:0 10px 10px 10px; border-style:solid;
+    border-color:transparent transparent #fff transparent;
+  }
+  #splashScreen .speech-bubble p{
+    margin:0; font-size:14.5px; line-height:1.55; font-weight:600;
+  }
+  #splashScreen .splash-hint{
+    color: rgba(255,255,255,0.6); font-size:12px; margin-top:14px;
+    letter-spacing:.04em;
+  }
+  #splashScreen img.splash-banner{
+    max-width:92vw; max-height:40vh; width:auto; height:auto;
+    box-shadow:0 10px 40px rgba(0,0,0,0.4); border-radius:6px;
+    margin-bottom:16px;
+  }
+  #splashScreen.fade-out{opacity:0; pointer-events:none;}
+  body.splash-active{overflow:hidden;}
+
+  /* ---------- principal / director message ---------- */
+  .message-card{
+    max-width:780px; margin:36px auto 0; background:#fff; border:1px solid var(--line);
+    border-radius:10px; padding:38px 34px; box-shadow:0 2px 4px rgba(16,25,63,0.05), 0 14px 28px rgba(16,25,63,0.11);
+    position:relative;
+  }
+  .message-card::before{
+    content:"“"; font-family:'Amiri', serif; font-size:80px; color:var(--gold); opacity:.25;
+    position:absolute; top:6px; left:20px; line-height:1;
+  }
+  .message-card .msg-bismillah{
+    text-align:center; font-family:'Amiri', serif; font-size:17px; color:var(--gold); margin-bottom:6px;
+  }
+  .message-card .msg-salaam{
+    text-align:center; font-size:13.5px; color:var(--mist); margin-bottom:22px;
+  }
+  .message-card p.msg-body{font-size:15px; line-height:1.95; color:var(--ink); margin-bottom:16px;}
+  .message-card .msg-sign{margin-top:24px; text-align:right;}
+  .message-card .msg-sign .sig-name{font-family:'Amiri', serif; color:var(--navy); font-size:17px; font-weight:700;}
+  .message-card .msg-sign .sig-role{font-size:12.5px; color:var(--gold); letter-spacing:.06em; text-transform:uppercase; margin-top:2px;}
+  body[dir="rtl"] .message-card .msg-sign{text-align:left;}
+  body[dir="rtl"] .message-card::before{left:auto; right:20px;}
+
+  /* ---------- teaching staff grid ---------- */
+  .staff-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:26px;
+    max-width:1200px; margin:0 auto;
+  }
+  .staff-card{
+    border-radius:10px; overflow:hidden; border:1px solid var(--line);
+    box-shadow:0 2px 4px rgba(16,25,63,0.06), 0 14px 28px rgba(16,25,63,0.13); transition:transform .18s ease, box-shadow .18s ease;
+    background:#fff;
+  }
+  .staff-card:hover{transform:translateY(-4px); box-shadow:0 8px 22px rgba(16,25,63,0.14);}
+  .staff-card img{width:100%; height:auto; display:block;}
+
+  /* ---------- map ---------- */
+  .map-wrap{
+    max-width:1000px; margin:28px auto 0; border-radius:8px; overflow:hidden;
+    border:1px solid var(--line); box-shadow:0 2px 4px rgba(16,25,63,0.05), 0 14px 28px rgba(16,25,63,0.11);
+  }
+  .map-wrap iframe{width:100%; height:340px; border:0; display:block;}
+
+  /* ---------- books / digital library ---------- */
+  .library-promo-card{
+    display:flex; align-items:center; gap:22px;
+    max-width:720px; margin:0 auto;
+    background:#fff; border:1px solid var(--line); border-radius:16px;
+    padding:26px 28px; text-decoration:none;
+    box-shadow:0 2px 10px rgba(16,25,63,0.06);
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .library-promo-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 26px rgba(16,25,63,0.12);
+    border-color:var(--gold);
+  }
+  .library-promo-icon{
+    flex-shrink:0;
+    width:72px; height:72px; border-radius:14px;
+    background:linear-gradient(135deg, var(--paper), #fff);
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .library-promo-text{ flex:1; min-width:0; }
+  .library-promo-title{
+    font-weight:700; color:var(--navy); font-size:17px; margin-bottom:4px;
+  }
+  .library-promo-sub{
+    font-size:13px; color:var(--mist); line-height:1.5;
+  }
+  .library-promo-arrow{
+    flex-shrink:0; width:36px; height:36px; border-radius:50%;
+    background:var(--paper); display:flex; align-items:center; justify-content:center;
+  }
+  @media (max-width:560px){
+    .library-promo-card{ flex-wrap:wrap; padding:22px; }
+    .library-promo-arrow{ display:none; }
+  }
+  .books-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:22px;
+    max-width:1100px; margin:0 auto;
+  }
+  .book-card{
+    background:#fff; border:1px solid var(--line); border-radius:10px;
+    padding:24px 18px; text-align:center;
+    box-shadow:0 2px 4px rgba(16,25,63,0.05), 0 14px 28px rgba(16,25,63,0.11); transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .book-card:hover{transform:translateY(-4px); box-shadow:0 8px 22px rgba(16,25,63,0.12);}
+  .book-icon{font-size:34px; margin-bottom:8px;}
+  .book-title{font-weight:700; color:var(--navy); font-size:15px;}
+  .book-class{color:var(--mist); font-size:12.5px; margin-top:2px;}
+
+  /* ---------- admission info cards ---------- */
+  .info-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:26px;
+    max-width:1100px; margin:0 auto; align-items:start;
+  }
+  .info-card{
+    position:relative; overflow:hidden;
+    background:#fff; border:1px solid var(--line); border-radius:8px; padding:26px 24px;
+  }
+  .info-card::before{
+    content:""; position:absolute; inset:0;
+    background:url('logo.png') center/cover no-repeat;
+    filter:blur(6px);
+    opacity:0.2;
+    z-index:0;
+  }
+  .info-card > *{position:relative; z-index:1;}
+  .info-card h3{font-family:'Amiri', serif; color:var(--navy); font-size:19px; margin-bottom:16px; text-align:center;}
+  .info-card table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  .info-card th{
+    text-align:left; padding:8px 6px; color:var(--gold); font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.06em; border-bottom:1px solid var(--line);
+    background:rgba(255,255,255,0.65);
+  }
+  .info-card td{padding:8px 6px; border-bottom:1px solid var(--line); color:var(--ink); background:rgba(255,255,255,0.65);}
+  .info-card tr:last-child td{border-bottom:none;}
+  .info-card td:first-child{font-weight:600; color:var(--navy);}
+  body[dir="rtl"] .info-card th, body[dir="rtl"] .info-card td{text-align:right;}
+  .info-card .reg-row{display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--line); font-size:13.5px; background:rgba(255,255,255,0.65);}
+  .info-card .reg-row:last-child{border-bottom:none;}
+  .info-card .reg-row strong{color:var(--navy);}
+  .info-card .reg-row span.val{color:var(--mist); font-weight:600;}
+
+  /* ---------- contact ---------- */
+  .contact{background:var(--royal); color:var(--paper);}
+  .contact .section-head h2{color:#fff;}
+  .contact-card{
+    max-width:700px; margin:0 auto; background:var(--navy);
+    border-radius:8px; padding:40px 34px; text-align:center;
+  }
+  .contact-card .row{font-size:15px; margin-bottom:12px; color:#DEE1EC;}
+  .contact-card .row strong{color:var(--gold); font-weight:600;}
+  .contact-cta-row{margin-top:24px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+
+  footer{
+    background:var(--navy); color:#9AA2BC; text-align:center; padding:28px 6vw; font-size:12.5px;
+  }
+  footer strong{color:var(--paper);}
+
+  /* ---------- language toggle (RTL/Urdu) ---------- */
+  body[dir="rtl"] .i18n{
+    font-family:'Noto Nastaliq Urdu', serif;
+    line-height:2;
+  }
+  body[dir="rtl"] nav .links{flex-direction:row-reverse;}
+  body[dir="rtl"] .hero-cta{flex-direction:row-reverse;}
+  body[dir="rtl"] .contact-cta-row{flex-direction:row-reverse;}
+  body[dir="rtl"] ul{padding-right:18px; padding-left:0;}
+  /* ---------- scroll reveal ---------- */
+  .reveal{
+    opacity:0; transform:translateY(42px) scale(.94);
+    transition:opacity .75s cubic-bezier(.2,.8,.2,1), transform .75s cubic-bezier(.2,.8,.2,1);
+    will-change:opacity, transform;
+  }
+  .reveal.in-view{opacity:1; transform:translateY(0) scale(1);}
+
+  /* ---------- image zoom on hover ---------- */
+  .gallery-item{overflow:hidden;}
+  .gallery-item img, .arch-photo img{transition:transform .5s cubic-bezier(.2,.7,.25,1);}
+  .gallery-item:hover img{transform:scale(1.08);}
+  .arch-photo{overflow:hidden;}
+  .lead-card:hover .arch-photo{transform:translateY(-4px) scale(1.03); box-shadow:0 10px 22px rgba(201,162,39,0.4);}
+  .lead-card .arch-photo{transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease;}
+
+  /* ---------- staff photo: bottom-to-top wrap reveal ---------- */
+  .staff-card{
+    border-radius:10px; overflow:hidden;
+    transition:transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s ease;
+  }
+  .staff-card:hover{transform:translateY(-6px) rotate(-.6deg); box-shadow:0 12px 28px rgba(16,25,63,0.18);}
+  .staff-card img{
+    width:100%; height:auto; display:block;
+    transform:translateY(100%);
+    transition:transform .9s cubic-bezier(.16,.84,.24,1);
+  }
+  .staff-card.in-view img{transform:translateY(0);}
+  .staff-card:hover img{transform:translateY(0) scale(1.04);}
+
+  /* ---------- icon micro-interactions ---------- */
+  @keyframes idleBob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+  .pillar-card .icon{
+    display:inline-block; transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+    animation:idleBob 2.6s ease-in-out infinite;
+  }
+  .pillar-card:nth-child(2) .icon{animation-delay:.3s;}
+  .pillar-card:nth-child(3) .icon{animation-delay:.6s;}
+  .pillar-card:hover .icon{transform:scale(1.3) rotate(-8deg);}
+  .val-pill{transition:transform .22s cubic-bezier(.34,1.56,.64,1), background .22s ease, color .22s ease, border-color .22s ease;}
+  .val-pill:hover{transform:translateY(-5px) scale(1.06); background:var(--navy); color:var(--paper); border-color:var(--navy);}
+  .calendar-card, .news-card, .info-card, .contact-card, .library-promo-card{
+    transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
+  }
+  .calendar-card:hover, .news-card:hover, .info-card:hover, .contact-card:hover, .library-promo-card:hover{
+    transform:translateY(-7px) scale(1.02); box-shadow:0 14px 30px rgba(16,25,63,0.16);
+  }
+  .vm-card{transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;}
+  .vm-card:hover{transform:translateY(-6px) scale(1.015); box-shadow:0 12px 26px rgba(16,25,63,0.12);}
+
+  /* ---------- floating WhatsApp button ---------- */
+  .wa-float{
+    position:fixed; left:20px; bottom:20px; z-index:999;
+    width:56px; height:56px; border-radius:50%;
+    background:#25D366; color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 16px rgba(0,0,0,0.28);
+    transition:transform .18s ease, box-shadow .18s ease;
+    animation:waPulse 2.4s ease-in-out infinite;
+  }
+  .wa-float:hover{transform:scale(1.1) rotate(6deg); box-shadow:0 6px 22px rgba(0,0,0,0.35);}
+  .wa-float svg{width:30px; height:30px; fill:#fff;}
+  @keyframes waPulse{
+    0%,100%{box-shadow:0 4px 16px rgba(37,211,102,0.35);}
+    50%{box-shadow:0 4px 22px rgba(37,211,102,0.65);}
+  }
+  @media(max-width:480px){ .wa-float{left:14px; bottom:14px; width:50px; height:50px;} .wa-float svg{width:26px; height:26px;} }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{transition:none; opacity:1; transform:none;}
+    .hero-logo, .eyebrow, .hero h1, .hero .short, .hero .tagline, .hero .loc, .hero-cta .btn, .hero::after, .sparkle{
+      animation:none !important; opacity:1 !important; transform:none !important; background:none !important; -webkit-text-fill-color:initial !important;
+    }
+    nav, .brand img, nav .links a::after, .nav-cta, .nav-lang-btn,
+    .gallery-item img, .staff-card img, .arch-photo img, .staff-card,
+    .pillar-card .icon, .val-pill, .calendar-card, .news-card, .info-card, .contact-card, .library-promo-card, .vm-card,
+    .btn::before, .section h2::after, .wa-float{
+      animation:none !important; transition:none !important;
+    }
+    .section h2{
+      animation:none !important; background:none !important; -webkit-text-fill-color:initial !important; color:#b8860b !important; text-shadow:none !important;
+    }
+    .pillars .section-head h2, .contact .section-head h2{
+      color:#f7e6a8 !important;
+    }
+  }
+  /* ---------- 3D depth system ---------- */
+  .vm-grid, .pillar-grid, .lead-grid, .calendar-cards, .news-grid,
+  .info-grid, .staff-grid, .contact-grid, .library-promo-grid{
+    perspective:1000px;
+  }
+  .vm-card, .pillar-card, .lead-card .arch-photo, .calendar-card,
+  .news-card, .info-card, .staff-card, .contact-card, .library-promo-card{
+    transform-style:preserve-3d;
+  }
+
+  /* 3D buttons (raised bevel + press effect) */
+  .btn{
+    box-shadow:0 4px 0 rgba(0,0,0,0.16), 0 8px 16px rgba(16,25,63,0.18);
+    transform-style:preserve-3d;
+  }
+  .btn:hover{box-shadow:0 5px 0 rgba(0,0,0,0.16), 0 12px 22px rgba(16,25,63,0.24);}
+  .btn:active{transform:translateY(3px) scale(0.98) !important; box-shadow:0 1px 0 rgba(0,0,0,0.16), 0 3px 8px rgba(16,25,63,0.18) !important;}
+
+  /* 3D hero logo — depth spin instead of flat float */
+  .hero{perspective:700px;}
+  @keyframes floatLogo3D{
+    0%,100%{transform:translateY(0) translateZ(0) scale(1);}
+    50%{transform:translateY(-9px) translateZ(34px) scale(1.05);}
+  }
+  body.hero-animate .hero-logo{
+    animation:heroPop .9s cubic-bezier(.34,1.56,.64,1) both, floatLogo3D 5s ease-in-out .9s infinite, ringPulse 2.6s ease-out .9s infinite;
+    transform-style:preserve-3d;
+  }
+
+  /* 3D extruded text */
+  .hero h1{
+    text-shadow:0 1px 0 rgba(201,162,39,.55), 0 2px 0 rgba(201,162,39,.45), 0 3px 0 rgba(201,162,39,.35), 0 5px 10px rgba(0,0,0,.4);
+  }
+  .section h2{
+    text-shadow:0 1px 0 rgba(201,162,39,.25), 0 2px 4px rgba(16,25,63,.12);
+  }
+
+  /* nav brand 3D tilt */
+  nav{perspective:600px;}
+  .brand img{transform-style:preserve-3d;}
+  .brand:hover img{transform:rotateY(22deg) rotateX(6deg) scale(1.08);}
+
+  @media (hover:none){
+    .vm-card, .pillar-card, .lead-card .arch-photo, .calendar-card,
+    .news-card, .info-card, .staff-card, .contact-card, .library-promo-card{
+      transform-style:flat;
+    }
+  }
+  /* ---------- 3D text — site-wide ---------- */
+  h1, h2, h3, h4, .brand .b-text{
+    text-shadow:0 1px 0 rgba(201,162,39,.4), 0 2px 0 rgba(201,162,39,.25), 0 4px 8px rgba(16,25,63,.18);
+  }
+  .kicker, .eyebrow, .brand .b-text span, .news-tag, .nav-cta, .nav-lang-btn, .val-pill,
+  .staff-card .cap, .gallery-item .cap{
+    text-shadow:0 1px 0 rgba(201,162,39,.3), 0 1px 3px rgba(16,25,63,.15);
+  }
+  p, li, span, td, div{
+    text-shadow:0 1px 1px rgba(16,25,63,.06);
+  }
+  .hero .tagline, .hero .loc{
+    text-shadow:0 1px 2px rgba(0,0,0,.35);
+  }
+  @media (prefers-reduced-motion: reduce){
+    h1, h2, h3, h4, .brand .b-text, .kicker, .eyebrow, .brand .b-text span,
+    .news-tag, .nav-cta, .nav-lang-btn, .val-pill, .staff-card .cap, .gallery-item .cap,
+    p, li, span, td, div, .hero .tagline, .hero .loc{
+      text-shadow:none !important;
+    }
+  }
+</style>
+</head>
+<body class="splash-active">
+
+<a href="https://wa.me/923429533066" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.906 6.484L4 29l7.723-1.867A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3zm6.994 17.11c-.297.836-1.474 1.53-2.412 1.73-.642.137-1.48.246-4.302-.923-3.61-1.494-5.933-5.156-6.114-5.397-.18-.242-1.464-1.948-1.464-3.716 0-1.768.929-2.637 1.258-3.001.33-.363.72-.454.96-.454.24 0 .48.002.69.013.222.012.518-.084.81.62.297.72 1.008 2.487 1.096 2.668.09.18.15.393.03.634-.12.242-.18.393-.36.605-.18.212-.378.474-.54.636-.18.18-.368.376-.158.738.21.363.933 1.541 2.003 2.497 1.377 1.23 2.538 1.61 2.9 1.792.363.18.574.15.786-.09.21-.242.9-1.05 1.14-1.412.24-.363.48-.302.81-.182.33.12 2.09.986 2.45 1.166.36.18.6.272.69.423.09.15.09.878-.207 1.713z"/></svg>
+</a>
+
+<div id="splashScreen" onclick="dismissSplash()">
+  <div class="splash-inner">
+    <img src="welcome-banner.jpg" class="splash-banner" alt="Welcome to Islamia School &amp; College Martung">
+
+    <div class="splash-character">
+      <img src="welcome-student.jpg" alt="Welcome from an ISCM student" class="splash-student-photo">
+    </div>
+
+    <div class="speech-bubble">
+      <p class="i18n"
+         data-en="Welcome to Islamia School &amp; College Martung! Thank you for visiting our site."
+         data-ur="اسلامیہ سکول اینڈ کالج مارتنگ میں خوش آمدید! ہماری ویب سائٹ وزٹ کرنے کا شکریہ۔">Welcome to Islamia School &amp; College Martung! Thank you for visiting our site.</p>
+    </div>
+
+    <div class="splash-hint i18n" data-en="Tap anywhere to continue" data-ur="جاری رکھنے کے لیے کہیں بھی ٹیپ کریں">Tap anywhere to continue</div>
+  </div>
+</div>
+
+
+<nav>
+  <div class="brand">
+    <img src="logo.png" alt="ISCM Logo">
+    <div class="b-text">Islamia School &amp;<br>College Martung<span>ISCM · MARTUNG, SHANGLA</span></div>
+  </div>
+  <div class="links">
+    <a href="#about"><span class="i18n" data-en="About" data-ur="تعارف">About</span></a>
+    <a href="#history"><span class="i18n" data-en="History" data-ur="تاریخ">History</span></a>
+    <a href="#academics"><span class="i18n" data-en="Academics" data-ur="تعلیمی نظام">Academics</span></a>
+    <a href="#calendar"><span class="i18n" data-en="Calendar" data-ur="کیلنڈر">Calendar</span></a>
+    <a href="#news"><span class="i18n" data-en="News" data-ur="خبریں">News</span></a>
+    <a href="#leadership"><span class="i18n" data-en="Leadership" data-ur="قیادت">Leadership</span></a>
+    <a href="#gallery"><span class="i18n" data-en="Gallery" data-ur="گیلری">Gallery</span></a>
+    <a href="#contact"><span class="i18n" data-en="Contact" data-ur="رابطہ">Contact</span></a>
+  </div>
+  <div class="nav-actions">
+    <a href="#contact" class="nav-cta"><span class="i18n" data-en="Contacts" data-ur="رابطہ کریں">Contacts</span></a>
+    <button id="langToggle" onclick="toggleLanguage()" class="nav-lang-btn">اردو</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-logo-wrap">
+    <img src="logo.png" class="hero-logo" alt="Islamia School &amp; College Martung">
+  </div>
+  <div class="eyebrow i18n" data-en="Martung · Shangla · Khyber Pakhtunkhwa" data-ur="مارتنگ · شانگلہ · خیبر پختونخوا">Martung · Shangla · Khyber Pakhtunkhwa</div>
+  <h1 class="i18n" data-en="Islamia School &amp; College Martung" data-ur="اسلامیہ سکول اینڈ کالج مارتنگ">Islamia School &amp; College Martung</h1>
+  <div class="short">ISCM</div>
+  <p class="tagline i18n" data-en="&quot;Come to Know, Go to Glow&quot;" data-ur="&quot;جاننے آؤ، چمکنے جاؤ&quot;">"Come to Know, Go to Glow"</p>
+  <p class="loc i18n" data-en="📍 Martung, District Shangla, Khyber Pakhtunkhwa, Pakistan" data-ur="📍 مارتنگ، ضلع شانگلہ، خیبر پختونخوا، پاکستان">📍 Martung, District Shangla, Khyber Pakhtunkhwa, Pakistan</p>
+  <div class="hero-cta">
+    <a href="admission.html" class="btn btn-gold i18n" data-en="Apply for Admission" data-ur="داخلہ کے لیے درخواست دیں">Apply for Admission</a>
+    <a href="#about" class="btn btn-outline i18n" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
+    <a href="prospectus.pdf" download class="btn btn-outline i18n" data-en="📥 Download Prospectus" data-ur="📥 پراسپیکٹس ڈاؤن لوڈ کریں">📥 Download Prospectus</a>
+  </div>
+  <svg class="arch-divider" viewBox="0 0 1200 60" preserveAspectRatio="none">
+    <path d="M0,60 L0,20 Q150,60 300,20 Q450,-10 600,20 Q750,60 900,20 Q1050,-10 1200,20 L1200,60 Z" fill="#FAF6ED"></path>
+  </svg>
+</section>
+
+<section class="section" id="about">
+  <div class="intro-grid">
+    <div class="iqra-badge">
+      <div class="word">اقرأ</div>
+      <div class="word" style="font-size:22px; margin-top:6px;">Iqra</div>
+      <div class="mean i18n" data-en="&quot;Read&quot; — the very first word revealed by Allah Almighty to Prophet Muhammad ﷺ" data-ur="&quot;پڑھو&quot; — اللہ تعالیٰ کی طرف سے نبی کریم ﷺ پر نازل ہونے والا سب سے پہلا لفظ">"Read" — the very first word revealed by Allah Almighty to Prophet Muhammad ﷺ</div>
+    </div>
+    <div>
+      <div class="kicker i18n" data-en="Introduction" data-ur="تعارف">Introduction</div>
+      <h2 style="margin-bottom:16px;" class="i18n" data-en="Where Faith Meets Modern Learning" data-ur="جہاں ایمان جدید تعلیم سے ملتا ہے">Where Faith Meets Modern Learning</h2>
+      <p class="i18n" data-en="Islamia School &amp; College Martung is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings." data-ur="اسلامیہ سکول اینڈ کالج مارتنگ طلبہ کو جدید تعلیم، اسلامی اقدار، اخلاقی تربیت اور کردار سازی کا متوازن امتزاج فراہم کرنے کے لیے پرعزم ہے۔ ایک ایسی نسل کی پرورش جو تعلیمی میدان میں نمایاں ہو اور اسلامی تعلیمات سے مضبوطی سے جڑی رہے۔">Islamia School &amp; College Martung is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings.</p>
+      <p class="i18n" data-en="By choosing the name Iqra, the institution emphasizes that education is not merely about passing examinations but about developing responsible, knowledgeable, and God-conscious individuals — where discipline, respect, and faith go hand in hand." data-ur="اقرا نام کا انتخاب کر کے ادارہ اس بات پر زور دیتا ہے کہ تعلیم صرف امتحان پاس کرنے کا نام نہیں بلکہ ذمہ دار، باشعور اور خدا ترس افراد کی تربیت ہے۔ جہاں نظم و ضبط، احترام اور ایمان ساتھ ساتھ چلتے ہیں۔">By choosing the name Iqra, the institution emphasizes that education is not merely about passing examinations but about developing responsible, knowledgeable, and God-conscious individuals — where discipline, respect, and faith go hand in hand.</p>
+      <p class="i18n" data-en="The school&#39;s vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community." data-ur="سکول کا وژن کلاس روم سے آگے تک پھیلا ہوا ہے۔ یہ طلبہ میں مضبوط ابلاغی صلاحیتیں، تنقیدی سوچ، قیادت، اعتماد اور معاشرے، خاندان اور برادری کے تئیں ذمہ داری کا احساس پیدا کرتا ہے۔">The school's vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--paper);" id="history">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="Our Journey" data-ur="ہمارا سفر">Our Journey</div>
+    <h2 class="i18n" data-en="Our History" data-ur="ہماری تاریخ">Our History</h2>
+  </div>
+  <div style="max-width:800px; margin:0 auto;">
+    <p class="i18n" style="font-size:15px; line-height:1.85; color:var(--ink); margin-bottom:16px;" data-en="Islamia School &amp; College Martung (The ISCM) was established in [Year] with the great vision of providing the children of the region with a quality educational environment — one where Islamic education, high moral character, and modern knowledge come together in perfect harmony." data-ur="اسلامیہ سکول اینڈ کالج مارتنگ (آئی ایس سی ایم) کا قیام سن [Year]ء میں اس عظیم وژن کے ساتھ عمل میں آیا کہ علاقے کے بچوں کو ایسا معیاری تعلیمی ماحول فراہم کیا جائے، جہاں اسلامی تعلیم، اعلیٰ اخلاق اور جدید علوم کا حسین امتزاج موجود ہو۔">Islamia School &amp; College Martung (The ISCM) was established in [Year] with the great vision of providing the children of the region with a quality educational environment — one where Islamic education, high moral character, and modern knowledge come together in perfect harmony.</p>
+    <p class="i18n" style="font-size:15px; line-height:1.85; color:var(--ink); margin-bottom:16px;" data-en="The institution was founded by sincere, capable, and education-loving individuals: [Founder Names]. Their goal was not merely to establish a school, but to raise a generation adorned with knowledge, character, faith, and morality — one capable of serving their society and country in the best possible way." data-ur="اس ادارے کی بنیاد مخلص، باصلاحیت اور تعلیم دوست شخصیات [بانیوں کے نام] نے رکھی۔ ان کا مقصد صرف ایک اسکول قائم کرنا نہیں تھا، بلکہ ایسی نسل تیار کرنا تھا جو علم، کردار، ایمان اور اخلاق کے زیور سے آراستہ ہو اور اپنے معاشرے و ملک کی بہترین خدمت کر سکے۔">The institution was founded by sincere, capable, and education-loving individuals: [Founder Names]. Their goal was not merely to establish a school, but to raise a generation adorned with knowledge, character, faith, and morality — one capable of serving their society and country in the best possible way.</p>
+    <p class="i18n" style="font-size:15px; line-height:1.85; color:var(--ink); margin-bottom:16px;" data-en="The institution began its educational journey with the Nursery class. By the grace of Allah Almighty, the visionary leadership of its founders, the tireless efforts of its teachers, and the full trust of parents, the institution achieved new milestones of progress every year. New classes were added step by step, until today, Alhamdulillah, Islamia School &amp; College Martung (The ISCM) has successfully reached up to Intermediate (FSc/FA) level." data-ur="ادارے نے اپنے تعلیمی سفر کا آغاز نرسری کلاس سے کیا۔ اللہ تعالیٰ کے فضل و کرم، بانیانِ ادارہ کی دوراندیش قیادت، اساتذہ کی انتھک محنت اور والدین کے بھرپور اعتماد کی بدولت ادارہ ہر سال ترقی کی نئی منازل طے کرتا گیا۔ مرحلہ وار نئی جماعتوں کا اضافہ ہوتا رہا، یہاں تک کہ آج الحمدللہ اسلامیہ سکول اینڈ کالج مارتنگ (آئی ایس سی ایم) کامیابی کے ساتھ انٹرمیڈیٹ (ایف ایس سی/ایف اے) کی سطح تک پہنچ چکا ہے۔">The institution began its educational journey with the Nursery class. By the grace of Allah Almighty, the visionary leadership of its founders, the tireless efforts of its teachers, and the full trust of parents, the institution achieved new milestones of progress every year. New classes were added step by step, until today, Alhamdulillah, Islamia School &amp; College Martung (The ISCM) has successfully reached up to Intermediate (FSc/FA) level.</p>
+    <p class="i18n" style="font-size:15px; line-height:1.85; color:var(--ink); margin-bottom:16px;" data-en="Our effort is to provide students with an education that makes them successful in academic, moral, and practical fields. In sha Allah, the institution will continue its educational journey toward higher classes in the future, while further raising its academic standards." data-ur="ہماری کوشش ہے کہ طلبہ کو ایسی تعلیم فراہم کی جائے جو انہیں علمی، اخلاقی اور عملی میدانوں میں کامیاب بنائے۔ ان شاء اللہ مستقبل میں بھی ادارہ اپنے تعلیمی معیار کو مزید بلند کرتے ہوئے اعلیٰ جماعتوں تک اپنے تعلیمی سفر کو جاری رکھے گا۔">Our effort is to provide students with an education that makes them successful in academic, moral, and practical fields. In sha Allah, the institution will continue its educational journey toward higher classes in the future, while further raising its academic standards.</p>
+    <p class="i18n display" style="font-size:18px; font-style:italic; color:var(--navy); text-align:center; margin-top:26px; font-weight:600;" data-en="&quot;Knowledge, character, and faith — this is our identity, our asset, and our commitment.&quot;" data-ur="&quot;علم، کردار اور ایمان — یہی ہماری پہچان، ہمارا سرمایہ اور ہمارا عزم ہے۔&quot;">"Knowledge, character, and faith — this is our identity, our asset, and our commitment."</p>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="Guiding Principles" data-ur="رہنما اصول">Guiding Principles</div>
+    <h2 class="i18n" data-en="Vision &amp; Mission" data-ur="وژن اور مشن">Vision &amp; Mission</h2>
+  </div>
+  <div class="vm-grid">
+    <div class="vm-card">
+      <h3 class="i18n" data-en="Our Vision" data-ur="ہمارا وژن">Our Vision</h3>
+      <p class="i18n" data-en="To become a leading educational institution producing students who are academically competent, morally upright, spiritually conscious, and socially responsible — future leaders with knowledge, wisdom, confidence, and strong Islamic values." data-ur="ایک ایسا معروف تعلیمی ادارہ بننا جو علمی لحاظ سے قابل، اخلاقی طور پر بلند، روحانی طور پر باشعور اور معاشرتی طور پر ذمہ دار طلبہ پیدا کرے۔ علم، حکمت، اعتماد اور مضبوط اسلامی اقدار کے حامل مستقبل کے رہنما۔">To become a leading educational institution producing students who are academically competent, morally upright, spiritually conscious, and socially responsible — future leaders with knowledge, wisdom, confidence, and strong Islamic values.</p>
+    </div>
+    <div class="vm-card">
+      <h3 class="i18n" data-en="Our Mission" data-ur="ہمارا مشن">Our Mission</h3>
+      <ul>
+        <li class="i18n" data-en="High-quality education in modern and Islamic subjects" data-ur="جدید اور اسلامی مضامین میں اعلیٰ معیار کی تعلیم">High-quality education in modern and Islamic subjects</li>
+        <li class="i18n" data-en="Strong moral character and Islamic ethics" data-ur="مضبوط اخلاقی کردار اور اسلامی اقدار">Strong moral character and Islamic ethics</li>
+        <li class="i18n" data-en="Creativity, innovation, and critical thinking" data-ur="تخلیقی صلاحیت، جدت اور تنقیدی سوچ">Creativity, innovation, and critical thinking</li>
+        <li class="i18n" data-en="Leadership qualities and self-confidence" data-ur="قائدانہ صلاحیتیں اور خود اعتمادی">Leadership qualities and self-confidence</li>
+        <li class="i18n" data-en="A safe, peaceful, and inspiring learning environment" data-ur="ایک محفوظ، پرامن اور حوصلہ افزا تعلیمی ماحول">A safe, peaceful, and inspiring learning environment</li>
+        <li class="i18n" data-en="Strong cooperation between teachers, students, and parents" data-ur="اساتذہ، طلبہ اور والدین کے درمیان مضبوط تعاون">Strong cooperation between teachers, students, and parents</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section pillars" id="academics">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="What We Teach" data-ur="ہم کیا پڑھاتے ہیں">What We Teach</div>
+    <h2 class="i18n" data-en="Academic Excellence &amp; Islamic Education" data-ur="علمی مہارت اور اسلامی تعلیم">Academic Excellence &amp; Islamic Education</h2>
+  </div>
+  <div class="pillar-grid">
+    <div class="pillar-card">
+      <span class="icon">📘</span>
+      <h3 class="i18n" data-en="Modern Subjects" data-ur="جدید مضامین">Modern Subjects</h3>
+      <ul>
+        <li class="i18n" data-en="English" data-ur="انگریزی">English</li>
+        <li class="i18n" data-en="Mathematics" data-ur="ریاضی">Mathematics</li>
+        <li class="i18n" data-en="Science" data-ur="سائنس">Science</li>
+        <li class="i18n" data-en="Computer Studies" data-ur="کمپیوٹر سٹڈیز">Computer Studies</li>
+        <li class="i18n" data-en="Urdu" data-ur="اردو">Urdu</li>
+        <li class="i18n" data-en="Social Studies" data-ur="معاشرتی علوم">Social Studies</li>
+        <li class="i18n" data-en="General Knowledge" data-ur="عمومی معلومات">General Knowledge</li>
+      </ul>
+    </div>
+    <div class="pillar-card">
+      <span class="icon">☪️</span>
+      <h3 class="i18n" data-en="Islamic Studies" data-ur="اسلامی تعلیمات">Islamic Studies</h3>
+      <ul>
+        <li class="i18n" data-en="Holy Qur&#39;an with proper Tajweed" data-ur="صحیح تجوید کے ساتھ قرآن پاک">Holy Qur'an with proper Tajweed</li>
+        <li class="i18n" data-en="Islamiat &amp; Aqeedah" data-ur="اسلامیات اور عقیدہ">Islamiat &amp; Aqeedah</li>
+        <li class="i18n" data-en="Seerah of Prophet Muhammad ﷺ" data-ur="سیرت نبی کریم ﷺ">Seerah of Prophet Muhammad ﷺ</li>
+        <li class="i18n" data-en="Islamic history" data-ur="اسلامی تاریخ">Islamic history</li>
+        <li class="i18n" data-en="Daily Sunnahs &amp; etiquette" data-ur="روزمرہ سنتیں اور آداب">Daily Sunnahs &amp; etiquette</li>
+        <li class="i18n" data-en="Duas for everyday life" data-ur="روزمرہ زندگی کی دعائیں">Duas for everyday life</li>
+      </ul>
+    </div>
+    <div class="pillar-card">
+      <span class="icon">🌱</span>
+      <h3 class="i18n" data-en="Character Building" data-ur="کردار سازی">Character Building</h3>
+      <ul>
+        <li class="i18n" data-en="Honesty &amp; truthfulness" data-ur="دیانتداری اور سچائی">Honesty &amp; truthfulness</li>
+        <li class="i18n" data-en="Respect &amp; humility" data-ur="احترام اور عاجزی">Respect &amp; humility</li>
+        <li class="i18n" data-en="Patience &amp; responsibility" data-ur="صبر اور ذمہ داری">Patience &amp; responsibility</li>
+        <li class="i18n" data-en="Discipline &amp; teamwork" data-ur="نظم و ضبط اور ٹیم ورک">Discipline &amp; teamwork</li>
+        <li class="i18n" data-en="Kindness &amp; compassion" data-ur="شفقت اور ہمدردی">Kindness &amp; compassion</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="Core Values" data-ur="بنیادی اقدار">Core Values</div>
+    <h2 class="i18n" data-en="What We Instill in Every Student" data-ur="ہر طالب علم میں کیا پیدا کرتے ہیں">What We Instill in Every Student</h2>
+  </div>
+  <div class="values-strip">
+    <span class="val-pill i18n" data-en="Honesty" data-ur="دیانتداری">Honesty</span>
+    <span class="val-pill i18n" data-en="Discipline" data-ur="نظم و ضبط">Discipline</span>
+    <span class="val-pill i18n" data-en="Respect" data-ur="احترام">Respect</span>
+    <span class="val-pill i18n" data-en="Kindness" data-ur="شفقت">Kindness</span>
+    <span class="val-pill i18n" data-en="Responsibility" data-ur="ذمہ داری">Responsibility</span>
+    <span class="val-pill i18n" data-en="Patience" data-ur="صبر">Patience</span>
+    <span class="val-pill i18n" data-en="Teamwork" data-ur="ٹیم ورک">Teamwork</span>
+    <span class="val-pill i18n" data-en="Compassion" data-ur="ہمدردی">Compassion</span>
+  </div>
+</section>
+
+<section class="section" id="leadership">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="Our Leadership" data-ur="ہماری قیادت">Our Leadership</div>
+    <h2 class="i18n" data-en="School Owners" data-ur="سکول کے مالکان">School Owners</h2>
+  </div>
+  <div class="lead-grid">
+    <div class="lead-card">
+      <div class="arch-photo"><img src="owner1.jpg" alt="[Director Name]"></div>
+      <h3>[Director Name]</h3>
+      <div class="role i18n" data-en="Founder &amp; Director" data-ur="بانی اور ڈائریکٹر">Founder &amp; Director</div>
+      <div class="i18n" style="font-size:12.5px; color:var(--mist); font-style:italic; margin-top:4px;" data-en="Strategy, Career Counseling &amp; Institutional Growth" data-ur="حکمت عملی، کیریئر کونسلنگ اور ادارہ جاتی ترقی">Strategy, Career Counseling &amp; Institutional Growth</div>
+    </div>
+    <div class="lead-card">
+      <div class="arch-photo"><img src="owner2.jpg" alt="[Owner/Director Name]"></div>
+      <h3>[Owner/Director Name]</h3>
+      <div class="role i18n" data-en="Founder &amp; Academic Director" data-ur="بانی اور اکیڈمک ڈائریکٹر">Founder &amp; Academic Director</div>
+      <div class="i18n" style="font-size:12.5px; color:var(--mist); font-style:italic; margin-top:4px;" data-en="Academics, Curriculum &amp; Islamic Education" data-ur="تعلیم، نصاب اور اسلامی تعلیمات">Academics, Curriculum &amp; Islamic Education</div>
+    </div>
+    <div class="lead-card">
+      <div class="arch-photo"><img src="owner3.jpg" alt="[Owner/Director Name]"></div>
+      <h3>[Owner/Director Name]</h3>
+      <div class="role i18n" data-en="Founder &amp; Operations Director" data-ur="بانی اور آپریشنز ڈائریکٹر">Founder &amp; Operations Director</div>
+      <div class="i18n" style="font-size:12.5px; color:var(--mist); font-style:italic; margin-top:4px;" data-en="Administration, Finance &amp; Student Services" data-ur="انتظامیہ، مالیات اور طلبہ کی خدمات">Administration, Finance &amp; Student Services</div>
+    </div>
+  </div>
+
+  <div class="section-head" style="margin-top:56px;">
+    <div class="kicker i18n" data-en="Meet the Team" data-ur="ٹیم سے ملیں">Meet the Team</div>
+    <h2 class="i18n" data-en="Our Teaching Staff" data-ur="ٹیچنگ سٹاف">Our Teaching Staff</h2>
+  </div>
+  <div class="staff-grid">
+    <div class="staff-card"><img src="staff-1.jpg" alt="[Teacher Name] - Principal"></div>
+    <div class="staff-card"><img src="staff-2.jpg" alt="[Teacher Name] - Vice Principal"></div>
+    <div class="staff-card"><img src="staff-3.jpg" alt="[Teacher Name] - Accountant and Finance"></div>
+    <div class="staff-card"><img src="staff-4.jpg" alt="[Teacher Name] - Chief Protector"></div>
+    <div class="staff-card"><img src="staff-5.jpg" alt="[Teacher Name] - Science Teacher"></div>
+    <div class="staff-card"><img src="staff-6.jpg" alt="[Teacher Name] - Teacher"></div>
+    <div class="staff-card"><img src="staff-7.jpg" alt="[Teacher Name] - Teacher"></div>
+    <div class="staff-card"><img src="staff-8.jpg" alt="[Teacher Name] - Teacher"></div>
+    <div class="staff-card"><img src="staff-9.jpg" alt="[Teacher Name] - Urdu Teacher"></div>
+    <div class="staff-card"><img src="staff-10.jpg" alt="[Teacher Name] - Teacher (PST)"></div>
+  </div>
+
+  <div class="message-card" style="margin-top:56px;">
+    <div class="msg-bismillah">بسم اللہ الرحمن الرحیم</div>
+    <div class="msg-salaam i18n" data-en="Assalamu Alaikum Warahmatullahi Wabarakatuh" data-ur="السلام علیکم ورحمۃ اللہ وبرکاتہ">Assalamu Alaikum Warahmatullahi Wabarakatuh</div>
+
+    <p class="msg-body i18n"
+       data-en="Welcome to Islamia School &amp; College Martung (The ISCM)."
+       data-ur="اسلامیہ سکول اینڈ کالج مارتنگ (آئی ایس سی ایم) میں آپ کو خوش آمدید۔">Welcome to Islamia School &amp; College Martung (The ISCM).</p>
+
+    <p class="msg-body i18n"
+       data-en="Our aim is not merely to provide students with academic education, but to equip them with the finest character, Islamic values, and modern knowledge so that they may become principled, capable, and responsible citizens. We believe that education is the very light that forms the foundation for the progress of the individual, society, and nation."
+       data-ur="ہمارا مقصد صرف طلبہ کو نصابی تعلیم دینا نہیں، بلکہ انہیں بہترین اخلاق، اسلامی اقدار اور جدید علوم سے آراستہ کرنا ہے تاکہ وہ ایک باکردار، باصلاحیت اور ذمہ دار شہری بن سکیں۔ ہم اس بات پر یقین رکھتے ہیں کہ تعلیم ہی وہ روشنی ہے جو فرد، معاشرے اور قوم کی ترقی کی بنیاد بنتی ہے۔">Our aim is not merely to provide students with academic education, but to equip them with the finest character, Islamic values, and modern knowledge so that they may become principled, capable, and responsible citizens. We believe that education is the very light that forms the foundation for the progress of the individual, society, and nation.</p>
+
+    <p class="msg-body i18n"
+       data-en="Our teaching staff works tirelessly to nurture the intellectual, moral, and practical abilities of our students, while considering the trust and cooperation of parents as a vital source of our success."
+       data-ur="ہمارا تدریسی عملہ طلبہ کی ذہنی، اخلاقی اور عملی صلاحیتوں کو نکھارنے کے لیے بھرپور محنت کرتا ہے، جبکہ والدین کے اعتماد اور تعاون کو اپنی کامیابی کا اہم ذریعہ سمجھتا ہے۔">Our teaching staff works tirelessly to nurture the intellectual, moral, and practical abilities of our students, while considering the trust and cooperation of parents as a vital source of our success.</p>
+
+    <p class="msg-body i18n"
+       data-en="I extend my gratitude to all parents for placing their trust in our institution. In sha Allah, we will continue our efforts to provide quality education, excellent training, and modern educational facilities in the future as well."
+       data-ur="میں تمام والدین کا شکریہ ادا کرتا ہوں کہ انہوں نے ہمارے ادارے پر اعتماد کیا۔ ان شاء اللہ ہم مستقبل میں بھی معیاری تعلیم، بہترین تربیت اور جدید تعلیمی سہولیات کی فراہمی کے لیے اپنی کوششیں جاری رکھیں گے۔">I extend my gratitude to all parents for placing their trust in our institution. In sha Allah, we will continue our efforts to provide quality education, excellent training, and modern educational facilities in the future as well.</p>
+
+    <p class="msg-body i18n"
+       data-en="May Allah Almighty grant us the ability to fulfill our responsibilities in the best possible manner. Ameen."
+       data-ur="اللہ تعالیٰ ہمیں اپنی ذمہ داریاں بہترین طریقے سے ادا کرنے کی توفیق عطا فرمائے۔ آمین۔">May Allah Almighty grant us the ability to fulfill our responsibilities in the best possible manner. Ameen.</p>
+
+    <div class="msg-sign">
+      <div class="i18n" data-en="Wassalam" data-ur="والسلام" style="font-size:13px; color:var(--mist);">Wassalam</div>
+      <div class="sig-name">[Principal Name]</div>
+      <div class="sig-role i18n" data-en="Principal, Islamia School &amp; College Martung (The ISCM)" data-ur="پرنسپل، اسلامیہ سکول اینڈ کالج مارتنگ (The ISCM)">Principal, Islamia School &amp; College Martung (The ISCM)</div>
+    </div>
+  </div>
+
+  <div class="message-card" style="margin-top:40px;">
+    <div style="text-align:center; margin-bottom:20px;">
+      <div style="font-family:'Amiri', serif; color:var(--gold); font-size:13px; text-transform:uppercase; letter-spacing:.08em;">Message from the Director</div>
+      <div class="sig-name" style="font-size:20px; margin-top:6px;">[Director Name]</div>
+      <div style="font-size:12.5px; color:var(--mist); margin-top:4px;">[Director Qualifications]</div>
+      <div class="sig-role" style="margin-top:4px;">Director, Islamia School &amp; College Martung</div>
+    </div>
+
+    <p class="msg-body" style="font-style:italic; text-align:center; color:var(--navy); border-left:3px solid var(--gold); border-right:3px solid var(--gold); padding:0 18px;">
+      "At ISCM, we believe education is more than books — it is about building character, career, and faith together."
+    </p>
+
+    <p class="msg-body">With 8+ years of experience in education and management, my vision is simple: to provide modern, quality education alongside Islamic values and counseling, in a friendly and nurturing environment.</p>
+
+    <p class="msg-body">We focus not only on academic excellence but also on career guidance to help every student discover their purpose and potential.</p>
+
+    <p class="msg-body">Our goal is to raise confident, capable, and God-conscious individuals who can serve themselves, their families, and our nation with knowledge and integrity.</p>
+
+    <p style="text-align:center; font-family:'Amiri', serif; color:var(--gold); font-size:17px; font-weight:700; margin-top:20px;">
+      Come to Know. Go to Glow.
+    </p>
+  </div>
+</section>
+
+<section class="section" style="background:var(--paper);" id="admission-info">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="Admission Details" data-ur="داخلہ کی تفصیلات">Admission Details</div>
+    <h2 class="i18n" data-en="Age, Fees &amp; Registration" data-ur="عمر، فیس اور رجسٹریشن">Age, Fees &amp; Registration</h2>
+  </div>
+  <div class="info-grid">
+    <div class="info-card">
+      <h3 class="i18n" data-en="School Registration" data-ur="سکول رجسٹریشن">School Registration</h3>
+      <div class="reg-row"><strong class="i18n" data-en="School ID" data-ur="سکول آئی ڈی">School ID</strong><span class="val">[School ID]</span></div>
+      <div class="reg-row"><strong class="i18n" data-en="Registration No." data-ur="رجسٹریشن نمبر">Registration No.</strong><span class="val">[Registration No.]</span></div>
+      <div class="reg-row"><strong class="i18n" data-en="EMIS Code (BISP)" data-ur="ای ایم آئی ایس کوڈ (بی آئی ایس پی)">EMIS Code (BISP)</strong><span class="val">[EMIS Code]</span></div>
+    </div>
+    <div class="info-card">
+      <h3 class="i18n" data-en="Required Age for Admission" data-ur="ہر کلاس کے لیے درکار عمر">Required Age for Admission</h3>
+      <table>
+        <tr><th class="i18n" data-en="Class" data-ur="کلاس">Class</th><th class="i18n" data-en="Required Age" data-ur="مطلوبہ عمر">Required Age</th></tr>
+        <tr><td>Nursery</td><td class="i18n" data-en="4+ years" data-ur="4+ سال">4+ years</td></tr>
+        <tr><td>KG</td><td class="i18n" data-en="5+ years" data-ur="5+ سال">5+ years</td></tr>
+        <tr><td>Grade 1</td><td class="i18n" data-en="6+ years" data-ur="6+ سال">6+ years</td></tr>
+        <tr><td>Grade 2</td><td class="i18n" data-en="7+ years" data-ur="7+ سال">7+ years</td></tr>
+        <tr><td>Grade 3</td><td class="i18n" data-en="8+ years" data-ur="8+ سال">8+ years</td></tr>
+        <tr><td>Grade 4</td><td class="i18n" data-en="9+ years" data-ur="9+ سال">9+ years</td></tr>
+        <tr><td>Grade 5</td><td class="i18n" data-en="10+ years" data-ur="10+ سال">10+ years</td></tr>
+        <tr><td>Grade 6</td><td class="i18n" data-en="11+ years" data-ur="11+ سال">11+ years</td></tr>
+        <tr><td>Grade 7</td><td class="i18n" data-en="12+ years" data-ur="12+ سال">12+ years</td></tr>
+        <tr><td>Grade 8</td><td class="i18n" data-en="13+ years" data-ur="13+ سال">13+ years</td></tr>
+        <tr><td>Grade 9</td><td class="i18n" data-en="14+ years" data-ur="14+ سال">14+ years</td></tr>
+        <tr><td>Grade 10 (Matric)</td><td class="i18n" data-en="15+ years" data-ur="15+ سال">15+ years</td></tr>
+        <tr><td>Intermediate (FSc/FA) Part 1</td><td class="i18n" data-en="16+ years" data-ur="16+ سال">16+ years</td></tr>
+        <tr><td>Intermediate (FSc/FA) Part 2</td><td class="i18n" data-en="17+ years" data-ur="17+ سال">17+ years</td></tr>
+      </table>
+    </div>
+    <div class="info-card">
+      <h3 class="i18n" data-en="Fee Structure (Session 2026–27)" data-ur="فیس اسٹرکچر (سیشن 2026–27)">Fee Structure (Session 2026–27)</h3>
+      <table>
+        <tr><th class="i18n" data-en="Class" data-ur="کلاس">Class</th><th class="i18n" data-en="Monthly Fee" data-ur="ماہانہ فیس">Monthly Fee</th></tr>
+        <tr><td>Nursery</td><td>Rs. 1,500</td></tr>
+        <tr><td>KG</td><td>Rs. 1,400</td></tr>
+        <tr><td>Grade 1</td><td>Rs. 1,500</td></tr>
+        <tr><td>Grade 2</td><td>Rs. 1,600</td></tr>
+        <tr><td>Grade 3</td><td>Rs. 1,700</td></tr>
+        <tr><td>Grade 4</td><td>Rs. 1,800</td></tr>
+        <tr><td>Grade 5</td><td>Rs. 1,900</td></tr>
+        <tr><td>Grade 6</td><td>Rs. 2,000</td></tr>
+        <tr><td>Grade 7</td><td>Rs. 2,100</td></tr>
+        <tr><td>Grade 8</td><td>Rs. 2,200</td></tr>
+        <tr><td>Grade 9</td><td>Rs. [Fee]</td></tr>
+        <tr><td>Grade 10 (Matric)</td><td>Rs. [Fee]</td></tr>
+        <tr><td>Intermediate (FSc/FA) Part 1</td><td>Rs. [Fee]</td></tr>
+        <tr><td>Intermediate (FSc/FA) Part 2</td><td>Rs. [Fee]</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--paper);" id="calendar">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="Session 2026–27" data-ur="سیشن 2026–27">Session 2026–27</div>
+    <h2 class="i18n" data-en="Academic Calendar" data-ur="تعلیمی کیلنڈر">Academic Calendar</h2>
+  </div>
+
+  <div class="calendar-cards">
+
+    <div class="calendar-card">
+      <h3>📚 <span class="i18n" data-en="February – March" data-ur="فروری – مارچ">February – March</span></h3>
+      <p><strong>10 Feb – 15 Mar</strong></p>
+      <p class="i18n" data-en="New Academic Year Begins" data-ur="نئے تعلیمی سال کا آغاز">New Academic Year Begins</p>
+      <p class="i18n" data-en="Regular Classes" data-ur="باقاعدہ کلاسز">Regular Classes</p>
+      <p class="i18n" data-en="First Teaching Term" data-ur="پہلی تدریسی مدت">First Teaching Term</p>
+    </div>
+
+    <div class="calendar-card">
+      <h3>📚 <span class="i18n" data-en="March – April" data-ur="مارچ – اپریل">March – April</span></h3>
+      <p><strong>16 Mar – 15 Apr</strong></p>
+      <p class="i18n" data-en="Teaching Activities" data-ur="تدریسی سرگرمیاں">Teaching Activities</p>
+      <p class="i18n" data-en="Monthly Review" data-ur="ماہانہ جائزہ">Monthly Review</p>
+    </div>
+
+    <div class="calendar-card">
+      <h3>📚 <span class="i18n" data-en="April – May" data-ur="اپریل – مئی">April – May</span></h3>
+      <p><strong>16 Apr – 15 May</strong></p>
+      <p class="i18n" data-en="Teaching Activities" data-ur="تدریسی سرگرمیاں">Teaching Activities</p>
+      <p class="i18n" data-en="Class Tests" data-ur="کلاس ٹیسٹ">Class Tests</p>
+    </div>
+
+    <div class="calendar-card">
+      <h3>📝 <span class="i18n" data-en="May – June" data-ur="مئی – جون">May – June</span></h3>
+      <p><strong>16 May – 20 Jun</strong></p>
+      <p class="i18n" data-en="Syllabus Completion (Phase 1)" data-ur="سلیبس کی تکمیل (پہلا مرحلہ)">Syllabus Completion (Phase 1)</p>
+      <p class="i18n" data-en="Mid-Term Examination" data-ur="وسط مدتی امتحان">Mid-Term Examination</p>
+      <p class="i18n" data-en="Result Announcement" data-ur="نتائج کا اعلان">Result Announcement</p>
+    </div>
+
+    <div class="calendar-card">
+      <h3>☀️ <span class="i18n" data-en="Summer Vacation" data-ur="موسم گرما کی چھٹیاں">Summer Vacation</span></h3>
+      <p><strong>21 June – 31 July</strong></p>
+      <p class="i18n" data-en="School Closed" data-ur="سکول بند">School Closed</p>
+    </div>
+
+    <div class="calendar-card">
+      <h3>📚 <span class="i18n" data-en="August" data-ur="اگست">August</span></h3>
+      <p class="i18n" data-en="School Reopens" data-ur="سکول دوبارہ کھلنا">School Reopens</p>
+      <p class="i18n" data-en="New Session's Second Phase" data-ur="نئے سیشن کا دوسرا مرحلہ">New Session's Second Phase</p>
+    </div>
+
+    <div class="calendar-card">
+      <h3>📚 <span class="i18n" data-en="September" data-ur="ستمبر">September</span></h3>
+      <p class="i18n" data-en="Regular Teaching" data-ur="باقاعدہ تدریس">Regular Teaching</p>
+      <p class="i18n" data-en="Monthly Tests" data-ur="ماہانہ ٹیسٹ">Monthly Tests</p>
+    </div>
+
+    <div class="calendar-card">
+      <h3>📚 <span class="i18n" data-en="October" data-ur="اکتوبر">October</span></h3>
+      <p class="i18n" data-en="Syllabus Completion" data-ur="سلیبس کی تکمیل">Syllabus Completion</p>
+      <p class="i18n" data-en="Exam Preparation" data-ur="امتحانی تیاری">Exam Preparation</p>
+    </div>
+
+    <div class="calendar-card">
+      <h3>📝 <span class="i18n" data-en="November – Mid December" data-ur="نومبر – وسط دسمبر">November – Mid December</span></h3>
+      <p class="i18n" data-en="Annual Examinations" data-ur="سالانہ امتحانات">Annual Examinations</p>
+      <p class="i18n" data-en="Annual Examination" data-ur="Annual Examination">Annual Examination</p>
+      <p class="i18n" data-en="Result Announcement" data-ur="نتائج کا اعلان">Result Announcement</p>
+    </div>
+
+    <div class="calendar-card">
+      <h3>❄️ <span class="i18n" data-en="Winter Vacation" data-ur="موسم سرما کی چھٹیاں">Winter Vacation</span></h3>
+      <p><strong>16 December 2026 – January 2027</strong></p>
+      <p class="i18n" data-en="School Closed" data-ur="سکول بند">School Closed</p>
+    </div>
+
+  </div>
+
+  <div class="section-head" style="margin-top:56px;">
+    <div class="kicker i18n" data-en="Government Announced" data-ur="حکومتی اعلان کردہ">Government Announced</div>
+    <h2 class="i18n" data-en="Public Holidays" data-ur="اہم تعطیلات">Public Holidays</h2>
+  </div>
+  <table class="cal-table">
+    <tr><th class="i18n" data-en="Holiday" data-ur="تعطیل">Holiday</th><th class="i18n" data-en="Date" data-ur="تاریخ">Date</th></tr>
+    <tr><td class="i18n" data-en="Kashmir Day" data-ur="یومِ کشمیر">Kashmir Day</td><td class="i18n" data-en="5 February" data-ur="5 فروری">5 February</td></tr>
+    <tr><td class="i18n" data-en="Pakistan Day" data-ur="یومِ پاکستان">Pakistan Day</td><td class="i18n" data-en="23 March" data-ur="23 مارچ">23 March</td></tr>
+    <tr><td class="i18n" data-en="Eid-ul-Fitr" data-ur="عیدالفطر">Eid-ul-Fitr</td><td class="i18n" data-en="As per government announcement" data-ur="حکومتی اعلان کے مطابق">As per government announcement</td></tr>
+    <tr><td class="i18n" data-en="Labour Day" data-ur="یومِ مزدور">Labour Day</td><td class="i18n" data-en="1 May" data-ur="1 مئی">1 May</td></tr>
+    <tr><td class="i18n" data-en="Eid-ul-Adha" data-ur="عیدالاضحیٰ">Eid-ul-Adha</td><td class="i18n" data-en="As per government announcement" data-ur="حکومتی اعلان کے مطابق">As per government announcement</td></tr>
+    <tr><td class="i18n" data-en="9th &amp; 10th Muharram" data-ur="9 اور 10 محرم">9th &amp; 10th Muharram</td><td class="i18n" data-en="As per Islamic calendar" data-ur="اسلامی کیلنڈر کے مطابق">As per Islamic calendar</td></tr>
+    <tr><td class="i18n" data-en="Independence Day" data-ur="یومِ آزادی">Independence Day</td><td class="i18n" data-en="14 August" data-ur="14 اگست">14 August</td></tr>
+    <tr><td class="i18n" data-en="Eid Milad-un-Nabi ﷺ" data-ur="عید میلاد النبی ﷺ">Eid Milad-un-Nabi ﷺ</td><td class="i18n" data-en="As per government announcement" data-ur="حکومتی اعلان کے مطابق">As per government announcement</td></tr>
+    <tr><td class="i18n" data-en="Allama Iqbal Day" data-ur="علامہ اقبال ڈے">Allama Iqbal Day</td><td class="i18n" data-en="9 November (if observed)" data-ur="9 نومبر (اگر نافذ ہو)">9 November (if observed)</td></tr>
+    <tr><td class="i18n" data-en="Quaid-e-Azam Day" data-ur="یومِ قائداعظم">Quaid-e-Azam Day</td><td class="i18n" data-en="25 December" data-ur="25 دسمبر">25 December</td></tr>
+  </table>
+</section>
+
+<section class="section" style="background:#fff;" id="news">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="Stay Updated" data-ur="تازہ ترین معلومات">Stay Updated</div>
+    <h2 class="i18n" data-en="Latest News &amp; Events" data-ur="تازہ ترین خبریں اور تقریبات">Latest News &amp; Events</h2>
+  </div>
+
+  <!-- ============================================================
+       To add a new news item: copy one .news-card block below,
+       change the tag, title, date, and description text (both
+       English and Urdu versions).
+       ============================================================ -->
+  <div class="news-grid">
+
+    <div class="news-card">
+      <img src="news-independence-day.png" alt="14 August Independence Day" style="width:100%; display:block;">
+      <span class="news-tag i18n" data-en="Event" data-ur="تقریب">Event</span>
+      <h3 class="i18n" data-en="Happy Independence Day — 14 August" data-ur="14 اگست مبارک ہو">Happy Independence Day — 14 August</h3>
+      <div class="news-date">14 August 2026</div>
+      <p class="news-body i18n" data-en="Islamia School &amp; College Martung wishes all Pakistanis a very Happy Independence Day. Long live Pakistan!" data-ur="تمام پاکستانیوں کو 14 اگست مبارک ہو۔ پاکستان زندہ باد!">Islamia School &amp; College Martung wishes all Pakistanis a very Happy Independence Day. Long live Pakistan!</p>
+    </div>
+
+    <div class="news-card">
+      <img src="news-homework-notice.jpg" alt="Notice to parents about homework" style="width:100%; display:block;">
+      <span class="news-tag i18n" data-en="Announcement" data-ur="اعلان">Announcement</span>
+      <h3 class="i18n" data-en="A Request to All Parents" data-ur="تمام والدین کی خدمت میں عرض ہے">A Request to All Parents</h3>
+      <div class="news-date">18 August 2026</div>
+      <p class="news-body i18n" data-en="Parents are kindly requested to get their child's homework completed at home and ensure it is sent to school, as parents play a major role in a child's education and upbringing — school hours alone are not enough." data-ur="تمام والدین کی خدمت میں عرض ہے کہ بچے پر سکول کا ہوم ورک کروا کے سکول بھیجا کریں، کیونکہ بچوں کی تعلیم و تربیت میں والدین کا بہت بڑا کردار ہوتا ہے، صرف سکول کی اوقاتِ کار پر انحصار نہ کریں۔">Parents are kindly requested to get their child's homework completed at home and ensure it is sent to school, as parents play a major role in a child's education and upbringing — school hours alone are not enough.</p>
+    </div>
+
+    <div class="news-card">
+      <img src="news-reopening-aug2026.jpg" alt="School reopening announcement" style="width:100%; display:block;">
+      <span class="news-tag i18n" data-en="Announcement" data-ur="اعلان">Announcement</span>
+      <h3 class="i18n" data-en="School Reopens — Monday, 3 August 2026" data-ur="اسکول کا دوبارہ آغاز — 3 اگست، بروز پیر">School Reopens — Monday, 3 August 2026</h3>
+      <div class="news-date">3 August 2026</div>
+      <p class="news-body i18n" data-en="All students of the Martung campus will return to school on Monday, 3 August. Parents are requested to make sure homework is complete, ensure punctual daily attendance, and support continued learning at home so there is no gap in their child's education." data-ur="مارتنگ کیمپس کے تمام طلباء ان‌شاءاللہ پیر، 3 اگست سے اسکول واپس آئیں گے۔ والدین سے گزارش ہے کہ بچوں کا ہوم ورک مکمل کروائیں، وقت کی پابندی اور روزانہ حاضری یقینی بنائیں، اور تعلیمی سفر میں خلا پیدا نہ ہونے دیں۔">All students of the Martung campus will return to school on Monday, 3 August. Parents are requested to make sure homework is complete, ensure punctual daily attendance, and support continued learning at home so there is no gap in their child's education.</p>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag i18n" data-en="Announcement" data-ur="اعلان">Announcement</span>
+      <h3 class="i18n" data-en="Admissions Open for Session 2026–27" data-ur="سیشن 2026–27 کے لیے داخلے کھلے ہیں">Admissions Open for Session 2026–27</h3>
+      <div class="news-date">10 February 2026</div>
+      <p class="news-body i18n" data-en="Registration is now open for Nursery to Intermediate (FSc/FA). Seats are limited — fill the admission form early to secure your child's place." data-ur="نرسری سے انٹرمیڈیٹ (ایف ایس سی/ایف اے) تک رجسٹریشن اب کھلی ہے۔ نشستیں محدود ہیں — اپنے بچے کی جگہ محفوظ کرنے کے لیے جلد داخلہ فارم پُر کریں۔">Registration is now open for Nursery to Intermediate (FSc/FA). Seats are limited — fill the admission form early to secure your child's place.</p>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag i18n" data-en="Event" data-ur="تقریب">Event</span>
+      <h3 class="i18n" data-en="Parents-Teachers Meeting" data-ur="والدین اساتذہ اجلاس">Parents-Teachers Meeting</h3>
+      <div class="news-date">15 March 2026</div>
+      <p class="news-body i18n" data-en="A PTM will be held to discuss student progress and share monthly assessment results. All parents are encouraged to attend." data-ur="طلبہ کی کارکردگی پر گفتگو اور ماہانہ نتائج شیئر کرنے کے لیے پی ٹی ایم منعقد کی جائے گی۔ تمام والدین کی شرکت کی حوصلہ افزائی کی جاتی ہے۔">A PTM will be held to discuss student progress and share monthly assessment results. All parents are encouraged to attend.</p>
+    </div>
+
+    <div class="news-card">
+      <span class="news-tag i18n" data-en="Achievement" data-ur="کامیابی">Achievement</span>
+      <h3 class="i18n" data-en="ISCM Cricket Team Wins District Trophy" data-ur="آئی ایس سی ایم کرکٹ ٹیم نے ضلعی ٹرافی جیت لی">ISCM Cricket Team Wins District Trophy</h3>
+      <div class="news-date">28 December 2025</div>
+      <p class="news-body i18n" data-en="Congratulations to our cricket team for their outstanding performance and victory at the district-level tournament." data-ur="ہماری کرکٹ ٹیم کو ضلعی سطح کے ٹورنامنٹ میں شاندار کارکردگی اور فتح پر مبارکباد۔">Congratulations to our cricket team for their outstanding performance and victory at the district-level tournament.</p>
+    </div>
+
+  </div>
+
+  <div class="section-head" style="margin-top:56px;">
+    <div class="kicker i18n" data-en="From Our Facebook Page" data-ur="ہمارے فیس بک پیج سے">From Our Facebook Page</div>
+    <h2 class="i18n" data-en="Follow Us for Updates" data-ur="تازہ ترین معلومات کے لیے ہمیں فالو کریں">Follow Us for Updates</h2>
+  </div>
+  <div class="fb-feed-wrap">
+    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F[YOUR-ISCM-FACEBOOK-PAGE]&amp;tabs=timeline&amp;width=560&amp;height=600&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true" height="600" scrolling="no" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" title="ISCM Facebook Page Feed"></iframe>
+  </div>
+</section>
+
+<section class="section" id="library">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="Digital Library" data-ur="ڈیجیٹل لائبریری">Digital Library</div>
+    <h2 class="i18n" data-en="Books &amp; Study Material" data-ur="کتابیں اور تعلیمی مواد">Books &amp; Study Material</h2>
+  </div>
+
+  <a href="books.html" class="library-promo-card">
+    <div class="library-promo-icon">
+      <svg viewBox="0 0 64 64" width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 12c6-4 14-4 20 0v38c-6-4-14-4-20 0V12Z" fill="var(--gold)" opacity="0.18"/>
+        <path d="M56 12c-6-4-14-4-20 0v38c6-4 14-4 20 0V12Z" fill="var(--navy)" opacity="0.12"/>
+        <path d="M8 12c6-4 14-4 20 0v38c-6-4-14-4-20 0V12Z" stroke="var(--navy)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M56 12c-6-4-14-4-20 0v38c6-4 14-4 20 0V12Z" stroke="var(--navy)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M28 12v38M14 20h8M14 28h8M42 20h8M42 28h8" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="library-promo-text">
+      <div class="library-promo-title i18n" data-en="Open the Digital Library" data-ur="ڈیجیٹل لائبریری کھولیں">Open the Digital Library</div>
+      <div class="library-promo-sub i18n" data-en="Browse and download textbooks, Islamiyat material, and study guides — organized by class." data-ur="نصابی کتابیں، اسلامیات کا مواد اور تعلیمی رہنما — جماعت کے لحاظ سے ترتیب دی گئی۔">Browse and download textbooks, Islamiyat material, and study guides — organized by class.</div>
+    </div>
+    <div class="library-promo-arrow">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 6l6 6-6 6" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </a>
+</section>
+
+<section class="section" style="background:#fff;" id="gallery">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="Photos &amp; Videos" data-ur="تصاویر اور ویڈیوز">Photos &amp; Videos</div>
+    <h2 class="i18n" data-en="Gallery" data-ur="گیلری">Gallery</h2>
+    <p class="lede i18n" data-en="Moments from everyday life at ISCM — events, achievements, daily routine, sports, and the beautiful valley we call home." data-ur="آئی آئی ای ایس کی روزمرہ زندگی کی جھلکیاں — تقریبات، کامیابیاں، معمولات، کھیل، اور وہ خوبصورت وادی جسے ہم اپنا گھر کہتے ہیں۔">Moments from everyday life at ISCM — events, achievements, daily routine, sports, and the beautiful valley we call home.</p>
+  </div>
+  <div class="gallery-scroll"><div class="gallery-grid">
+    <div class="gallery-item"><img src="teachers-group.jpg" alt="ISCM Teaching Staff"><div class="cap">Our teaching staff</div></div>
+    <div class="gallery-item"><img src="event-4.jpg" alt="Award ceremony"><div class="cap">Position holders receiving awards</div></div>
+    <div class="gallery-item"><img src="event-1.jpg" alt="Award ceremony collage"><div class="cap">Students with their achievement awards</div></div>
+    <div class="gallery-item"><img src="event-2.jpg" alt="Award ceremony collage"><div class="cap">Students with their achievement awards</div></div>
+    <div class="gallery-item"><img src="event-3.jpg" alt="Awards ready for distribution"><div class="cap">Awards prepared for distribution</div></div>
+    <div class="gallery-item"><img src="event-7.jpg" alt="Best Teacher Award"><div class="cap">Best Teacher Award</div></div>
+    <div class="gallery-item"><img src="event-6.jpg" alt="Best Proctor Award"><div class="cap">Best Proctor Award</div></div>
+    <div class="gallery-item"><img src="event-5.jpg" alt="Student receiving award"><div class="cap">Student receiving position award</div></div>
+    <div class="gallery-item"><img src="ptm-1.jpg" alt="Parents-Teachers Meeting"><div class="cap">Parents-Teachers Meeting</div></div>
+    <div class="gallery-item"><img src="ptm-2.jpg" alt="Parents-Teachers Meeting"><div class="cap">Parents-Teachers Meeting</div></div>
+    <div class="gallery-item"><img src="ptm-3.jpg" alt="Parents-Teachers Meeting"><div class="cap">Parents-Teachers Meeting</div></div>
+    <div class="gallery-item"><img src="cricket-2.jpg" alt="ISCM Cricket Team"><div class="cap">ISCM Cricket Team with trophies</div></div>
+    <div class="gallery-item"><img src="cricket-1.jpg" alt="ISCM Cricket Team players with trophies"><div class="cap">Players celebrating their achievements</div></div>
+    <div class="gallery-item"><img src="assembly-1.jpg" alt="Morning assembly at ISCM"><div class="cap">Morning assembly</div></div>
+    <div class="gallery-item"><img src="assembly-2.jpg" alt="Khatm-ul-Quran recitation"><div class="cap">Khatm-ul-Qur'an recitation</div></div>
+    <div class="gallery-item"><img src="area-summer-1.jpg" alt="Martung Shangla valley in summer"><div class="cap">Summer — Martung valley</div></div>
+    <div class="gallery-item"><img src="area-summer-2.jpg" alt="Martung Shangla mountains in summer"><div class="cap">Summer — surrounding mountains</div></div>
+    <div class="gallery-item"><img src="area-summer-3.jpg" alt="Green meadow near Martung Shangla"><div class="cap">Summer — evening meadow</div></div>
+    <div class="gallery-item"><img src="area-winter-1.jpg" alt="Martung Shangla covered in snow"><div class="cap">Winter — snow-covered fields</div></div>
+    <div class="gallery-item"><img src="area-winter-2.jpg" alt="Snow on trees near Martung Shangla"><div class="cap">Winter — snow-laden branches</div></div>
+    <div class="gallery-item"><video src="school-video-1.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">School moments</div></div>
+    <div class="gallery-item"><video src="school-video-2.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">School moments</div></div>
+    <div class="gallery-item"><video src="school-video-3.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">School moments</div></div>
+    <div class="gallery-item"><video src="school-video-4.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">School moments</div></div>
+    <div class="gallery-item"><video src="school-video-5.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">School moments</div></div>
+    <div class="gallery-item"><video src="result-day-1.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">Examination hall</div></div>
+    <div class="gallery-item"><video src="result-day-2.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">Examination hall</div></div>
+    <div class="gallery-item"><video src="exam-hall-1.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">Result day award distribution</div></div>
+  </div></div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="two-col">
+    <div class="block">
+      <h3 class="i18n" data-en="Discipline" data-ur="نظم و ضبط">Discipline</h3>
+      <p class="i18n" data-en="Students are expected to arrive on time, respect teachers and classmates, maintain cleanliness, wear proper uniforms, complete homework regularly, and follow school rules — habits that prepare them to become responsible individuals both inside and outside school." data-ur="طلبہ سے توقع کی جاتی ہے کہ وہ وقت پر آئیں، اساتذہ اور ہم جماعتوں کا احترام کریں، صفائی کا خیال رکھیں، مناسب یونیفارم پہنیں، باقاعدگی سے ہوم ورک کریں اور سکول کے قوانین پر عمل کریں۔ یہ عادات انہیں سکول کے اندر اور باہر ذمہ دار افراد بننے کے لیے تیار کرتی ہیں۔">Students are expected to arrive on time, respect teachers and classmates, maintain cleanliness, wear proper uniforms, complete homework regularly, and follow school rules — habits that prepare them to become responsible individuals both inside and outside school.</p>
+    </div>
+    <div class="block">
+      <h3 class="i18n" data-en="Parental Partnership" data-ur="والدین کی شراکت">Parental Partnership</h3>
+      <p class="i18n" data-en="Education becomes more successful when parents and teachers work together. Regular communication enables parents to monitor academic progress, support learning at home, and celebrate their child&#39;s achievements alongside the school." data-ur="تعلیم اس وقت زیادہ کامیاب ہوتی ہے جب والدین اور اساتذہ مل کر کام کریں۔ باقاعدہ رابطہ والدین کو اپنے بچے کی تعلیمی پیش رفت پر نظر رکھنے، گھر میں تعلیم میں مدد دینے اور سکول کے ساتھ مل کر بچے کی کامیابیوں کا جشن منانے کے قابل بناتا ہے۔">Education becomes more successful when parents and teachers work together. Regular communication enables parents to monitor academic progress, support learning at home, and celebrate their child's achievements alongside the school.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="Get In Touch" data-ur="رابطہ کریں">Get In Touch</div>
+    <h2 class="i18n" data-en="Admissions &amp; Inquiries" data-ur="داخلہ اور معلومات">Admissions &amp; Inquiries</h2>
+  </div>
+  <div class="contact-card">
+    <div class="row"><strong class="i18n" data-en="School" data-ur="سکول">School</strong> — Islamia School &amp; College Martung (ISCM)</div>
+    <div class="row"><strong class="i18n" data-en="Location" data-ur="مقام">Location</strong> — Martung, District Shangla, KPK, Pakistan</div>
+    <div class="row"><strong class="i18n" data-en="Owners" data-ur="مالکان">Owners</strong> — [Owner/Director Name(s)]</div>
+    <div class="row"><strong class="i18n" data-en="Phone" data-ur="فون">Phone</strong> — <a href="tel:+923429533066" style="color:var(--gold);">0342 9533066</a></div>
+    <div class="row"><strong class="i18n" data-en="Email" data-ur="ای میل">Email</strong> — <a href="mailto:[school-email@example.com]" style="color:var(--gold);">[school-email@example.com]</a></div>
+    <div class="contact-cta-row">
+      <a href="admission.html" class="btn btn-gold"><span class="i18n" data-en="📝 Fill Admission Form" data-ur="📝 داخلہ فارم پُر کریں">📝 Fill Admission Form</span></a>
+      <a href="prospectus.pdf" download class="btn btn-outline"><span class="i18n" data-en="📥 Download Prospectus" data-ur="📥 پراسپیکٹس ڈاؤن لوڈ کریں">📥 Download Prospectus</span></a>
+      <a href="https://wa.me/923429533066" class="btn btn-gold">💬 WhatsApp — ISCM</a>
+      <a href="mailto:[school-email@example.com]" class="btn btn-outline"><span class="i18n" data-en="✉ Email Us" data-ur="✉ ای میل کریں">✉ Email Us</span></a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="btn btn-outline"><span class="i18n" data-en="📘 Follow on Facebook" data-ur="📘 فیس بک پر فالو کریں">📘 Follow on Facebook</span></a>
+    </div>
+  </div>
+  <div class="map-wrap">
+    <iframe src="https://www.google.com/maps?q=Islamia+School+and+College+Martung+Shangla&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="ISCM Location Map"></iframe>
+  </div>
+  <div style="text-align:center; margin-top:16px;">
+    <a href="https://maps.google.com/?cid=1251130906772228282" target="_blank" rel="noopener" class="btn btn-outline-light"><span class="i18n" data-en="📍 Get Directions" data-ur="📍 راستہ معلوم کریں">📍 Get Directions</span></a>
+  </div>
+</section>
+
+<section class="section" style="background:var(--paper);" id="staff-records">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="Staff Only" data-ur="صرف عملہ">Staff Only</div>
+    <h2 class="i18n" data-en="Student Records" data-ur="طلبہ کا ریکارڈ">Student Records</h2>
+    <p class="lede i18n" data-en="This section is for school staff to keep a quick internal record. It is protected by a password and saved only on this device/browser." data-ur="یہ حصہ سکول کے عملے کے لیے ہے تاکہ فوری اندرونی ریکارڈ رکھا جا سکے۔ یہ پاس ورڈ سے محفوظ ہے اور صرف اسی ڈیوائس/براؤزر پر محفوظ رہتا ہے۔">This section is for school staff to keep a quick internal record. It is protected by a password and saved only on this device/browser.</p>
+  </div>
+
+  <div id="recordsGate" class="records-box records-gate">
+    <div class="i18n" data-en="🔒 Enter staff password to view/edit records" data-ur="🔒 ریکارڈ دیکھنے کے لیے عملے کا پاس ورڈ درج کریں">🔒 Enter staff password to view/edit records</div>
+    <div><input type="password" id="recordsPassword" placeholder="Password"></div>
+    <button class="btn btn-gold" onclick="checkRecordsPassword()" style="border:none; cursor:pointer;"><span class="i18n" data-en="Unlock" data-ur="کھولیں">Unlock</span></button>
+    <div id="recordsError" style="color:#B0413E; font-size:13px; margin-top:10px; display:none;" class="i18n" data-en="❌ Wrong password" data-ur="❌ غلط پاس ورڈ">❌ Wrong password</div>
+  </div>
+
+  <div id="recordsContent" style="display:none;">
+    <div class="records-form">
+      <div>
+        <label class="i18n" data-en="Student Name" data-ur="طالب علم کا نام">Student Name</label>
+        <input type="text" id="recStudentName" placeholder="e.g. Ali Khan">
+      </div>
+      <div>
+        <label class="i18n" data-en="Class" data-ur="کلاس">Class</label>
+        <input type="text" id="recClass" placeholder="e.g. Grade 3">
+      </div>
+      <div>
+        <label class="i18n" data-en="Parent Number" data-ur="والدین کا نمبر">Parent Number</label>
+        <input type="tel" id="recParentNumber" placeholder="03XX-XXXXXXX">
+      </div>
+      <button class="btn btn-gold" onclick="saveRecord()" style="border:none; cursor:pointer;"><span class="i18n" data-en="💾 Save" data-ur="💾 محفوظ کریں">💾 Save</span></button>
+    </div>
+
+    <div class="records-table-wrap">
+      <table id="recordsTable">
+        <thead>
+          <tr>
+            <th class="i18n" data-en="Student Name" data-ur="طالب علم کا نام">Student Name</th>
+            <th class="i18n" data-en="Class" data-ur="کلاس">Class</th>
+            <th class="i18n" data-en="Parent Number" data-ur="والدین کا نمبر">Parent Number</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="recordsBody"></tbody>
+      </table>
+    </div>
+
+    <div style="max-width:600px; margin:34px auto 0; border:1px solid var(--line); border-radius:10px; overflow:hidden;">
+      <div style="background:var(--navy); color:#fff; padding:14px 18px; font-size:14px; font-weight:600;">
+        <span class="i18n" data-en="General Message" data-ur="عمومی پیغام">General Message</span>
+      </div>
+      <div id="msgChatArea" style="background:#f0f0f0; min-height:200px; max-height:340px; overflow-y:auto; padding:16px;">
+        <p id="msgChatEmpty" style="color:var(--mist); font-size:13px; text-align:center; margin-top:60px;">
+          <span class="i18n" data-en="Type a message below, use @name to mention students." data-ur="نیچے پیغام لکھیں، طلبہ کو @نام سے مینشن کریں۔">Type a message below, use @name to mention students.</span>
+        </p>
+      </div>
+      <div style="position:relative; padding:10px 14px; background:#fff; border-top:1px solid var(--line);">
+        <div id="msgMentionSuggestions" style="display:none; position:absolute; bottom:64px; left:14px; right:14px; background:#fff; border:1px solid var(--line); border-radius:8px; max-height:160px; overflow-y:auto; box-shadow:0 -2px 10px rgba(0,0,0,0.08); z-index:5;"></div>
+        <div style="display:flex; align-items:center; gap:8px; background:#f0f0f0; border-radius:22px; padding:6px 8px 6px 16px;">
+          <input id="msgChatText" type="text" placeholder="Message likhein... @naam" style="flex:1; border:none; background:transparent; outline:none; font-size:14px; padding:8px 0;">
+          <button id="msgChatSendBtn" style="background:#25D366; border:none; width:38px; height:38px; border-radius:50%; color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0;">➤</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+      <button onclick="lockRecords()" class="btn btn-outline-light" style="cursor:pointer;"><span class="i18n" data-en="🔒 Lock" data-ur="🔒 بند کریں">🔒 Lock</span></button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Copyright © 2026 <strong>The ISCM</strong> — Islamia School &amp; College Martung, Martung, Shangla, KPK, Pakistan
+  <div style="margin-top:14px;">
+    <a href="https://www.facebook.com/[YOUR-ISCM-FACEBOOK-PAGE]" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; color:inherit; text-decoration:none; opacity:.85; font-size:13px;">
+      📘 <span class="i18n" data-en="Follow us on Facebook" data-ur="فیس بک پر ہمیں فالو کریں">Follow us on Facebook</span>
+    </a>
+  </div>
+  <div style="margin-top:10px; font-size:11.5px; opacity:.7;"><span class="i18n" data-en="👁️ Total Visits:" data-ur="👁️ کل وزٹس:">👁️ Total Visits:</span> <span id="visitCount">…</span></div>
+  <div style="margin-top:8px; font-size:11px; opacity:.6;"><a href="#staff-records" class="i18n" data-en="Staff Login" data-ur="عملہ لاگ ان">Staff Login</a></div>
+</footer>
+
+<script>
+  fetch('https://api.countapi.xyz/hit/iscm-martung-shangla-kpk/visits')
+    .then(function(res){ return res.json(); })
+    .then(function(data){ document.getElementById('visitCount').innerText = data.value; })
+    .catch(function(){ document.getElementById('visitCount').innerText = '—'; });
+
+  // Language toggle (English / Urdu)
+  function setLanguage(lang){
+    document.querySelectorAll('.i18n').forEach(function(el){
+      var text = el.getAttribute('data-' + lang);
+      if (text !== null) el.textContent = text;
+    });
+    if (lang === 'ur') {
+      document.body.setAttribute('dir', 'rtl');
+      document.getElementById('langToggle').textContent = 'English';
+    } else {
+      document.body.setAttribute('dir', 'ltr');
+      document.getElementById('langToggle').textContent = 'اردو';
+    }
+    localStorage.setItem('iscm-lang', lang);
+  }
+  function toggleLanguage(){
+    var current = document.body.getAttribute('dir') === 'rtl' ? 'ur' : 'en';
+    setLanguage(current === 'ur' ? 'en' : 'ur');
+  }
+  // Restore saved preference on load
+  (function(){
+    var saved = localStorage.getItem('iscm-lang');
+    if (saved === 'ur') setLanguage('ur');
+  })();
+
+  // ---------- Student Records (staff only) ----------
+  var RECORDS_PASSWORD = "iscm2026"; // Staff: change this text to set your own password
+  var RECORDS_KEY = "iscm_student_records";
+
+  function checkRecordsPassword(){
+    var input = document.getElementById('recordsPassword').value;
+    if (input === RECORDS_PASSWORD) {
+      document.getElementById('recordsGate').style.display = 'none';
+      document.getElementById('recordsContent').style.display = 'block';
+      document.getElementById('recordsError').style.display = 'none';
+      renderRecords();
+    } else {
+      document.getElementById('recordsError').style.display = 'block';
+    }
+  }
+
+  function lockRecords(){
+    document.getElementById('recordsGate').style.display = 'block';
+    document.getElementById('recordsContent').style.display = 'none';
+    document.getElementById('recordsPassword').value = '';
+  }
+
+  function getRecords(){
+    try {
+      var raw = localStorage.getItem(RECORDS_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch(e) { return []; }
+  }
+
+  function saveRecord(){
+    var name = document.getElementById('recStudentName').value.trim();
+    var cls = document.getElementById('recClass').value.trim();
+    var parent = document.getElementById('recParentNumber').value.trim();
+    if (!name || !cls || !parent) {
+      alert('Please fill Student Name, Class, and Parent Number.');
+      return;
+    }
+    var records = getRecords();
+    records.push({ name: name, cls: cls, parent: parent });
+    localStorage.setItem(RECORDS_KEY, JSON.stringify(records));
+    document.getElementById('recStudentName').value = '';
+    document.getElementById('recClass').value = '';
+    document.getElementById('recParentNumber').value = '';
+    renderRecords();
+  }
+
+  function deleteRecord(index){
+    var records = getRecords();
+    records.splice(index, 1);
+    localStorage.setItem(RECORDS_KEY, JSON.stringify(records));
+    renderRecords();
+  }
+
+  function renderRecords(){
+    var records = getRecords();
+    var body = document.getElementById('recordsBody');
+    if (records.length === 0) {
+      body.innerHTML = '<tr><td colspan="4" class="rec-empty">No records yet. Add one above.</td></tr>';
+      return;
+    }
+    body.innerHTML = records.map(function(r, i){
+      var digits = r.parent.replace(/\D/g, ''); // strip non-numbers
+      if (digits.length === 11 && digits.startsWith('0')) digits = '92' + digits.substring(1); // 03XX... -> 923XX...
+      return '<tr><td>' + escapeHtml(r.name) + '</td><td>' + escapeHtml(r.cls) + '</td>' +
+        '<td><div class="rec-contact">' +
+          '<span>' + escapeHtml(r.parent) + '</span>' +
+          '<a href="tel:' + escapeHtml(r.parent) + '" class="rec-icon" title="Call">📞</a>' +
+          '<a href="https://wa.me/' + digits + '" target="_blank" rel="noopener" class="rec-icon" title="WhatsApp">💬</a>' +
+        '</div></td>' +
+        '<td><button class="rec-del" onclick="deleteRecord(' + i + ')">✕</button></td></tr>';
+    }).join('');
+  }
+
+  function escapeHtml(str){
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  // ---------- General Message (WhatsApp via @mentions) ----------
+  function normalizeParentPhone(parent){
+    var digits = (parent || '').replace(/\D/g, '');
+    if (digits.length === 11 && digits.startsWith('0')) digits = '92' + digits.substring(1);
+    else if (!digits.startsWith('92')) digits = '92' + digits.replace(/^0+/, '');
+    return digits;
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var msgChatText = document.getElementById('msgChatText');
+    var msgSuggestionBox = document.getElementById('msgMentionSuggestions');
+    if (!msgChatText) return;
+
+    msgChatText.addEventListener('input', function(){
+      var text = msgChatText.value;
+      var cursor = msgChatText.selectionStart;
+      var beforeCursor = text.slice(0, cursor);
+      var match = beforeCursor.match(/@([^@\n]*)$/);
+      if (!match) { msgSuggestionBox.style.display = 'none'; return; }
+      var query = match[1].toLowerCase();
+      var records = getRecords();
+      var matches = records.filter(function(r){ return r.name.toLowerCase().includes(query); });
+      if (matches.length === 0) { msgSuggestionBox.style.display = 'none'; return; }
+      msgSuggestionBox.innerHTML = matches.slice(0, 8).map(function(r){
+        return '<div class="mention-option" data-name="' + escapeHtml(r.name) + '" style="padding:8px 12px; cursor:pointer; border-bottom:1px solid var(--line); font-size:13.5px;">' + escapeHtml(r.name) + ' <span style="color:var(--mist); font-size:11.5px;">(' + escapeHtml(r.cls) + ')</span></div>';
+      }).join('');
+      msgSuggestionBox.style.display = 'block';
+      msgSuggestionBox.querySelectorAll('.mention-option').forEach(function(opt){
+        opt.onclick = function(){
+          var name = opt.dataset.name;
+          var newText = text.slice(0, cursor - match[0].length) + '@' + name + ' ' + text.slice(cursor);
+          msgChatText.value = newText;
+          msgSuggestionBox.style.display = 'none';
+          msgChatText.focus();
+        };
+      });
+    });
+
+    msgChatText.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' && msgSuggestionBox.style.display !== 'block') {
+        e.preventDefault();
+        document.getElementById('msgChatSendBtn').click();
+      }
+    });
+
+    document.getElementById('msgChatSendBtn').onclick = function(){
+      var text = msgChatText.value.trim();
+      if (!text) return;
+      var records = getRecords();
+      var mentioned = records.filter(function(r){ return text.includes('@' + r.name); });
+      var chatArea = document.getElementById('msgChatArea');
+      var emptyMsg = document.getElementById('msgChatEmpty');
+      if (emptyMsg) emptyMsg.remove();
+
+      if (mentioned.length === 0) {
+        chatArea.innerHTML += '<p style="color:#b02a2a; font-size:13px; text-align:center;">Koi student mention nahi hua — @naam likh kar mention karo.</p>';
+        chatArea.scrollTop = chatArea.scrollHeight;
+        return;
+      }
+
+      var now = new Date();
+      var timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      mentioned.forEach(function(r){
+        var digits = normalizeParentPhone(r.parent);
+        var cleanMsg = text.split('@' + r.name).join(r.name);
+        var bubbleId = 'msgbubble_' + now.getTime() + '_' + Math.floor(Math.random()*10000);
+        var statusHtml;
+        if (!digits) {
+          statusHtml = '<span style="color:#b02a2a;">Koi contact number nahi hai</span>';
+        } else {
+          var waLink = 'https://wa.me/' + digits + '?text=' + encodeURIComponent(cleanMsg);
+          statusHtml = '<a id="' + bubbleId + '" href="' + waLink + '" target="_blank" onclick="document.getElementById(\'' + bubbleId + '\').textContent=\'Sent ✓\'; document.getElementById(\'' + bubbleId + '\').style.color=\'#1b1b1b\'; document.getElementById(\'' + bubbleId + '\').style.fontWeight=\'700\';" style="color:#25D366; font-weight:600; text-decoration:none;">Tap to send ➤</a>';
+        }
+        chatArea.innerHTML += '<div style="max-width:82%; margin-left:auto; margin-bottom:14px;">' +
+          '<div style="background:#dcf8c6; border-radius:14px 14px 2px 14px; padding:10px 14px; font-size:14px; color:#1b1b1b;">' +
+          '<div style="font-size:11.5px; color:var(--navy); font-weight:700; margin-bottom:2px;">To: ' + escapeHtml(r.name) + '</div>' +
+          escapeHtml(cleanMsg) +
+          '</div>' +
+          '<div style="text-align:right; font-size:11px; color:var(--mist); margin-top:3px;">' + timeStr + ' • WhatsApp • ' + statusHtml + '</div>' +
+          '</div>';
+      });
+
+      chatArea.scrollTop = chatArea.scrollHeight;
+      msgChatText.value = '';
+    };
+  });
+
+  // ---------- Welcome splash screen ----------
+  function dismissSplash(){
+    var splash = document.getElementById('splashScreen');
+    if (!splash || splash.classList.contains('fade-out')) return;
+    splash.classList.add('fade-out');
+    document.body.classList.remove('splash-active');
+    document.body.classList.add('hero-animate');
+    setTimeout(function(){ splash.style.display = 'none'; }, 650);
+  }
+  setTimeout(dismissSplash, 4500);
+
+  // ---------- Hero sparkles ----------
+  (function(){
+    var hero = document.querySelector('.hero');
+    if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    for (var i = 0; i < 16; i++){
+      var s = document.createElement('span');
+      s.className = 'sparkle';
+      var size = 3 + Math.random() * 4;
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.left = (Math.random() * 100) + '%';
+      s.style.top = (30 + Math.random() * 60) + '%';
+      s.style.animationDuration = (3 + Math.random() * 4) + 's';
+      s.style.animationDelay = (Math.random() * 5) + 's';
+      hero.appendChild(s);
+    }
+  })();
+
+  // ---------- 3D mouse tilt (cards follow cursor in real 3D space) ----------
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(hover: none)').matches) return; // skip touch devices
+
+    var selector = [
+      '.vm-card', '.pillar-card', '.calendar-card', '.news-card',
+      '.info-card', '.contact-card', '.library-promo-card', '.staff-card',
+      '.lead-card .arch-photo'
+    ].join(', ');
+    var maxTilt = 9;
+
+    document.querySelectorAll(selector).forEach(function(card){
+      var restShadow = window.getComputedStyle(card).boxShadow;
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width;
+        var py = (e.clientY - r.top) / r.height;
+        var rotateY = (px - 0.5) * maxTilt * 2;
+        var rotateX = (0.5 - py) * maxTilt * 2;
+        var shadowX = (px - 0.5) * -36;
+        var shadowY = (py - 0.5) * 36 + 18;
+        card.style.transition = 'transform 0.06s linear, box-shadow 0.06s linear';
+        card.style.transform = 'perspective(800px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) scale3d(1.03,1.03,1.03)';
+        card.style.boxShadow = shadowX.toFixed(1) + 'px ' + shadowY.toFixed(1) + 'px 34px rgba(16,25,63,0.32), 0 2px 4px rgba(16,25,63,0.06)';
+      });
+      card.addEventListener('mouseleave', function(){
+        card.style.transition = 'transform 0.5s cubic-bezier(.2,.8,.2,1), box-shadow 0.5s cubic-bezier(.2,.8,.2,1)';
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+        card.style.boxShadow = restShadow;
+      });
+    });
+  })();
+
+  // ---------- Gallery auto-scroll (seamless loop) ----------
+  (function(){
+    var grid = document.querySelector('.gallery-grid');
+    if (!grid) return;
+    var items = Array.from(grid.children);
+    if (items.length === 0) return;
+    items.forEach(function(item){
+      grid.appendChild(item.cloneNode(true));
+    });
+    var duration = Math.max(items.length * 3, 25);
+    grid.style.animationDuration = duration + 's';
+  })();
+
+  // ---------- Scroll reveal animation ----------
+  (function(){
+    var selector = [
+      '.section-head', '.iqra-badge', '.intro-grid > p',
+      '.vm-card', '.pillar-card', '.lead-card', '.val-pill',
+      '.two-col .block', '.gallery-item', '.calendar-card',
+      '.news-card', '.info-card', '.staff-card', '.message-card',
+      '.records-box', '.cal-table', '.fb-feed-wrap', '.map-wrap',
+      '.contact-card', '.library-promo-card', 'footer'
+    ].join(', ');
+
+    var els = document.querySelectorAll(selector);
+    els.forEach(function(el, i){
+      el.classList.add('reveal');
+      el.style.transitionDelay = ((i % 6) * 0.08) + 's';
+    });
+
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function(el){ el.classList.add('in-view'); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    els.forEach(function(el){ observer.observe(el); });
+  })();
+
+  // Optional voice greeting (best-effort; browsers may block audio until user interacts)
+  try {
+    if ('speechSynthesis' in window) {
+      var greeting = new SpeechSynthesisUtterance('Welcome to Islamia School &amp; College Martung! Thank you for visiting our site.');
+      greeting.rate = 0.95;
+      window.speechSynthesis.speak(greeting);
+    }
+  } catch (e) { /* speech not supported, ignore */ }
+</script>
+
+<!-- ============================================================
+     AI CHAT ASSISTANT (Chatbase) — Islamia School &amp; College Martung
+     ============================================================ -->
+<script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="YOUR-CHATBASE-ID";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+
+</body>
+</html>
