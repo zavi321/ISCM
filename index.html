@@ -136,15 +136,15 @@
     font-weight:700;
     line-height:1.2;
     max-width:820px; margin:0 auto 10px;
-    background:linear-gradient(90deg, #fff 0%, #F3DFA0 25%, #fff 50%, #F3DFA0 75%, #fff 100%);
-    background-size:220% auto;
+    background:linear-gradient(90deg, #fff 0%, #FFD700 20%, #fff 40%, #FFD700 60%, #fff 80%, #FFD700 100%);
+    background-size:280% auto;
     -webkit-background-clip:text; background-clip:text; color:transparent;
-    animation:shimmerText 6s linear infinite;
+    animation:shimmerText 3s linear infinite;
   }
-  @keyframes shimmerText{ to{background-position:-220% center;} }
+  @keyframes shimmerText{ to{background-position:-280% center;} }
   @keyframes textPulseGlow{
-    0%,100%{transform:scale(1); filter:drop-shadow(0 0 0 rgba(201,162,39,0));}
-    50%{transform:scale(1.035); filter:drop-shadow(0 0 14px rgba(201,162,39,0.55));}
+    0%,100%{transform:scale(1); filter:drop-shadow(0 0 4px rgba(255,215,0,0.25));}
+    50%{transform:scale(1.05); filter:drop-shadow(0 0 26px rgba(255,215,0,0.95));}
   }
   .hero .short{font-size:13px; letter-spacing:.1em; color:var(--gold); text-transform:uppercase; margin-bottom:22px; font-weight:600;}
   .hero .tagline{
@@ -191,7 +191,7 @@
     animation:heroPop .9s cubic-bezier(.34,1.56,.64,1) both, floatLogo 4s ease-in-out .9s infinite, ringPulse 2.6s ease-out .9s infinite;
   }
   body.hero-animate .eyebrow{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .12s both;}
-  body.hero-animate .hero h1{animation:shimmerText 6s linear infinite, textPulseGlow 3.4s ease-in-out infinite, heroUp .8s cubic-bezier(.2,.7,.25,1) .24s both;}
+  body.hero-animate .hero h1{animation:shimmerText 3s linear infinite, textPulseGlow 1.8s ease-in-out infinite, heroUp .8s cubic-bezier(.2,.7,.25,1) .24s both;}
   body.hero-animate .hero .short{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .34s both;}
   body.hero-animate .hero .tagline{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .44s both;}
   body.hero-animate .hero .loc{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .54s both;}
@@ -745,6 +745,50 @@
   }
   @media(max-width:480px){ .wa-float{left:14px; bottom:14px; width:50px; height:50px;} .wa-float svg{width:26px; height:26px;} }
 
+  /* ---------- AI school assistant bubble ---------- */
+  .ai-float{
+    position:fixed; right:20px; bottom:20px; z-index:999;
+    width:56px; height:56px; border-radius:50%;
+    background:linear-gradient(135deg, var(--navy), #1b2a4a);
+    color:#fff; border:2px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 16px rgba(0,0,0,0.28); cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease;
+    animation:aiPulse 2.4s ease-in-out infinite;
+  }
+  .ai-float:hover{transform:scale(1.1) rotate(-6deg); box-shadow:0 6px 22px rgba(0,0,0,0.35);}
+  .ai-float svg{width:28px; height:28px; fill:var(--gold);}
+  @keyframes aiPulse{
+    0%,100%{box-shadow:0 4px 16px rgba(212,175,55,0.35);}
+    50%{box-shadow:0 4px 22px rgba(212,175,55,0.65);}
+  }
+  @media(max-width:480px){ .ai-float{right:14px; bottom:14px; width:50px; height:50px;} .ai-float svg{width:24px; height:24px;} }
+
+  .ai-chat-panel{
+    position:fixed; right:20px; bottom:88px; z-index:1000;
+    width:320px; max-width:calc(100vw - 40px); height:420px; max-height:65vh;
+    background:#fff; border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,0.3);
+    display:none; flex-direction:column; overflow:hidden; border:1px solid #e5e0d5;
+  }
+  .ai-chat-panel.open{ display:flex; }
+  .ai-chat-header{
+    background:var(--navy); color:#fff; padding:14px 16px;
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:'Playfair Display', serif; font-weight:700; font-size:15px;
+  }
+  .ai-chat-header span.sub{ display:block; font-family:inherit; font-weight:400; font-size:11.5px; color:var(--gold); margin-top:2px; }
+  .ai-chat-close{ background:none; border:none; color:#fff; font-size:20px; cursor:pointer; line-height:1; padding:2px 6px; }
+  .ai-chat-body{ flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:10px; background:#faf8f3; }
+  .ai-msg{ max-width:85%; padding:9px 12px; border-radius:12px; font-size:13.5px; line-height:1.5; }
+  .ai-msg.bot{ background:#fff; border:1px solid #e5e0d5; align-self:flex-start; border-bottom-left-radius:3px; }
+  .ai-msg.user{ background:var(--navy); color:#fff; align-self:flex-end; border-bottom-right-radius:3px; }
+  .ai-chat-suggestions{ padding:8px 14px; display:flex; flex-wrap:wrap; gap:6px; background:#fff; border-top:1px solid #eee; }
+  .ai-chip{ background:#f1ede2; border:1px solid #e5e0d5; color:var(--navy); font-size:11.5px; padding:5px 10px; border-radius:14px; cursor:pointer; }
+  .ai-chip:hover{ background:var(--gold); color:#fff; }
+  .ai-chat-input-row{ display:flex; border-top:1px solid #eee; background:#fff; }
+  .ai-chat-input-row input{ flex:1; border:none; padding:12px 14px; font-size:13.5px; outline:none; }
+  .ai-chat-input-row button{ background:var(--navy); color:var(--gold); border:none; padding:0 18px; font-weight:700; cursor:pointer; }
+
   @media (prefers-reduced-motion: reduce){
     .reveal{transition:none; opacity:1; transform:none;}
     .hero-logo, .eyebrow, .hero h1, .hero .short, .hero .tagline, .hero .loc, .hero-cta .btn, .hero::after, .sparkle{
@@ -839,6 +883,33 @@
 <a href="https://wa.me/923429533066" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
   <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.906 6.484L4 29l7.723-1.867A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3zm6.994 17.11c-.297.836-1.474 1.53-2.412 1.73-.642.137-1.48.246-4.302-.923-3.61-1.494-5.933-5.156-6.114-5.397-.18-.242-1.464-1.948-1.464-3.716 0-1.768.929-2.637 1.258-3.001.33-.363.72-.454.96-.454.24 0 .48.002.69.013.222.012.518-.084.81.62.297.72 1.008 2.487 1.096 2.668.09.18.15.393.03.634-.12.242-.18.393-.36.605-.18.212-.378.474-.54.636-.18.18-.368.376-.158.738.21.363.933 1.541 2.003 2.497 1.377 1.23 2.538 1.61 2.9 1.792.363.18.574.15.786-.09.21-.242.9-1.05 1.14-1.412.24-.363.48-.302.81-.182.33.12 2.09.986 2.45 1.166.36.18.6.272.69.423.09.15.09.878-.207 1.713z"/></svg>
 </a>
+
+<button type="button" class="ai-float" aria-label="Ask about ISCM" title="Ask about ISCM" onclick="toggleAiChat()">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a1 1 0 0 1 1 1v1.06A8.004 8.004 0 0 1 20 12v1a1 1 0 0 1-1 1h-.17A3 3 0 0 1 16 17h-1.17a3 3 0 0 1-5.66 0H8a3 3 0 0 1-2.83-3H5a1 1 0 0 1-1-1v-1a8.004 8.004 0 0 1 7-7.94V3a1 1 0 0 1 1-1zM9 11a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm6 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+</button>
+
+<div class="ai-chat-panel" id="aiChatPanel">
+  <div class="ai-chat-header">
+    ISCM Assistant
+    <span class="sub i18n" data-en="Ask me about the school" data-ur="سکول کے بارے میں پوچھیں">Ask me about the school</span>
+    <button class="ai-chat-close" onclick="toggleAiChat(false)" aria-label="Close">&times;</button>
+  </div>
+  <div class="ai-chat-body" id="aiChatBody">
+    <div class="ai-msg bot">Assalam-o-Alaikum! I'm the ISCM assistant. Ask me about admissions, fees, classes, timings, or contact details.</div>
+  </div>
+  <div class="ai-chat-suggestions" id="aiChatChips">
+    <span class="ai-chip" onclick="aiAsk('Admission')">Admission</span>
+    <span class="ai-chip" onclick="aiAsk('Fees')">Fees</span>
+    <span class="ai-chip" onclick="aiAsk('Classes')">Classes</span>
+    <span class="ai-chip" onclick="aiAsk('Location')">Location</span>
+    <span class="ai-chip" onclick="aiAsk('Contact')">Contact</span>
+  </div>
+  <div class="ai-chat-input-row">
+    <input type="text" id="aiChatInput" placeholder="Type your question..." onkeydown="if(event.key==='Enter'){aiSendInput();}">
+    <button onclick="aiSendInput()">Send</button>
+  </div>
+</div>
+
 
 <div id="splashScreen" onclick="dismissSplash()">
   <div class="splash-inner">
@@ -1827,10 +1898,68 @@
 </script>
 
 <!-- ============================================================
-     AI CHAT ASSISTANT (Chatbase) — Islamia School &amp; College Martung
+     ISCM ASSISTANT — simple on-site FAQ chat widget
      ============================================================ -->
 <script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="YOUR-CHATBASE-ID";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+  var aiFaq = [
+    { keys: ["admission","admit","enroll","enrol","form","register","registration"],
+      reply: "Admissions are open! You can fill the admission form on our Admissions page, or WhatsApp us directly for guidance." },
+    { keys: ["fee","fees","cost","price","tuition"],
+      reply: "Fee details for each class (Nursery to Intermediate) are listed on our Fee Structure page. Please check there or contact us for the latest amounts." },
+    { keys: ["class","classes","grade","level","intermediate","fsc","fa","matric"],
+      reply: "Islamia School & College Martung (ISCM) offers education from Nursery all the way up to Intermediate (FSc/FA)." },
+    { keys: ["location","address","where","martung","shangla"],
+      reply: "We're located in Martung, District Shangla, Khyber Pakhtunkhwa, Pakistan. You'll find the map in our Contacts section." },
+    { keys: ["contact","phone","number","whatsapp","call"],
+      reply: "You can reach us at 0342 9533066, or tap the WhatsApp button on this page." },
+    { keys: ["principal","director","owner","founder"],
+      reply: "ISCM was founded by Sir Hilal Ahmad and Sir Ibad Ur Rahman. Sir Hilal Ahmad also serves as Principal." },
+    { keys: ["timing","time","hours","schedule"],
+      reply: "For exact school timings, please contact us on WhatsApp or check the Contacts section — we're happy to help." },
+    { keys: ["established","founded","year","history","old"],
+      reply: "Islamia School & College Martung was established in 2017." }
+  ];
+
+  function toggleAiChat(force){
+    var panel = document.getElementById('aiChatPanel');
+    if (typeof force === 'boolean') {
+      panel.classList.toggle('open', force);
+    } else {
+      panel.classList.toggle('open');
+    }
+  }
+
+  function aiAddMsg(text, who){
+    var body = document.getElementById('aiChatBody');
+    var div = document.createElement('div');
+    div.className = 'ai-msg ' + who;
+    div.textContent = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function aiGetReply(question){
+    var q = question.toLowerCase();
+    for (var i = 0; i < aiFaq.length; i++) {
+      for (var j = 0; j < aiFaq[i].keys.length; j++) {
+        if (q.indexOf(aiFaq[i].keys[j]) !== -1) return aiFaq[i].reply;
+      }
+    }
+    return "I'm not sure about that yet — for anything specific, please WhatsApp us at 0342 9533066 and our team will help you directly.";
+  }
+
+  function aiAsk(question){
+    aiAddMsg(question, 'user');
+    setTimeout(function(){ aiAddMsg(aiGetReply(question), 'bot'); }, 350);
+  }
+
+  function aiSendInput(){
+    var input = document.getElementById('aiChatInput');
+    var val = input.value.trim();
+    if (!val) return;
+    aiAsk(val);
+    input.value = '';
+  }
 </script>
 
 </body>
