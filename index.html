@@ -415,6 +415,12 @@
   }
   .news-card .news-date{font-size:12px; color:var(--gold); font-weight:600; margin:0 22px 10px;}
   .news-card p.news-body{font-size:13.5px; color:var(--mist); line-height:1.7; margin:0 22px 22px;}
+  .news-img-slideshow{position:relative; width:100%; aspect-ratio:16/10; overflow:hidden; background:#000;}
+  .news-img-slideshow img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    opacity:0; transition:opacity 1.2s ease-in-out;
+  }
+  .news-img-slideshow img.active{opacity:1;}
 
   /* ---------- student records (staff only) ---------- */
   .records-box{
@@ -1382,6 +1388,17 @@
       <p class="news-body i18n" data-en="We believe every child is special. Enjoy computer labs, sports facilities, science laboratories, free tuition classes, and a reasonable fee structure. Call 0342 9533066 / 0346 2714300 or email islamiapublic@gmail.com to enroll." data-ur="ہمارا ماننا ہے کہ ہر بچہ خاص ہے۔ کمپیوٹر لیبز، کھیلوں کی سہولیات، سائنس لیبارٹریز، مفت ٹیوشن کلاسز اور مناسب فیس سے مستفید ہوں۔ داخلے کے لیے 0342 9533066 / 0346 2714300 پر کال کریں یا islamiapublic@gmail.com پر ای میل کریں۔">We believe every child is special. Enjoy computer labs, sports facilities, science laboratories, free tuition classes, and a reasonable fee structure. Call 0342 9533066 / 0346 2714300 or email islamiapublic@gmail.com to enroll.</p>
     </div>
 
+    <div class="news-card">
+      <div class="news-img-slideshow">
+        <img src="cricket-zonal-champions-2026.png" alt="ISCM Cricket Team — Zonal Champions 2026" class="active">
+        <img src="cricket-zonal-champions-2026-b.png" alt="ISCM Cricket Team celebrating — Zonal Champions 2026">
+      </div>
+      <span class="news-tag i18n" data-en="Achievement" data-ur="کامیابی">Achievement</span>
+      <h3 class="i18n" data-en="Our Cricket Team — Zonal Champions!" data-ur="ہماری کرکٹ ٹیم — زونل چیمپئنز!">Our Cricket Team — Zonal Champions!</h3>
+      <div class="news-date">2026</div>
+      <p class="news-body i18n" data-en="Proud moment for ISCM! Our cricket team has won the Zonal Championship, bringing home the trophy after an outstanding performance. Congratulations to our players, coaches, and everyone who supported the team along the way." data-ur="آئی ایس سی ایم کے لیے فخر کا لمحہ! ہماری کرکٹ ٹیم نے شاندار کارکردگی کا مظاہرہ کرتے ہوئے زونل چیمپئن شپ جیت لی اور ٹرافی گھر لے آئی۔ ہمارے کھلاڑیوں، کوچز اور ٹیم کی حمایت کرنے والے سب کو مبارکباد۔">Proud moment for ISCM! Our cricket team has won the Zonal Championship, bringing home the trophy after an outstanding performance. Congratulations to our players, coaches, and everyone who supported the team along the way.</p>
+    </div>
+
   </div>
 
 
@@ -1835,6 +1852,20 @@
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
     els.forEach(function(el){ observer.observe(el); });
+  })();
+
+  // ---------- News image slideshow (auto-fade) ----------
+  (function(){
+    document.querySelectorAll('.news-img-slideshow').forEach(function(wrap){
+      var imgs = wrap.querySelectorAll('img');
+      if (imgs.length < 2) return;
+      var i = 0;
+      setInterval(function(){
+        imgs[i].classList.remove('active');
+        i = (i + 1) % imgs.length;
+        imgs[i].classList.add('active');
+      }, 3000);
+    });
   })();
 
   // Optional voice greeting (best-effort; browsers may block audio until user interacts)
