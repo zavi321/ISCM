@@ -703,10 +703,12 @@
   .pillar-card:hover .icon{transform:scale(1.3) rotate(-8deg);}
   .val-pill{transition:transform .22s cubic-bezier(.34,1.56,.64,1), background .22s ease, color .22s ease, border-color .22s ease;}
   .val-pill:hover{transform:translateY(-5px) scale(1.06); background:var(--navy); color:var(--paper); border-color:var(--navy);}
-  .calendar-card, .news-card, .info-card, .contact-card, .library-promo-card{
+  .calendar-card, .news-card, .info-card, .contact-card, .library-promo-card,
+  .book-card, .message-card, .records-box, .iqra-badge{
     transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
   }
-  .calendar-card:hover, .news-card:hover, .info-card:hover, .contact-card:hover, .library-promo-card:hover{
+  .calendar-card:hover, .news-card:hover, .info-card:hover, .contact-card:hover, .library-promo-card:hover,
+  .book-card:hover, .message-card:hover, .records-box:hover, .iqra-badge:hover{
     transform:translateY(-7px) scale(1.02); box-shadow:0 14px 30px rgba(16,25,63,0.16);
   }
   .vm-card{transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;}
@@ -794,11 +796,12 @@
   }
   /* ---------- 3D depth system ---------- */
   .vm-grid, .pillar-grid, .lead-grid, .calendar-cards, .news-grid,
-  .info-grid, .staff-grid, .contact-grid, .library-promo-grid{
+  .info-grid, .staff-grid, .contact-grid, .library-promo-grid, .books-grid{
     perspective:1000px;
   }
   .vm-card, .pillar-card, .lead-card .arch-photo, .calendar-card,
-  .news-card, .info-card, .staff-card, .contact-card, .library-promo-card{
+  .news-card, .info-card, .staff-card, .contact-card, .library-promo-card,
+  .book-card, .message-card, .records-box, .iqra-badge{
     transform-style:preserve-3d;
   }
 
@@ -836,7 +839,8 @@
 
   @media (hover:none){
     .vm-card, .pillar-card, .lead-card .arch-photo, .calendar-card,
-    .news-card, .info-card, .staff-card, .contact-card, .library-promo-card{
+    .news-card, .info-card, .staff-card, .contact-card, .library-promo-card,
+    .book-card, .message-card, .records-box, .iqra-badge{
       transform-style:flat;
     }
   }
@@ -1772,7 +1776,8 @@
     var selector = [
       '.vm-card', '.pillar-card', '.calendar-card', '.news-card',
       '.info-card', '.contact-card', '.library-promo-card', '.staff-card',
-      '.lead-card .arch-photo'
+      '.lead-card .arch-photo', '.book-card', '.message-card',
+      '.records-box', '.iqra-badge'
     ].join(', ');
     var maxTilt = 9;
 
@@ -1809,7 +1814,7 @@
       '.two-col .block', '.gallery-item', '.calendar-card',
       '.news-card', '.info-card', '.staff-card', '.message-card',
       '.records-box', '.cal-table', '.fb-feed-wrap', '.map-wrap',
-      '.contact-card', '.library-promo-card', 'footer'
+      '.contact-card', '.library-promo-card', '.book-card', 'footer'
     ].join(', ');
 
     var els = document.querySelectorAll(selector);
