@@ -136,8 +136,8 @@
 
     <div class="section-label">Student Information</div>
     <div class="field">
-      <label>Class Applied For <span class="req">*</span></label>
-      <select id="classFor" required>
+      <label>Class Applied For</label>
+      <select id="classFor">
         <option value="" disabled selected>Select class</option>
         <option>Nursery</option>
         <option>Prep</option>
@@ -160,9 +160,9 @@
       <input type="text" id="studentName" required>
     </div>
     <div class="field">
-      <label>Gender <span class="req">*</span></label>
+      <label>Gender</label>
       <div class="radio-group">
-        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Male"> Male</label>
         <label><input type="radio" name="gender" value="Female"> Female</label>
       </div>
     </div>
@@ -234,17 +234,17 @@
       <input type="text" id="fatherName" required>
     </div>
     <div class="field">
-      <label>CNIC No.</label>
-      <input type="text" id="fatherCnic" placeholder="XXXXX-XXXXXXX-X">
+      <label>CNIC No. <span class="req">*</span></label>
+      <input type="text" id="fatherCnic" placeholder="XXXXX-XXXXXXX-X" required>
     </div>
     <div class="row2">
       <div class="field">
-        <label>Qualification</label>
-        <input type="text" id="fatherQualification">
+        <label>Qualification <span class="req">*</span></label>
+        <input type="text" id="fatherQualification" required>
       </div>
       <div class="field">
-        <label>Occupation</label>
-        <select id="fatherOccupation">
+        <label>Occupation <span class="req">*</span></label>
+        <select id="fatherOccupation" required>
           <option value="" disabled selected>Select</option>
           <option>Government Job</option>
           <option>Private Job</option>
@@ -262,8 +262,8 @@
         <input type="tel" id="fatherMobile" placeholder="03XX-XXXXXXX" required>
       </div>
       <div class="field">
-        <label>WhatsApp No.</label>
-        <input type="tel" id="fatherWhatsapp" placeholder="03XX-XXXXXXX">
+        <label>WhatsApp No. <span class="req">*</span></label>
+        <input type="tel" id="fatherWhatsapp" placeholder="03XX-XXXXXXX" required>
       </div>
     </div>
 
@@ -346,12 +346,12 @@
       I hereby declare that all the information provided in this admission form is true and correct to the best of my knowledge. I agree to abide by all the rules, regulations, and policies of Islamia School &amp; College Martung (ISCM).
     </div>
     <div class="agree-row">
-      <input type="checkbox" id="agreeDeclaration" required>
-      <label for="agreeDeclaration">I agree to the declaration above <span class="req">*</span></label>
+      <input type="checkbox" id="agreeDeclaration">
+      <label for="agreeDeclaration">I agree to the declaration above</label>
     </div>
     <div class="field">
-      <label>Parent/Guardian Name (as signature) <span class="req">*</span></label>
-      <input type="text" id="guardianSignature" required>
+      <label>Parent/Guardian Name (as signature)</label>
+      <input type="text" id="guardianSignature">
     </div>
 
     <button type="submit" class="submit-btn" id="submitBtn">Submit Admission Form</button>
