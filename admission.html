@@ -37,6 +37,16 @@
     background:var(--paper); color:var(--ink);
     font-family:'Work Sans', sans-serif;
     min-height:100vh;
+    position:relative;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background:url('logo.png') center/cover no-repeat;
+    filter:blur(10px);
+    opacity:0.2;
+    z-index:-1;
+    pointer-events:none;
   }
   .top-bar{
     background:var(--navy); color:var(--paper);
@@ -58,9 +68,29 @@
     background:#fff; border:1px solid #e8e2d2; border-radius:16px;
     padding:26px 22px; margin-top:26px; box-shadow:0 6px 24px rgba(16,25,63,0.06);
   }
+
+  /* ---------- 3D pop card sections ---------- */
+  form{ perspective:1200px; }
+  .form-section{
+    background:#fff; border:1px solid #e8e2d2; border-radius:14px;
+    padding:20px 20px 6px; margin-bottom:22px;
+    box-shadow:0 3px 0 rgba(16,25,63,0.06), 0 14px 28px rgba(16,25,63,0.12);
+    transform-style:preserve-3d;
+    transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
+  }
+  .form-section:hover{
+    transform:translateY(-5px) scale(1.01);
+    box-shadow:0 6px 0 rgba(16,25,63,0.08), 0 20px 36px rgba(16,25,63,0.18);
+  }
+  .form-section:last-of-type{ margin-bottom:0; }
+  @media (hover:none){
+    .form-section{ transform:none !important; }
+    .form-section:hover{ transform:none !important; }
+  }
+
   .section-label{
     font-family:'Amiri', serif; font-weight:700; color:var(--navy);
-    font-size:17px; margin:26px 0 14px; padding-bottom:8px; border-bottom:2px solid var(--gold);
+    font-size:17px; margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid var(--gold);
   }
   .section-label:first-child{margin-top:0;}
   .field{margin-bottom:16px;}
@@ -151,6 +181,7 @@
 
   <form id="admissionForm">
 
+    <div class="form-section">
     <div class="section-label">Student Information</div>
     <div class="field">
       <label>Class Applied For</label>
@@ -193,7 +224,7 @@
         <input type="text" id="bform" placeholder="XXXXX-XXXXXXX-X">
       </div>
     </div>
-    <div class="row3">
+    <div class="row2">
       <div class="field">
         <label>Nationality</label>
         <input type="text" id="nationality" value="Pakistani">
@@ -202,21 +233,6 @@
         <label>Religion</label>
         <input type="text" id="religion" value="Islam">
       </div>
-      <div class="field">
-        <label>Mother Tongue</label>
-        <input type="text" id="motherTongue">
-      </div>
-    </div>
-    <div class="field">
-      <label>Blood Group</label>
-      <select id="bloodGroup">
-        <option value="" disabled selected>Select</option>
-        <option>A+</option><option>A-</option>
-        <option>B+</option><option>B-</option>
-        <option>AB+</option><option>AB-</option>
-        <option>O+</option><option>O-</option>
-        <option>Unknown</option>
-      </select>
     </div>
     <div class="row2">
       <div class="field">
@@ -245,6 +261,9 @@
       </div>
     </div>
 
+    </div>
+
+    <div class="form-section">
     <div class="section-label">Father's Information</div>
     <div class="field">
       <label>Father's Name <span class="req">*</span></label>
@@ -273,29 +292,20 @@
         </select>
       </div>
     </div>
-    <div class="row2">
-      <div class="field">
-        <label>Mobile No. <span class="req">*</span></label>
-        <input type="tel" id="fatherMobile" placeholder="03XX-XXXXXXX" required>
-      </div>
-      <div class="field">
-        <label>WhatsApp No. <span class="req">*</span></label>
-        <input type="tel" id="fatherWhatsapp" placeholder="03XX-XXXXXXX" required>
-      </div>
+    <div class="field">
+      <label>WhatsApp No. <span class="req">*</span></label>
+      <input type="tel" id="fatherWhatsapp" placeholder="03XX-XXXXXXX" required>
     </div>
 
-    <div class="section-label">Residential Address</div>
-    <div class="row2">
-      <div class="field">
-        <label>House No.</label>
-        <input type="text" id="houseNo">
-      </div>
-      <div class="field">
-        <label>Village/Area</label>
-        <input type="text" id="villageArea">
-      </div>
     </div>
-    <div class="row3">
+
+    <div class="form-section">
+    <div class="section-label">Residential Address</div>
+    <div class="field">
+      <label>Village/Area</label>
+      <input type="text" id="villageArea">
+    </div>
+    <div class="row2">
       <div class="field">
         <label>Tehsil</label>
         <input type="text" id="tehsil" value="Martung">
@@ -304,12 +314,11 @@
         <label>District</label>
         <input type="text" id="district" value="Shangla">
       </div>
-      <div class="field">
-        <label>Postal Code</label>
-        <input type="text" id="postalCode">
-      </div>
     </div>
 
+    </div>
+
+    <div class="form-section">
     <div class="section-label">Emergency Contact</div>
     <div class="row3">
       <div class="field">
@@ -335,6 +344,9 @@
       </div>
     </div>
 
+    </div>
+
+    <div class="form-section">
     <div class="section-label">Documents Attached</div>
     <div class="check-list">
       <label><input type="checkbox" name="docs" value="Birth Certificate / B-Form"> Birth Certificate / B-Form</label>
@@ -346,6 +358,9 @@
       <label><input type="checkbox" name="docs" value="Other"> Other (if any)</label>
     </div>
 
+    </div>
+
+    <div class="form-section">
     <div class="section-label">Transport Facility</div>
     <div class="field">
       <div class="radio-group">
@@ -358,6 +373,9 @@
       <input type="text" id="pickupLocation">
     </div>
 
+    </div>
+
+    <div class="form-section">
     <div class="section-label">Parent's Declaration</div>
     <div class="declaration-box">
       I hereby declare that all the information provided in this admission form is true and correct to the best of my knowledge. I agree to abide by all the rules, regulations, and policies of Islamia School &amp; College Martung (ISCM).
@@ -369,6 +387,8 @@
     <div class="field">
       <label>Parent/Guardian Name (as signature)</label>
       <input type="text" id="guardianSignature">
+    </div>
+
     </div>
 
     <button type="submit" class="submit-btn" id="submitBtn">Submit Admission Form</button>
@@ -402,66 +422,66 @@
     var doc = new jspdf.jsPDF({ unit: 'pt', format: 'a4' });
     var pageWidth = doc.internal.pageSize.getWidth();
     var pageHeight = doc.internal.pageSize.getHeight();
-    var margin = 40;
-    var y = 52;
+    var margin = 36;
+    var y = 36;
 
     function checkPageBreak(need){
-      if (y + need > pageHeight - 40) { doc.addPage(); y = 50; }
+      if (y + need > pageHeight - 24) { doc.addPage(); y = 36; }
     }
 
     // Header
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(16);
-    doc.setTextColor(16, 25, 63);
-    doc.text('Islamia School & College Martung (ISCM)', pageWidth / 2, y, { align: 'center' });
-    y += 18;
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(10.5);
-    doc.setTextColor(91, 100, 120);
-    doc.text('Martung, District Shangla, Khyber Pakhtunkhwa, Pakistan', pageWidth / 2, y, { align: 'center' });
-    y += 20;
-    doc.setDrawColor(201, 162, 39);
-    doc.setLineWidth(1.2);
-    doc.line(margin, y, pageWidth - margin, y);
-    y += 26;
-
-    doc.setFont('helvetica', 'bold');
     doc.setFontSize(14);
     doc.setTextColor(16, 25, 63);
-    doc.text('Student Admission Form', margin, y);
-    y += 16;
+    doc.text('Islamia School & College Martung (ISCM)', pageWidth / 2, y, { align: 'center' });
+    y += 14;
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9.5);
+    doc.setFontSize(8.5);
     doc.setTextColor(91, 100, 120);
-    doc.text('Submitted: ' + new Date(data.submittedAt).toLocaleString(), margin, y);
-    y += 24;
+    doc.text('Martung, District Shangla, Khyber Pakhtunkhwa, Pakistan', pageWidth / 2, y, { align: 'center' });
+    y += 12;
+    doc.setDrawColor(201, 162, 39);
+    doc.setLineWidth(1);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 16;
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(12);
+    doc.setTextColor(16, 25, 63);
+    doc.text('Student Admission Form', margin, y);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(91, 100, 120);
+    doc.text('Submitted: ' + new Date(data.submittedAt).toLocaleString(), pageWidth - margin, y, { align: 'right' });
+    y += 14;
 
     function sectionTitle(title){
-      checkPageBreak(30);
-      y += 6;
+      checkPageBreak(20);
+      y += 5;
       doc.setFillColor(16, 25, 63);
-      doc.rect(margin, y - 12, pageWidth - margin * 2, 20, 'F');
+      doc.roundedRect(margin, y - 10, pageWidth - margin * 2, 15, 3, 3, 'F');
+      doc.setFillColor(201, 162, 39);
+      doc.rect(margin, y - 10, pageWidth - margin * 2, 1.6, 'F');
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(11);
+      doc.setFontSize(9.5);
       doc.setTextColor(255, 255, 255);
-      doc.text(title, margin + 8, y + 2);
-      y += 24;
+      doc.text(title, margin + 8, y);
+      y += 12;
     }
 
     function field(label, value){
-      checkPageBreak(20);
+      checkPageBreak(11);
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(10);
-      doc.setTextColor(16, 25, 63);
+      doc.setFontSize(9);
+      doc.setTextColor(30, 36, 48);
       var labelText = label + ':';
       doc.text(labelText, margin, y);
-      var labelWidth = doc.getTextWidth(labelText) + 18;
+      var labelWidth = doc.getTextWidth(labelText) + 10;
       doc.setFont('helvetica', 'normal');
-      doc.setTextColor(30, 36, 48);
       var text = (value === undefined || value === null || value === '') ? '—' : String(value);
       var wrapped = doc.splitTextToSize(text, pageWidth - margin * 2 - labelWidth);
       doc.text(wrapped, margin + labelWidth, y);
-      y += (wrapped.length * 15) + 10;
+      y += (wrapped.length * 10) + 3;
     }
 
     sectionTitle('Student Information');
@@ -472,8 +492,6 @@
     field('B-Form No.', data.bform);
     field('Nationality', data.nationality);
     field('Religion', data.religion);
-    field('Mother Tongue', data.motherTongue);
-    field('Blood Group', data.bloodGroup);
     field('Previous School', data.prevSchool);
     field('Last Class Passed', data.lastClass);
 
@@ -482,15 +500,12 @@
     field('CNIC No.', data.fatherCnic);
     field('Qualification', data.fatherQualification);
     field('Occupation', data.fatherOccupation);
-    field('Mobile No.', data.fatherMobile);
     field('WhatsApp No.', data.fatherWhatsapp);
 
     sectionTitle('Residential Address');
-    field('House No.', data.houseNo);
     field('Village/Area', data.villageArea);
     field('Tehsil', data.tehsil);
     field('District', data.district);
-    field('Postal Code', data.postalCode);
 
     sectionTitle('Emergency Contact');
     field('Name', data.emergencyName);
@@ -588,8 +603,6 @@
       bform: document.getElementById('bform').value.trim(),
       nationality: document.getElementById('nationality').value.trim(),
       religion: document.getElementById('religion').value.trim(),
-      motherTongue: document.getElementById('motherTongue').value.trim(),
-      bloodGroup: document.getElementById('bloodGroup').value,
       prevSchool: document.getElementById('prevSchool').value.trim(),
       lastClass: document.getElementById('lastClass').value,
 
@@ -597,14 +610,11 @@
       fatherCnic: document.getElementById('fatherCnic').value.trim(),
       fatherQualification: document.getElementById('fatherQualification').value.trim(),
       fatherOccupation: document.getElementById('fatherOccupation').value,
-      fatherMobile: document.getElementById('fatherMobile').value.trim(),
       fatherWhatsapp: document.getElementById('fatherWhatsapp').value.trim(),
 
-      houseNo: document.getElementById('houseNo').value.trim(),
       villageArea: document.getElementById('villageArea').value.trim(),
       tehsil: document.getElementById('tehsil').value.trim(),
       district: document.getElementById('district').value.trim(),
-      postalCode: document.getElementById('postalCode').value.trim(),
 
       emergencyName: document.getElementById('emergencyName').value.trim(),
       emergencyRelation: document.getElementById('emergencyRelation').value,
