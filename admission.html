@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admission Form — Islamia School &amp; College Martung (ISCM)</title>
+<meta name="description" content="Online admission form for Islamia School &amp; College Martung (ISCM), Martung, District Shangla, KPK, Pakistan.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyA4D-iXeB8vqrFOKG_-vzO8F2QooKIt05g",
+    authDomain: "iscm-records.firebaseapp.com",
+    databaseURL: "https://iscm-records-default-rtdb.firebaseio.com",
+    projectId: "iscm-records",
+    storageBucket: "iscm-records.firebasestorage.app",
+    messagingSenderId: "715196179024",
+    appId: "1:715196179024:web:81af308e0157d155a7a755"
+  };
+  firebase.initializeApp(firebaseConfig);
+  var iscmDb = firebase.database();
+</script>
+<style>
+  :root{
+    --navy:#10193F;
+    --gold:#C9A227;
+    --paper:#FAF6ED;
+    --ink:#1E2430;
+    --mist:#5B6478;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    min-height:100vh;
+  }
+  .top-bar{
+    background:var(--navy); color:var(--paper);
+    padding:16px 20px; display:flex; align-items:center; gap:12px;
+  }
+  .top-bar img{width:42px; height:42px; border-radius:50%; border:2px solid var(--gold);}
+  .top-bar .name{font-family:'Amiri', serif; font-weight:700; font-size:16px; line-height:1.25;}
+  .top-bar .name span{display:block; font-size:10.5px; letter-spacing:.12em; color:var(--gold); font-weight:600; margin-top:2px;}
+  .top-bar a{margin-left:auto; color:var(--paper); font-size:13px; text-decoration:none; opacity:.85; border:1px solid rgba(255,255,255,.3); padding:7px 14px; border-radius:20px;}
+  .top-bar a:hover{opacity:1; border-color:var(--gold);}
+
+  .wrap{max-width:680px; margin:0 auto; padding:34px 18px 60px;}
+  .page-title{text-align:center; margin-bottom:6px;}
+  .page-title .kicker{font-size:12px; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); font-weight:600;}
+  .page-title h1{font-family:'Amiri', serif; font-size:clamp(24px,5vw,32px); color:var(--navy); margin-top:6px;}
+  .page-title p{color:var(--mist); font-size:14px; margin-top:8px;}
+
+  form{
+    background:#fff; border:1px solid #e8e2d2; border-radius:16px;
+    padding:26px 22px; margin-top:26px; box-shadow:0 6px 24px rgba(16,25,63,0.06);
+  }
+  .section-label{
+    font-family:'Amiri', serif; font-weight:700; color:var(--navy);
+    font-size:17px; margin:26px 0 14px; padding-bottom:8px; border-bottom:2px solid var(--gold);
+  }
+  .section-label:first-child{margin-top:0;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:13px; font-weight:600; color:var(--navy); margin-bottom:6px;}
+  .field label .req{color:#B3261E;}
+  .field input, .field select, .field textarea{
+    width:100%; padding:11px 13px; border:1.5px solid #ddd5c0; border-radius:9px;
+    font-family:inherit; font-size:14.5px; background:#fdfcf8; color:var(--ink);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none; border-color:var(--gold); background:#fff;
+  }
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .row3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;}
+  @media(max-width:560px){ .row2, .row3{grid-template-columns:1fr;} }
+
+  .radio-group{display:flex; gap:22px; margin-top:4px;}
+  .radio-group label{display:flex; align-items:center; gap:7px; font-size:14px; font-weight:500; color:var(--ink);}
+  .radio-group input{width:auto;}
+
+  .check-list{display:flex; flex-direction:column; gap:10px; margin-top:4px;}
+  .check-list label{display:flex; align-items:center; gap:9px; font-size:14px; font-weight:400; color:var(--ink);}
+  .check-list input{width:auto;}
+
+  .declaration-box{
+    background:var(--paper); border:1px solid #e8e2d2; border-radius:10px;
+    padding:14px 16px; font-size:13.5px; line-height:1.6; color:var(--mist); margin-bottom:14px;
+  }
+  .agree-row{display:flex; align-items:flex-start; gap:9px; font-size:14px; font-weight:600; color:var(--navy); margin-bottom:16px;}
+  .agree-row input{width:auto; margin-top:3px;}
+
+  .submit-btn{
+    width:100%; background:var(--navy); color:var(--gold); border:none;
+    padding:15px; border-radius:10px; font-size:16px; font-weight:700;
+    font-family:'Amiri', serif; cursor:pointer; margin-top:8px;
+    transition:background .2s ease;
+  }
+  .submit-btn:hover{background:#1a2657;}
+  .submit-btn:disabled{opacity:.6; cursor:not-allowed;}
+  .helper-note{text-align:center; font-size:12.5px; color:var(--mist); margin-top:14px; line-height:1.6;}
+
+  .success-box{
+    display:none; text-align:center; background:#fff; border:1px solid #e8e2d2;
+    border-radius:16px; padding:44px 26px; margin-top:26px; box-shadow:0 6px 24px rgba(16,25,63,0.06);
+  }
+  .success-box .tick{font-size:48px; color:#1b8a4a;}
+  .success-box h2{font-family:'Amiri', serif; color:var(--navy); margin:14px 0 8px; font-size:22px;}
+  .success-box p{color:var(--mist); font-size:14px; line-height:1.6;}
+  .success-box a{
+    display:inline-block; margin-top:18px; background:var(--gold); color:var(--navy);
+    text-decoration:none; padding:11px 22px; border-radius:20px; font-weight:700; font-size:14px;
+  }
+
+  .error-msg{color:#B3261E; font-size:13px; margin-top:6px; display:none;}
+  footer{text-align:center; padding:24px 18px 40px; color:var(--mist); font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <img src="logo.png" alt="ISCM Logo">
+  <div class="name">Islamia School &amp; College Martung<span>ISCM · MARTUNG, SHANGLA</span></div>
+  <a href="index.html">← Back to site</a>
+</div>
+
+<div class="wrap">
+  <div class="page-title">
+    <div class="kicker">Admissions</div>
+    <h1>Student Admission Form</h1>
+    <p>Fill in the details below to apply for admission at ISCM. Our office will review your application and contact you.</p>
+  </div>
+
+  <form id="admissionForm">
+
+    <div class="section-label">Student Information</div>
+    <div class="field">
+      <label>Class Applied For <span class="req">*</span></label>
+      <select id="classFor" required>
+        <option value="" disabled selected>Select class</option>
+        <option>Nursery</option>
+        <option>Prep</option>
+        <option>Class 1</option>
+        <option>Class 2</option>
+        <option>Class 3</option>
+        <option>Class 4</option>
+        <option>Class 5</option>
+        <option>Class 6</option>
+        <option>Class 7</option>
+        <option>Class 8</option>
+        <option>Class 9</option>
+        <option>Class 10 (Matric)</option>
+        <option>Intermediate (FSc/FA) Part 1</option>
+        <option>Intermediate (FSc/FA) Part 2</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Student Name <span class="req">*</span></label>
+      <input type="text" id="studentName" required>
+    </div>
+    <div class="field">
+      <label>Gender <span class="req">*</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Female"> Female</label>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Date of Birth <span class="req">*</span></label>
+        <input type="date" id="dob" required>
+      </div>
+      <div class="field">
+        <label>B-Form No.</label>
+        <input type="text" id="bform" placeholder="XXXXX-XXXXXXX-X">
+      </div>
+    </div>
+    <div class="row3">
+      <div class="field">
+        <label>Nationality</label>
+        <input type="text" id="nationality" value="Pakistani">
+      </div>
+      <div class="field">
+        <label>Religion</label>
+        <input type="text" id="religion" value="Islam">
+      </div>
+      <div class="field">
+        <label>Mother Tongue</label>
+        <input type="text" id="motherTongue">
+      </div>
+    </div>
+    <div class="field">
+      <label>Blood Group</label>
+      <select id="bloodGroup">
+        <option value="" disabled selected>Select</option>
+        <option>A+</option><option>A-</option>
+        <option>B+</option><option>B-</option>
+        <option>AB+</option><option>AB-</option>
+        <option>O+</option><option>O-</option>
+        <option>Unknown</option>
+      </select>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Previous School</label>
+        <input type="text" id="prevSchool">
+      </div>
+      <div class="field">
+        <label>Last Class Passed</label>
+        <select id="lastClass">
+          <option value="" disabled selected>Select class</option>
+          <option>None (First Admission)</option>
+          <option>Nursery</option>
+          <option>Prep</option>
+          <option>Class 1</option>
+          <option>Class 2</option>
+          <option>Class 3</option>
+          <option>Class 4</option>
+          <option>Class 5</option>
+          <option>Class 6</option>
+          <option>Class 7</option>
+          <option>Class 8</option>
+          <option>Class 9</option>
+          <option>Class 10 (Matric)</option>
+          <option>Intermediate (FSc/FA) Part 1</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section-label">Father's Information</div>
+    <div class="field">
+      <label>Father's Name <span class="req">*</span></label>
+      <input type="text" id="fatherName" required>
+    </div>
+    <div class="field">
+      <label>CNIC No.</label>
+      <input type="text" id="fatherCnic" placeholder="XXXXX-XXXXXXX-X">
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Qualification</label>
+        <input type="text" id="fatherQualification">
+      </div>
+      <div class="field">
+        <label>Occupation</label>
+        <select id="fatherOccupation">
+          <option value="" disabled selected>Select</option>
+          <option>Government Job</option>
+          <option>Private Job</option>
+          <option>Business</option>
+          <option>Farmer</option>
+          <option>Labourer</option>
+          <option>Abroad</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Mobile No. <span class="req">*</span></label>
+        <input type="tel" id="fatherMobile" placeholder="03XX-XXXXXXX" required>
+      </div>
+      <div class="field">
+        <label>WhatsApp No.</label>
+        <input type="tel" id="fatherWhatsapp" placeholder="03XX-XXXXXXX">
+      </div>
+    </div>
+
+    <div class="section-label">Residential Address</div>
+    <div class="row2">
+      <div class="field">
+        <label>House No.</label>
+        <input type="text" id="houseNo">
+      </div>
+      <div class="field">
+        <label>Village/Area</label>
+        <input type="text" id="villageArea">
+      </div>
+    </div>
+    <div class="row3">
+      <div class="field">
+        <label>Tehsil</label>
+        <input type="text" id="tehsil" value="Martung">
+      </div>
+      <div class="field">
+        <label>District</label>
+        <input type="text" id="district" value="Shangla">
+      </div>
+      <div class="field">
+        <label>Postal Code</label>
+        <input type="text" id="postalCode">
+      </div>
+    </div>
+
+    <div class="section-label">Emergency Contact</div>
+    <div class="row3">
+      <div class="field">
+        <label>Name</label>
+        <input type="text" id="emergencyName">
+      </div>
+      <div class="field">
+        <label>Relationship</label>
+        <select id="emergencyRelation">
+          <option value="" disabled selected>Select</option>
+          <option>Mother</option>
+          <option>Grandfather</option>
+          <option>Grandmother</option>
+          <option>Uncle</option>
+          <option>Aunt</option>
+          <option>Elder Sibling</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Mobile No.</label>
+        <input type="tel" id="emergencyMobile" placeholder="03XX-XXXXXXX">
+      </div>
+    </div>
+
+    <div class="section-label">Documents Attached</div>
+    <div class="check-list">
+      <label><input type="checkbox" name="docs" value="Birth Certificate / B-Form"> Birth Certificate / B-Form</label>
+      <label><input type="checkbox" name="docs" value="Father's CNIC Copy"> Father's CNIC Copy</label>
+      <label><input type="checkbox" name="docs" value="Mother's CNIC Copy"> Mother's CNIC Copy</label>
+      <label><input type="checkbox" name="docs" value="School Leaving Certificate"> School Leaving Certificate</label>
+      <label><input type="checkbox" name="docs" value="Previous Result Card"> Previous Result Card</label>
+      <label><input type="checkbox" name="docs" value="4 Passport Size Photographs"> 4 Passport Size Photographs</label>
+      <label><input type="checkbox" name="docs" value="Other"> Other (if any)</label>
+    </div>
+
+    <div class="section-label">Transport Facility</div>
+    <div class="field">
+      <div class="radio-group">
+        <label><input type="radio" name="transport" value="Yes"> Yes</label>
+        <label><input type="radio" name="transport" value="No" checked> No</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>If Yes, Pickup Location</label>
+      <input type="text" id="pickupLocation">
+    </div>
+
+    <div class="section-label">Parent's Declaration</div>
+    <div class="declaration-box">
+      I hereby declare that all the information provided in this admission form is true and correct to the best of my knowledge. I agree to abide by all the rules, regulations, and policies of Islamia School &amp; College Martung (ISCM).
+    </div>
+    <div class="agree-row">
+      <input type="checkbox" id="agreeDeclaration" required>
+      <label for="agreeDeclaration">I agree to the declaration above <span class="req">*</span></label>
+    </div>
+    <div class="field">
+      <label>Parent/Guardian Name (as signature) <span class="req">*</span></label>
+      <input type="text" id="guardianSignature" required>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">Submit Admission Form</button>
+    <div class="error-msg" id="errorMsg">Something went wrong. Please check your connection and try again.</div>
+    <p class="helper-note">Your form will be reviewed by our office and you will be contacted via the mobile number provided.</p>
+  </form>
+
+  <div class="success-box" id="successBox">
+    <div class="tick">✅</div>
+    <h2>Application Submitted!</h2>
+    <p>Thank you for applying to Islamia School &amp; College Martung. Our office will review your application and contact you soon via the mobile number provided.</p>
+    <a href="index.html">Return to Home</a>
+  </div>
+</div>
+
+<footer>© 2026 Islamia School &amp; College Martung (ISCM) — Martung, District Shangla, KPK, Pakistan</footer>
+
+<script>
+  document.getElementById('admissionForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = document.getElementById('submitBtn');
+    var errorMsg = document.getElementById('errorMsg');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+    errorMsg.style.display = 'none';
+
+    var genderEl = document.querySelector('input[name="gender"]:checked');
+    var transportEl = document.querySelector('input[name="transport"]:checked');
+    var docsChecked = Array.from(document.querySelectorAll('input[name="docs"]:checked')).map(function(el){ return el.value; });
+
+    var data = {
+      classFor: document.getElementById('classFor').value,
+      studentName: document.getElementById('studentName').value.trim(),
+      gender: genderEl ? genderEl.value : '',
+      dob: document.getElementById('dob').value,
+      bform: document.getElementById('bform').value.trim(),
+      nationality: document.getElementById('nationality').value.trim(),
+      religion: document.getElementById('religion').value.trim(),
+      motherTongue: document.getElementById('motherTongue').value.trim(),
+      bloodGroup: document.getElementById('bloodGroup').value,
+      prevSchool: document.getElementById('prevSchool').value.trim(),
+      lastClass: document.getElementById('lastClass').value,
+
+      fatherName: document.getElementById('fatherName').value.trim(),
+      fatherCnic: document.getElementById('fatherCnic').value.trim(),
+      fatherQualification: document.getElementById('fatherQualification').value.trim(),
+      fatherOccupation: document.getElementById('fatherOccupation').value,
+      fatherMobile: document.getElementById('fatherMobile').value.trim(),
+      fatherWhatsapp: document.getElementById('fatherWhatsapp').value.trim(),
+
+      houseNo: document.getElementById('houseNo').value.trim(),
+      villageArea: document.getElementById('villageArea').value.trim(),
+      tehsil: document.getElementById('tehsil').value.trim(),
+      district: document.getElementById('district').value.trim(),
+      postalCode: document.getElementById('postalCode').value.trim(),
+
+      emergencyName: document.getElementById('emergencyName').value.trim(),
+      emergencyRelation: document.getElementById('emergencyRelation').value,
+      emergencyMobile: document.getElementById('emergencyMobile').value.trim(),
+
+      documentsAttached: docsChecked,
+      transport: transportEl ? transportEl.value : 'No',
+      pickupLocation: document.getElementById('pickupLocation').value.trim(),
+
+      guardianSignature: document.getElementById('guardianSignature').value.trim(),
+      submittedAt: new Date().toISOString()
+    };
+
+    iscmDb.ref('admissions').push(data)
+      .then(function(){
+        document.getElementById('admissionForm').style.display = 'none';
+        document.getElementById('successBox').style.display = 'block';
+        window.scrollTo(0,0);
+      })
+      .catch(function(err){
+        console.error(err);
+        errorMsg.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Submit Admission Form';
+      });
+  });
+</script>
+
+</body>
+</html>
