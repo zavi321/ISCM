@@ -2,6 +2,21 @@
 <html lang="en">
 <head>
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyA4D-iXeB8vqrFOKG_-vzO8F2QooKIt05g",
+    authDomain: "iscm-records.firebaseapp.com",
+    databaseURL: "https://iscm-records-default-rtdb.firebaseio.com",
+    projectId: "iscm-records",
+    storageBucket: "iscm-records.firebasestorage.app",
+    messagingSenderId: "715196179024",
+    appId: "1:715196179024:web:81af308e0157d155a7a755"
+  };
+  firebase.initializeApp(firebaseConfig);
+  var iscmDb = firebase.database();
+</script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal) {
@@ -1610,9 +1625,9 @@
     if (saved === 'ur') setLanguage('ur');
   })();
 
-  // ---------- Student Records (staff only) ----------
+  // ---------- Student Records (staff only) — shared via Firebase across all teachers ----------
   var RECORDS_PASSWORD = "iscm2026"; // Staff: change this text to set your own password
-  var RECORDS_KEY = "iscm_student_records";
+  var cachedRecords = []; // { key, name, cls, parent }
 
   function checkRecordsPassword(){
     var input = document.getElementById('recordsPassword').value;
@@ -1632,11 +1647,17 @@
     document.getElementById('recordsPassword').value = '';
   }
 
+  // Live sync: whenever ANY teacher adds/removes a student, every open browser updates automatically.
+  iscmDb.ref('students').on('value', function(snapshot){
+    var data = snapshot.val() || {};
+    cachedRecords = Object.keys(data).map(function(key){
+      return { key: key, name: data[key].name, cls: data[key].cls, parent: data[key].parent };
+    });
+    renderRecords();
+  });
+
   function getRecords(){
-    try {
-      var raw = localStorage.getItem(RECORDS_KEY);
-      return raw ? JSON.parse(raw) : [];
-    } catch(e) { return []; }
+    return cachedRecords;
   }
 
   function saveRecord(){
@@ -1647,30 +1668,25 @@
       alert('Please fill Student Name, Class, and Parent Number.');
       return;
     }
-    var records = getRecords();
-    records.push({ name: name, cls: cls, parent: parent });
-    localStorage.setItem(RECORDS_KEY, JSON.stringify(records));
+    iscmDb.ref('students').push({ name: name, cls: cls, parent: parent });
     document.getElementById('recStudentName').value = '';
     document.getElementById('recClass').value = '';
     document.getElementById('recParentNumber').value = '';
-    renderRecords();
   }
 
-  function deleteRecord(index){
-    var records = getRecords();
-    records.splice(index, 1);
-    localStorage.setItem(RECORDS_KEY, JSON.stringify(records));
-    renderRecords();
+  function deleteRecord(key){
+    iscmDb.ref('students/' + key).remove();
   }
 
   function renderRecords(){
     var records = getRecords();
     var body = document.getElementById('recordsBody');
+    if (!body) return;
     if (records.length === 0) {
       body.innerHTML = '<tr><td colspan="4" class="rec-empty">No records yet. Add one above.</td></tr>';
       return;
     }
-    body.innerHTML = records.map(function(r, i){
+    body.innerHTML = records.map(function(r){
       var digits = r.parent.replace(/\D/g, ''); // strip non-numbers
       if (digits.length === 11 && digits.startsWith('0')) digits = '92' + digits.substring(1); // 03XX... -> 923XX...
       return '<tr><td>' + escapeHtml(r.name) + '</td><td>' + escapeHtml(r.cls) + '</td>' +
@@ -1679,7 +1695,7 @@
           '<a href="tel:' + escapeHtml(r.parent) + '" class="rec-icon" title="Call">📞</a>' +
           '<a href="https://wa.me/' + digits + '" target="_blank" rel="noopener" class="rec-icon" title="WhatsApp">💬</a>' +
         '</div></td>' +
-        '<td><button class="rec-del" onclick="deleteRecord(' + i + ')">✕</button></td></tr>';
+        '<td><button class="rec-del" onclick="deleteRecord(\'' + r.key + '\')">✕</button></td></tr>';
     }).join('');
   }
 
