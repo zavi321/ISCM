@@ -422,6 +422,20 @@
   }
   .news-img-slideshow img.active{opacity:1;}
 
+  /* ---------- photo gallery with captions ---------- */
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+    gap:22px; max-width:1100px; margin:0 auto;
+  }
+  .gallery-item{
+    background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden;
+  }
+  .gallery-item img{width:100%; aspect-ratio:3/4; object-fit:cover; display:block;}
+  .gallery-item .gallery-caption{
+    font-size:13px; color:var(--ink); line-height:1.6; padding:12px 14px;
+    border-top:1px solid var(--line);
+  }
+
   /* ---------- student records (staff only) ---------- */
   .records-box{
     max-width:600px; margin:0 auto; background:#fff; border:1px solid var(--line);
@@ -939,6 +953,7 @@
     <a href="#academics"><span class="i18n" data-en="Academics" data-ur="تعلیمی نظام">Academics</span></a>
     <a href="#calendar"><span class="i18n" data-en="Calendar" data-ur="کیلنڈر">Calendar</span></a>
     <a href="#news"><span class="i18n" data-en="News" data-ur="خبریں">News</span></a>
+    <a href="#gallery"><span class="i18n" data-en="Gallery" data-ur="تصاویر">Gallery</span></a>
     <a href="#leadership"><span class="i18n" data-en="Leadership" data-ur="قیادت">Leadership</span></a>
     <a href="#contact"><span class="i18n" data-en="Contact" data-ur="رابطہ">Contact</span></a>
   </div>
@@ -1404,6 +1419,108 @@
 
 </section>
 
+<section class="section" style="background:#fff;" id="gallery">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="꧁༺Captured Moments༻꧂" data-ur="یادگار لمحات">꧁༺Captured Moments༻꧂</div>
+    <h2 class="i18n" data-en="𝑷𝒂𝒓𝒆𝒏𝒕𝒔 𝑫𝒂𝒚 & 𝑷𝒓𝒊𝒛𝒆 𝑫𝒊𝒔𝒕𝒓𝒊𝒃𝒖𝒕𝒊𝒐𝒏" data-ur="پیرنٹس ڈے اور انعامات کی تقسیم">𝑷𝒂𝒓𝒆𝒏𝒕𝒔 𝑫𝒂𝒚 & 𝑷𝒓𝒊𝒛𝒆 𝑫𝒊𝒔𝒕𝒓𝒊𝒃𝒖𝒕𝒊𝒐𝒏</h2>
+  </div>
+
+  <div class="gallery-grid">
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-01.jpg" alt="Saddiq Ahmad receiving his trophy — Class 2nd, 1st Position">
+      <p class="gallery-caption i18n" data-en="Saddiq Ahmad (Class 2nd) receiving his 1st Position trophy from the Principal." data-ur="صدیق احمد (جماعت دوم) پرنسپل صاحب سے پہلی پوزیشن کی ٹرافی وصول کرتے ہوئے۔">Saddiq Ahmad (Class 2nd) receiving his 1st Position trophy from the Principal.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-02.jpg" alt="Munaiba Bibi receiving her trophy — Class 1st, 1st Position">
+      <p class="gallery-caption i18n" data-en="Munaiba Bibi (Class 1st) proudly receiving her 1st Position trophy." data-ur="مناہبہ بی بی (جماعت اول) فخر سے اپنی پہلی پوزیشن کی ٹرافی وصول کرتے ہوئے۔">Munaiba Bibi (Class 1st) proudly receiving her 1st Position trophy.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-03.jpg" alt="M. Shehreyar Khan receiving his trophy — Class 3rd, 3rd Position">
+      <p class="gallery-caption i18n" data-en="M. Shehreyar Khan (Class 3rd) receiving his 3rd Position trophy." data-ur="ایم شہریار خان (جماعت سوم) اپنی تیسری پوزیشن کی ٹرافی وصول کرتے ہوئے۔">M. Shehreyar Khan (Class 3rd) receiving his 3rd Position trophy.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-04.jpg" alt="Nasir Ali receiving his trophy — Class 7th, 1st Position in School">
+      <p class="gallery-caption i18n" data-en="Nasir Ali (Class 7th) honoured with the 1st Position in School trophy." data-ur="نصیر علی (جماعت ہفتم) کو سکول میں پہلی پوزیشن کی ٹرافی سے نوازا گیا۔">Nasir Ali (Class 7th) honoured with the 1st Position in School trophy.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-05.jpg" alt="Four young achievers with their trophies on Parents Day">
+      <p class="gallery-caption i18n" data-en="Four proud achievers posing with their trophies alongside their teacher." data-ur="چار ہونہار طلبہ اپنے استاد کے ساتھ ٹرافیوں کے ہمراہ۔">Four proud achievers posing with their trophies alongside their teacher.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-06.jpg" alt="Muhammad Talha receiving his trophy — Class 2nd, 2nd Position">
+      <p class="gallery-caption i18n" data-en="Muhammad Talha (Class 2nd) receiving his 2nd Position trophy." data-ur="محمد طلحہ (جماعت دوم) اپنی دوسری پوزیشن کی ٹرافی وصول کرتے ہوئے۔">Muhammad Talha (Class 2nd) receiving his 2nd Position trophy.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-07.jpg" alt="Three young achievers with their teacher and trophies">
+      <p class="gallery-caption i18n" data-en="Three proud winners standing with their teacher and trophies." data-ur="تین ہونہار طلبہ اپنے استاد اور ٹرافیوں کے ساتھ۔">Three proud winners standing with their teacher and trophies.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-08.jpg" alt="A large group of trophy winners with their teacher">
+      <p class="gallery-caption i18n" data-en="A large group of achievers gathered with their teacher, celebrating their success." data-ur="ہونہار طلبہ کا ایک بڑا گروپ اپنے استاد کے ساتھ اپنی کامیابی کا جشن مناتے ہوئے۔">A large group of achievers gathered with their teacher, celebrating their success.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-09.jpg" alt="Group photo of proud students holding their trophies">
+      <p class="gallery-caption i18n" data-en="Rows of proud students proudly displaying their well-earned trophies." data-ur="طلبہ کی قطاریں اپنی حاصل کردہ ٹرافیاں فخر سے دکھاتے ہوئے۔">Rows of proud students proudly displaying their well-earned trophies.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-10.jpg" alt="Another group photo of proud students with trophies">
+      <p class="gallery-caption i18n" data-en="Another joyful group moment — students showing off their trophies together." data-ur="ایک اور خوشی بھرا لمحہ — طلبہ ایک ساتھ اپنی ٹرافیاں دکھاتے ہوئے۔">Another joyful group moment — students showing off their trophies together.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-11.jpg" alt="Nasir Ali portrait with his 1st Position trophy">
+      <p class="gallery-caption i18n" data-en="Nasir Ali (Class 7th) — 1st Position in School — with his trophy." data-ur="نصیر علی (جماعت ہفتم) — سکول میں پہلی پوزیشن — اپنی ٹرافی کے ساتھ۔">Nasir Ali (Class 7th) — 1st Position in School — with his trophy.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-12.jpg" alt="A young student with his teacher, holding his trophy">
+      <p class="gallery-caption i18n" data-en="A young award winner standing proudly with his teacher." data-ur="ایک ننھا انعام یافتہ طالب علم اپنے استاد کے ساتھ فخر سے کھڑا۔">A young award winner standing proudly with his teacher.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-13.jpg" alt="Trophies arranged on stage for the prize distribution ceremony">
+      <p class="gallery-caption i18n" data-en="Trophies lined up on stage, ready to be presented to this year's achievers." data-ur="اسٹیج پر ترتیب سے رکھی ٹرافیاں، اس سال کے ہونہار طلبہ میں تقسیم کے لیے تیار۔">Trophies lined up on stage, ready to be presented to this year's achievers.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-14.jpg" alt="Large group of achievers with their trophies">
+      <p class="gallery-caption i18n" data-en="A wonderful group moment capturing this year's top achievers together." data-ur="اس سال کے نمایاں طلبہ کا ایک ساتھ خوبصورت لمحہ۔">A wonderful group moment capturing this year's top achievers together.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-15.jpg" alt="A teacher with a young student holding his 3rd Position trophy">
+      <p class="gallery-caption i18n" data-en="Muhammad Atas receiving his 3rd Position trophy alongside his teacher." data-ur="محمد اطہس اپنے استاد کے ہمراہ اپنی تیسری پوزیشن کی ٹرافی وصول کرتے ہوئے۔">Muhammad Atas receiving his 3rd Position trophy alongside his teacher.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-16.jpg" alt="Muhammad Saeed receiving his trophy — Class 3rd, 2nd Position">
+      <p class="gallery-caption i18n" data-en="Muhammad Saeed (Class 3rd) receiving his 2nd Position trophy on stage." data-ur="محمد سعید (جماعت سوم) اسٹیج پر اپنی دوسری پوزیشن کی ٹرافی وصول کرتے ہوئے۔">Muhammad Saeed (Class 3rd) receiving his 2nd Position trophy on stage.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-17.jpg" alt="Students gathered for Parents Day at ISCM">
+      <p class="gallery-caption i18n" data-en="A large gathering of students at ISCM's Parents Day event." data-ur="آئی ایس سی ایم کے پیرنٹس ڈے کی تقریب میں طلبہ کا بڑا اجتماع۔">A large gathering of students at ISCM's Parents Day event.</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="gallery/gallery-18.jpg" alt="Three students with their teacher, holding their trophies">
+      <p class="gallery-caption i18n" data-en="Three proud achievers with their teacher, celebrating their trophies together." data-ur="تین ہونہار طلبہ اپنے استاد کے ساتھ اپنی ٹرافیوں کا جشن مناتے ہوئے۔">Three proud achievers with their teacher, celebrating their trophies together.</p>
+    </div>
+
+  </div>
+
+</section>
+
 <section class="section" id="library">
   <div class="section-head">
     <div class="kicker i18n" data-en="꧁༺Digital Library༻꧂" data-ur="ڈیجیٹل لائبریری">꧁༺Digital Library༻꧂</div>
@@ -1826,7 +1943,7 @@
       '.section-head', '.iqra-badge', '.intro-grid > p',
       '.vm-card', '.pillar-card', '.lead-card', '.val-pill',
       '.two-col .block', '.gallery-item', '.calendar-card',
-      '.news-card', '.info-card', '.staff-card', '.message-card',
+      '.news-card', '.info-card', '.staff-card', '.message-card', '.gallery-item',
       '.records-box', '.cal-table', '.map-wrap',
       '.contact-card', '.library-promo-card', '.book-card', 'footer'
     ].join(', ');
