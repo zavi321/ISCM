@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
   var firebaseConfig = {
     apiKey: "AIzaSyA4D-iXeB8vqrFOKG_-vzO8F2QooKIt05g",
@@ -112,6 +113,22 @@
     display:inline-block; margin-top:18px; background:var(--gold); color:var(--navy);
     text-decoration:none; padding:11px 22px; border-radius:20px; font-weight:700; font-size:14px;
   }
+
+  .pdf-actions{
+    display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+    margin-top:22px;
+  }
+  .pdf-action-btn{
+    display:inline-flex; align-items:center; gap:7px;
+    border:none; cursor:pointer; text-decoration:none;
+    padding:12px 22px; border-radius:20px; font-weight:700; font-size:14px;
+    font-family:'Work Sans', sans-serif; transition:opacity .2s ease, transform .15s ease;
+  }
+  .pdf-action-btn:hover{ transform:translateY(-2px); }
+  .pdf-action-btn:disabled{ opacity:.6; cursor:not-allowed; transform:none; }
+  .print-btn{ background:var(--navy); color:var(--gold); }
+  .whatsapp-btn{ background:#25D366; color:#fff; }
+  .pdf-status{ font-size:12.5px; color:var(--mist); margin-top:12px; }
 
   .error-msg{color:#B3261E; font-size:13px; margin-top:6px; display:none;}
   footer{text-align:center; padding:24px 18px 40px; color:var(--mist); font-size:12.5px;}
@@ -363,6 +380,13 @@
     <div class="tick">✅</div>
     <h2>Application Submitted!</h2>
     <p>Thank you for applying to Islamia School &amp; College Martung. Our office will review your application and contact you soon via the mobile number provided.</p>
+
+    <div class="pdf-actions">
+      <button type="button" class="pdf-action-btn print-btn" id="printFormBtn" onclick="printAdmissionPDF()">🖨️ Print Form</button>
+      <button type="button" class="pdf-action-btn whatsapp-btn" id="waPrincipalBtn" onclick="sendAdmissionToPrincipal()">💬 Send to Principal</button>
+    </div>
+    <div class="pdf-status" id="pdfStatus"></div>
+
     <a href="index.html">Return to Home</a>
   </div>
 </div>
@@ -370,6 +394,180 @@
 <footer>© 2026 Islamia School &amp; College Martung (ISCM) — Martung, District Shangla, KPK, Pakistan</footer>
 
 <script>
+  var lastSubmittedData = null;
+  var PRINCIPAL_WHATSAPP = '923429533066'; // Sir Hilal Ahmad — Principal, ISCM
+
+  // ---------- Build a formatted PDF of the submitted admission form ----------
+  function generateAdmissionPDF(data){
+    var doc = new jspdf.jsPDF({ unit: 'pt', format: 'a4' });
+    var pageWidth = doc.internal.pageSize.getWidth();
+    var pageHeight = doc.internal.pageSize.getHeight();
+    var margin = 40;
+    var y = 52;
+
+    function checkPageBreak(need){
+      if (y + need > pageHeight - 40) { doc.addPage(); y = 50; }
+    }
+
+    // Header
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(16);
+    doc.setTextColor(16, 25, 63);
+    doc.text('Islamia School & College Martung (ISCM)', pageWidth / 2, y, { align: 'center' });
+    y += 18;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10.5);
+    doc.setTextColor(91, 100, 120);
+    doc.text('Martung, District Shangla, Khyber Pakhtunkhwa, Pakistan', pageWidth / 2, y, { align: 'center' });
+    y += 20;
+    doc.setDrawColor(201, 162, 39);
+    doc.setLineWidth(1.2);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 26;
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(14);
+    doc.setTextColor(16, 25, 63);
+    doc.text('Student Admission Form', margin, y);
+    y += 16;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9.5);
+    doc.setTextColor(91, 100, 120);
+    doc.text('Submitted: ' + new Date(data.submittedAt).toLocaleString(), margin, y);
+    y += 24;
+
+    function sectionTitle(title){
+      checkPageBreak(30);
+      y += 6;
+      doc.setFillColor(16, 25, 63);
+      doc.rect(margin, y - 12, pageWidth - margin * 2, 20, 'F');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor(255, 255, 255);
+      doc.text(title, margin + 8, y + 2);
+      y += 24;
+    }
+
+    function field(label, value){
+      checkPageBreak(20);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10);
+      doc.setTextColor(16, 25, 63);
+      var labelText = label + ':';
+      doc.text(labelText, margin, y);
+      var labelWidth = doc.getTextWidth(labelText) + 18;
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(30, 36, 48);
+      var text = (value === undefined || value === null || value === '') ? '—' : String(value);
+      var wrapped = doc.splitTextToSize(text, pageWidth - margin * 2 - labelWidth);
+      doc.text(wrapped, margin + labelWidth, y);
+      y += (wrapped.length * 15) + 10;
+    }
+
+    sectionTitle('Student Information');
+    field('Class Applied For', data.classFor);
+    field('Student Name', data.studentName);
+    field('Gender', data.gender);
+    field('Date of Birth', data.dob);
+    field('B-Form No.', data.bform);
+    field('Nationality', data.nationality);
+    field('Religion', data.religion);
+    field('Mother Tongue', data.motherTongue);
+    field('Blood Group', data.bloodGroup);
+    field('Previous School', data.prevSchool);
+    field('Last Class Passed', data.lastClass);
+
+    sectionTitle("Father's Information");
+    field("Father's Name", data.fatherName);
+    field('CNIC No.', data.fatherCnic);
+    field('Qualification', data.fatherQualification);
+    field('Occupation', data.fatherOccupation);
+    field('Mobile No.', data.fatherMobile);
+    field('WhatsApp No.', data.fatherWhatsapp);
+
+    sectionTitle('Residential Address');
+    field('House No.', data.houseNo);
+    field('Village/Area', data.villageArea);
+    field('Tehsil', data.tehsil);
+    field('District', data.district);
+    field('Postal Code', data.postalCode);
+
+    sectionTitle('Emergency Contact');
+    field('Name', data.emergencyName);
+    field('Relationship', data.emergencyRelation);
+    field('Mobile No.', data.emergencyMobile);
+
+    sectionTitle('Documents Attached');
+    field('Documents', (data.documentsAttached && data.documentsAttached.length) ? data.documentsAttached.join(', ') : 'None selected');
+
+    sectionTitle('Transport Facility');
+    field('Transport Required', data.transport);
+    field('Pickup Location', data.pickupLocation);
+
+    sectionTitle("Parent's Declaration");
+    field('Declaration Agreed', data.agreeDeclaration ? 'Yes' : 'No');
+    field('Parent/Guardian Signature', data.guardianSignature);
+
+    return doc;
+  }
+
+  function pdfFileName(data){
+    var name = (data.studentName || 'Admission-Form').trim().replace(/[^a-zA-Z0-9]+/g, '-');
+    return 'ISCM-Admission-' + name + '.pdf';
+  }
+
+  // ---------- Print button: opens the generated PDF ready to print ----------
+  function printAdmissionPDF(){
+    if (!lastSubmittedData) return;
+    var doc = generateAdmissionPDF(lastSubmittedData);
+    try { doc.autoPrint(); } catch (e) {}
+    window.open(doc.output('bloburl'), '_blank');
+  }
+
+  // ---------- WhatsApp button: share the PDF file directly, with a fallback ----------
+  async function sendAdmissionToPrincipal(){
+    if (!lastSubmittedData) return;
+    var statusEl = document.getElementById('pdfStatus');
+    var btn = document.getElementById('waPrincipalBtn');
+    btn.disabled = true;
+    statusEl.textContent = 'Preparing PDF...';
+
+    var doc = generateAdmissionPDF(lastSubmittedData);
+    var fileName = pdfFileName(lastSubmittedData);
+    var pdfBlob = doc.output('blob');
+
+    // Best path (mostly mobile): native share sheet lets the user pick WhatsApp
+    // and the PDF goes with it as a real attachment.
+    if (navigator.canShare && window.File) {
+      try {
+        var pdfFile = new File([pdfBlob], fileName, { type: 'application/pdf' });
+        if (navigator.canShare({ files: [pdfFile] })) {
+          await navigator.share({
+            files: [pdfFile],
+            title: 'ISCM Admission Form',
+            text: 'Admission form — ' + (lastSubmittedData.studentName || '')
+          });
+          statusEl.textContent = 'Share menu opened — choose WhatsApp to send to the Principal.';
+          btn.disabled = false;
+          return;
+        }
+      } catch (e){
+        btn.disabled = false;
+        if (e && e.name === 'AbortError') { statusEl.textContent = ''; return; }
+        // fall through to fallback below on any other error
+      }
+    }
+
+    // Fallback (mainly desktop browsers): download the PDF, then open the
+    // Principal's WhatsApp chat with a message asking to attach it manually.
+    doc.save(fileName);
+    var msg = 'Assalam-o-Alaikum, admission form for ' + (lastSubmittedData.studentName || '') +
+      ' has been submitted. The PDF just downloaded on this device — please attach it here.';
+    window.open('https://wa.me/' + PRINCIPAL_WHATSAPP + '?text=' + encodeURIComponent(msg), '_blank');
+    statusEl.textContent = 'PDF downloaded. WhatsApp chat opened — please attach the downloaded file.';
+    btn.disabled = false;
+  }
+
   document.getElementById('admissionForm').addEventListener('submit', function(e){
     e.preventDefault();
     var btn = document.getElementById('submitBtn');
@@ -417,11 +615,13 @@
       pickupLocation: document.getElementById('pickupLocation').value.trim(),
 
       guardianSignature: document.getElementById('guardianSignature').value.trim(),
+      agreeDeclaration: document.getElementById('agreeDeclaration').checked,
       submittedAt: new Date().toISOString()
     };
 
     iscmDb.ref('admissions').push(data)
       .then(function(){
+        lastSubmittedData = data;
         document.getElementById('admissionForm').style.display = 'none';
         document.getElementById('successBox').style.display = 'block';
         window.scrollTo(0,0);
