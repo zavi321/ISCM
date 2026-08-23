@@ -65,7 +65,7 @@
     --line: rgba(16,25,63,0.12);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:auto;}
   body{
     background:var(--paper);
     color:var(--ink);
@@ -1807,6 +1807,82 @@
     }
     localStorage.setItem('iscm-lang', lang);
   }
+  // ---------- Manual smooth-scroll for in-page anchor links (nav, etc.) ----------
+  (function(){
+    function easeInOutQuad(t){ return t < 0.5 ? 2*t*t : -1 + (4-2*t)*t; }
+    function smoothScrollToY(targetY, duration){
+      var startY = window.scrollY;
+      var distance = targetY - startY;
+      var startTime = null;
+      function animate(timestamp){
+        if (startTime === null) startTime = timestamp;
+        var elapsed = timestamp - startTime;
+        var progress = Math.min(elapsed / duration, 1);
+        window.scrollTo(0, startY + distance * easeInOutQuad(progress));
+        if (progress < 1) requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+    }
+    document.addEventListener('click', function(e){
+      var a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      var el = document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      var navEl = document.querySelector('nav');
+      var offset = navEl ? navEl.offsetHeight + 10 : 0;
+      var targetY = el.getBoundingClientRect().top + window.scrollY - offset;
+      smoothScrollToY(Math.max(0, targetY), 500);
+    });
+  })();
+
+  // ---------- Auto-scroll (pauses while finger/mouse is held down) ----------
+  (function(){
+    var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    var scroller = document.scrollingElement || document.documentElement;
+    var autoScrollActive = true;
+    var pxPerSecond = 36; // speed level 0.6
+    var lastTime = null;
+
+    function step(timestamp){
+      if (lastTime === null) lastTime = timestamp;
+      var delta = timestamp - lastTime;
+      lastTime = timestamp;
+      // Guard against huge jumps (e.g. tab was backgrounded)
+      if (delta > 100) delta = 16;
+
+      if (autoScrollActive){
+        var maxScroll = scroller.scrollHeight - scroller.clientHeight;
+        if (scroller.scrollTop < maxScroll - 1){
+          scroller.scrollTop += pxPerSecond * (delta / 1000);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+
+    function pause(){ autoScrollActive = false; }
+    function resume(){ autoScrollActive = true; lastTime = null; }
+
+    document.addEventListener('pointerdown', pause, {passive:true});
+    document.addEventListener('pointerup', resume, {passive:true});
+    document.addEventListener('pointercancel', resume, {passive:true});
+    document.addEventListener('touchstart', pause, {passive:true});
+    document.addEventListener('touchend', resume, {passive:true});
+    document.addEventListener('touchcancel', resume, {passive:true});
+    // Also pause on manual mouse-wheel scrolling, resume shortly after
+    var wheelTimeout;
+    document.addEventListener('wheel', function(){
+      pause();
+      clearTimeout(wheelTimeout);
+      wheelTimeout = setTimeout(resume, 1200);
+    }, {passive:true});
+  })();
+
   function toggleMobileNav(){
     document.getElementById('mobileNavPanel').classList.toggle('open');
   }
