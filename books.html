@@ -6,6 +6,26 @@
 <title>Digital Library — Islamia School & College Martung (ISCM)</title>
 <meta name="description" content="Download textbooks, Islamiyat material, and study guides for Islamia School & College Martung — organized by class.">
 <link rel="canonical" href="https://theiscm.github.io/books.html">
+
+<!-- Firebase (same ISCM project as index.html) — powers the admin upload feature below -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyA4D-iXeB8vqrFOKG_-vzO8F2QooKIt05g",
+    authDomain: "iscm-records.firebaseapp.com",
+    databaseURL: "https://iscm-records-default-rtdb.firebaseio.com",
+    projectId: "iscm-records",
+    storageBucket: "iscm-records.firebasestorage.app",
+    messagingSenderId: "715196179024",
+    appId: "1:715196179024:web:81af308e0157d155a7a755"
+  };
+  firebase.initializeApp(firebaseConfig);
+  var iscmDb = firebase.database();
+  var iscmStorage = firebase.storage();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -125,6 +145,73 @@
     text-align:center; padding:34px 6vw; font-size:12.5px; color:var(--mist);
     border-top:1px solid var(--line); background:#fff;
   }
+
+  /* ---------- admin upload (staff only) ---------- */
+  .admin-fab{
+    position:fixed; bottom:22px; right:22px; z-index:70;
+    width:50px; height:50px; border-radius:50%; border:none;
+    background:var(--navy); color:#fff; font-size:20px;
+    box-shadow:0 6px 18px rgba(16,25,63,0.35); cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .18s ease;
+  }
+  .admin-fab:hover{ transform:scale(1.07); }
+  .admin-overlay{
+    position:fixed; inset:0; background:rgba(16,25,63,0.55); z-index:80;
+    display:none; align-items:center; justify-content:center; padding:18px;
+  }
+  .admin-overlay.open{ display:flex; }
+  .admin-panel{
+    background:#fff; border-radius:12px; width:100%; max-width:460px;
+    max-height:86vh; overflow-y:auto; padding:26px 24px; position:relative;
+  }
+  .admin-panel h2{
+    font-family:'Amiri', serif; color:var(--navy); font-size:20px; margin-bottom:4px;
+  }
+  .admin-panel .sub{ color:var(--mist); font-size:13px; margin-bottom:18px; }
+  .admin-close{
+    position:absolute; top:14px; right:16px; background:none; border:none;
+    font-size:20px; color:var(--mist); cursor:pointer; line-height:1;
+  }
+  .admin-field{ margin-bottom:14px; }
+  .admin-field label{
+    display:block; font-size:12px; font-weight:600; color:var(--navy);
+    margin-bottom:5px; text-transform:uppercase; letter-spacing:.03em;
+  }
+  .admin-field input, .admin-field select{
+    width:100%; padding:10px 12px; border:1.5px solid var(--line); border-radius:6px;
+    font-family:inherit; font-size:14px; background:#fff; color:var(--ink);
+  }
+  .admin-field input:focus, .admin-field select:focus{ outline:none; border-color:var(--gold); }
+  .admin-btn{
+    width:100%; padding:11px; border:none; border-radius:6px; background:var(--navy);
+    color:#fff; font-weight:700; font-size:14px; cursor:pointer; font-family:inherit;
+  }
+  .admin-btn:hover{ background:var(--royal); }
+  .admin-btn[disabled]{ opacity:.55; cursor:not-allowed; }
+  .admin-msg{ font-size:13px; margin-top:10px; display:none; padding:9px 12px; border-radius:6px; }
+  .admin-msg.show{ display:block; }
+  .admin-msg.err{ background:#FBEAEA; color:#B0413E; }
+  .admin-msg.ok{ background:#EAF6EE; color:#237A46; }
+  .admin-progress-wrap{
+    height:8px; background:var(--paper); border-radius:20px; overflow:hidden; margin-top:12px; display:none;
+  }
+  .admin-progress-wrap.show{ display:block; }
+  .admin-progress-bar{ height:100%; width:0%; background:var(--gold); transition:width .2s ease; }
+  .admin-manage-list{ margin-top:22px; border-top:1px solid var(--line); padding-top:16px; }
+  .admin-manage-list h3{ font-size:13px; color:var(--navy); margin-bottom:10px; }
+  .admin-book-row{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:8px 0; border-bottom:1px solid var(--line); font-size:13px;
+  }
+  .admin-book-row .abr-info{ min-width:0; }
+  .admin-book-row .abr-title{ font-weight:600; color:var(--ink); }
+  .admin-book-row .abr-class{ color:var(--mist); font-size:11.5px; }
+  .admin-del-btn{
+    background:none; border:1.5px solid #B0413E; color:#B0413E; border-radius:5px;
+    padding:5px 10px; font-size:11.5px; font-weight:600; cursor:pointer; flex-shrink:0;
+  }
+  .admin-del-btn:hover{ background:#B0413E; color:#fff; }
 </style>
 </head>
 <body>
@@ -160,6 +247,55 @@
   <span class="i18n" data-en="Copyright © 2026 The ISCM — Islamia School &amp; College Martung, Martung, Shangla, KPK, Pakistan" data-ur="کاپی رائٹ © 2026 دی آئی ایس سی ایم — اسلامیہ سکول اینڈ کالج مارتونگ، مارتونگ، شانگلہ، خیبر پختونخوا، پاکستان">Copyright © 2026 The ISCM — Islamia School &amp; College Martung, Martung, Shangla, KPK, Pakistan</span>
 </footer>
 
+<!-- Staff-only: add a book to the library from the browser -->
+<button class="admin-fab" id="adminFab" title="Staff: add a book" aria-label="Staff: add a book">🔒</button>
+
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-panel">
+    <button class="admin-close" id="adminClose" aria-label="Close">&times;</button>
+
+    <div id="adminLockedView">
+      <h2>Staff Login</h2>
+      <p class="sub">Enter the staff password to add a book to the library.</p>
+      <div class="admin-field">
+        <label>Password</label>
+        <input type="password" id="adminPassword" placeholder="Password">
+      </div>
+      <button class="admin-btn" id="adminUnlockBtn">Unlock</button>
+      <div class="admin-msg err" id="adminLockError">❌ Wrong password</div>
+    </div>
+
+    <div id="adminUnlockedView" style="display:none;">
+      <h2>Add a Book</h2>
+      <p class="sub">Choose a PDF and fill in the details. It appears in the library automatically — no need to touch GitHub.</p>
+
+      <div class="admin-field">
+        <label>Book title</label>
+        <input type="text" id="adminBookTitle" placeholder="e.g. Mathematics">
+      </div>
+      <div class="admin-field">
+        <label>Class</label>
+        <input type="text" id="adminBookClass" list="adminClassList" placeholder="e.g. Class 6">
+        <datalist id="adminClassList"></datalist>
+      </div>
+      <div class="admin-field">
+        <label>PDF file</label>
+        <input type="file" id="adminBookFile" accept="application/pdf">
+      </div>
+
+      <button class="admin-btn" id="adminUploadBtn">📤 Upload &amp; Add to Library</button>
+      <div class="admin-progress-wrap" id="adminProgressWrap"><div class="admin-progress-bar" id="adminProgressBar"></div></div>
+      <div class="admin-msg err" id="adminUploadError"></div>
+      <div class="admin-msg ok" id="adminUploadSuccess"></div>
+
+      <div class="admin-manage-list">
+        <h3>Books added from this panel</h3>
+        <div id="adminManageList"><p style="color:var(--mist); font-size:12.5px;">Loading…</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   /* =====================================================================
      HOW TO ADD A NEW BOOK (for Nadeem):
@@ -177,10 +313,11 @@
     { title:"Numbers / Math", cls:"KG", file:"books/kg-math.pdf" },
 
     // -------- Class 1–5 (Primary) --------
-    { title:"English", cls:"Class 1", file:"books/class-1-english.pdf" },
+    { title:"English Keybook (AFAQ Iqbal Series)", cls:"Class 1", file:"books/class-1-english-keybook.pdf" },
     { title:"Urdu", cls:"Class 1", file:"books/class-1-urdu.pdf" },
     { title:"Mathematics", cls:"Class 1", file:"books/class-1-math.pdf" },
     { title:"Islamiyat", cls:"Class 1", file:"books/class-1-islamiyat.pdf" },
+    { title:"English Keybook (AFAQ Iqbal Series)", cls:"Class 4", file:"books/class-4-english-keybook.pdf" },
     { title:"English", cls:"Class 5", file:"books/class-5-english.pdf" },
     { title:"Mathematics", cls:"Class 5", file:"books/class-5-math.pdf" },
     { title:"Science", cls:"Class 5", file:"books/class-5-science.pdf" },
@@ -209,9 +346,24 @@
   var currentFilter = 'All';
   var currentLang = 'en';
 
+  // Books added via the staff upload panel (loaded live from Firebase).
+  // Kept separate from the hardcoded BOOKS array above so a Firebase
+  // hiccup can never take down the books that already work.
+  var DYNAMIC_BOOKS = [];
+
+  function allBooks(){
+    return BOOKS.concat(DYNAMIC_BOOKS);
+  }
+
+  function escapeHtml(str){
+    return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
+      return ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c];
+    });
+  }
+
   function uniqueClasses(){
     var seen = {}, list = [];
-    BOOKS.forEach(function(b){
+    allBooks().forEach(function(b){
       if (!seen[b.cls]) { seen[b.cls] = true; list.push(b.cls); }
     });
     return list;
@@ -235,7 +387,7 @@
 
   function renderBooks(){
     var query = (searchInput.value || '').trim().toLowerCase();
-    var filtered = BOOKS.filter(function(b){
+    var filtered = allBooks().filter(function(b){
       var matchesClass = (currentFilter === 'All' || b.cls === currentFilter);
       var matchesSearch = !query || (b.title.toLowerCase().indexOf(query) > -1 || b.cls.toLowerCase().indexOf(query) > -1);
       return matchesClass && matchesSearch;
@@ -254,11 +406,19 @@
       var card = document.createElement('a');
       card.className = 'book-card';
       card.href = b.file;
-      card.setAttribute('download', '');
+      // Local repo files (books/....pdf) can force-download; files uploaded
+      // via the staff panel live on Firebase Storage (a different origin),
+      // where the download attribute is unreliable, so those open in a new tab.
+      if (b.file.indexOf('http') !== 0){
+        card.setAttribute('download', '');
+      } else {
+        card.target = '_blank';
+        card.rel = 'noopener';
+      }
       card.innerHTML =
         '<div class="book-icon">📘</div>' +
-        '<div class="book-title">' + b.title + '</div>' +
-        '<div class="book-class">' + b.cls + '</div>' +
+        '<div class="book-title">' + escapeHtml(b.title) + '</div>' +
+        '<div class="book-class">' + escapeHtml(b.cls) + '</div>' +
         '<span class="book-dl">' + (currentLang === 'ur' ? '📥 ڈاؤن لوڈ کریں' : '📥 Download PDF') + '</span>';
       grid.appendChild(card);
     });
@@ -289,6 +449,218 @@
   function toggleLanguage(){
     var current = document.body.getAttribute('dir') === 'rtl' ? 'ur' : 'en';
     setLanguage(current === 'ur' ? 'en' : 'ur');
+  }
+
+  // ---------- Live library sync (books added via the staff upload panel) ----------
+  // If Firebase is unreachable for any reason, the page must still work with
+  // the hardcoded BOOKS list above — never let this block the rest of the page.
+  try {
+    iscmDb.ref('libraryBooks').on('value', function(snapshot){
+      var val = snapshot.val() || {};
+      var list = [];
+      Object.keys(val).forEach(function(key){
+        var b = val[key] || {};
+        if (b.title && b.cls && b.url){
+          list.push({ id: key, title: b.title, cls: b.cls, file: b.url, storagePath: b.storagePath || '' });
+        }
+      });
+      DYNAMIC_BOOKS = list;
+      renderTabs();
+      renderBooks();
+      renderAdminManageList();
+    }, function(err){
+      console.error('Library sync error:', err);
+    });
+  } catch (e) {
+    console.error('Firebase library init error:', e);
+  }
+
+  // ---------- Staff upload panel ----------
+  var LIBRARY_ADMIN_PASSWORD = "iscm2026"; // Staff: change this text to set your own password
+
+  var adminFab = document.getElementById('adminFab');
+  var adminOverlay = document.getElementById('adminOverlay');
+  var adminClose = document.getElementById('adminClose');
+  var adminLockedView = document.getElementById('adminLockedView');
+  var adminUnlockedView = document.getElementById('adminUnlockedView');
+  var adminPasswordInput = document.getElementById('adminPassword');
+  var adminUnlockBtn = document.getElementById('adminUnlockBtn');
+  var adminLockError = document.getElementById('adminLockError');
+  var adminBookTitle = document.getElementById('adminBookTitle');
+  var adminBookClass = document.getElementById('adminBookClass');
+  var adminBookFile = document.getElementById('adminBookFile');
+  var adminClassList = document.getElementById('adminClassList');
+  var adminUploadBtn = document.getElementById('adminUploadBtn');
+  var adminProgressWrap = document.getElementById('adminProgressWrap');
+  var adminProgressBar = document.getElementById('adminProgressBar');
+  var adminUploadError = document.getElementById('adminUploadError');
+  var adminUploadSuccess = document.getElementById('adminUploadSuccess');
+  var adminManageList = document.getElementById('adminManageList');
+  var isUploading = false;
+
+  function openAdminPanel(){
+    adminOverlay.classList.add('open');
+    adminLockedView.style.display = 'block';
+    adminUnlockedView.style.display = 'none';
+    adminPasswordInput.value = '';
+    adminLockError.classList.remove('show');
+    setTimeout(function(){ adminPasswordInput.focus(); }, 50);
+  }
+  function closeAdminPanel(){
+    adminOverlay.classList.remove('open');
+  }
+  adminFab.addEventListener('click', openAdminPanel);
+  adminClose.addEventListener('click', closeAdminPanel);
+  adminOverlay.addEventListener('click', function(e){
+    if (e.target === adminOverlay) closeAdminPanel();
+  });
+
+  adminUnlockBtn.addEventListener('click', function(){
+    if (adminPasswordInput.value === LIBRARY_ADMIN_PASSWORD){
+      adminLockedView.style.display = 'none';
+      adminUnlockedView.style.display = 'block';
+      populateClassDatalist();
+      renderAdminManageList();
+    } else {
+      adminLockError.classList.add('show');
+    }
+  });
+  adminPasswordInput.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') adminUnlockBtn.click();
+  });
+
+  function populateClassDatalist(){
+    adminClassList.innerHTML = '';
+    uniqueClasses().forEach(function(c){
+      var opt = document.createElement('option');
+      opt.value = c;
+      adminClassList.appendChild(opt);
+    });
+  }
+
+  function showAdminMsg(el, text){
+    adminUploadError.classList.remove('show');
+    adminUploadSuccess.classList.remove('show');
+    el.textContent = text;
+    el.classList.add('show');
+  }
+
+  function setUploadingState(on){
+    isUploading = on;
+    adminUploadBtn.disabled = on;
+    adminUploadBtn.textContent = on ? 'Uploading…' : '📤 Upload & Add to Library';
+  }
+
+  adminUploadBtn.addEventListener('click', function(){
+    if (isUploading) return; // guard against double-clicks / duplicate uploads
+
+    var title = (adminBookTitle.value || '').trim();
+    var cls = (adminBookClass.value || '').trim();
+    var file = adminBookFile.files && adminBookFile.files[0];
+
+    adminUploadError.classList.remove('show');
+    adminUploadSuccess.classList.remove('show');
+
+    if (!title || !cls){
+      showAdminMsg(adminUploadError, 'Please enter both a title and a class.');
+      return;
+    }
+    if (!file){
+      showAdminMsg(adminUploadError, 'Please choose a PDF file.');
+      return;
+    }
+    var looksLikePdf = file.type === 'application/pdf' || /\.pdf$/i.test(file.name);
+    if (!looksLikePdf){
+      showAdminMsg(adminUploadError, 'Only PDF files can be added to the library.');
+      return;
+    }
+    if (file.size > 60 * 1024 * 1024){
+      showAdminMsg(adminUploadError, 'That file is larger than 60MB — please use a smaller PDF.');
+      return;
+    }
+
+    setUploadingState(true);
+    adminProgressWrap.classList.add('show');
+    adminProgressBar.style.width = '0%';
+
+    var safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+    var storagePath = 'library-books/' + Date.now() + '-' + safeName;
+    var storageRef = iscmStorage.ref().child(storagePath);
+    var uploadTask = storageRef.put(file);
+
+    uploadTask.on('state_changed',
+      function progress(snap){
+        var pct = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+        adminProgressBar.style.width = pct + '%';
+      },
+      function error(err){
+        console.error('Upload error:', err);
+        setUploadingState(false);
+        adminProgressWrap.classList.remove('show');
+        showAdminMsg(adminUploadError, 'Upload failed — please check your internet connection and try again.');
+      },
+      function complete(){
+        uploadTask.snapshot.ref.getDownloadURL().then(function(url){
+          return iscmDb.ref('libraryBooks').push({
+            title: title,
+            cls: cls,
+            url: url,
+            storagePath: storagePath,
+            addedAt: firebase.database.ServerValue.TIMESTAMP
+          });
+        }).then(function(){
+          setUploadingState(false);
+          adminProgressWrap.classList.remove('show');
+          showAdminMsg(adminUploadSuccess, '✅ "' + title + '" was added to the library.');
+          adminBookTitle.value = '';
+          adminBookClass.value = '';
+          adminBookFile.value = '';
+        }).catch(function(err){
+          console.error('Save error:', err);
+          setUploadingState(false);
+          adminProgressWrap.classList.remove('show');
+          // The file did upload to storage even though saving the record failed —
+          // clean it up so it isn't left orphaned and unusable.
+          storageRef.delete().catch(function(){});
+          showAdminMsg(adminUploadError, 'The file uploaded but could not be saved to the library. Please try again.');
+        });
+      }
+    );
+  });
+
+  function renderAdminManageList(){
+    if (!adminManageList) return;
+    if (DYNAMIC_BOOKS.length === 0){
+      adminManageList.innerHTML = '<p style="color:var(--mist); font-size:12.5px;">No books added from this panel yet.</p>';
+      return;
+    }
+    adminManageList.innerHTML = '';
+    DYNAMIC_BOOKS.forEach(function(b){
+      var row = document.createElement('div');
+      row.className = 'admin-book-row';
+      row.innerHTML =
+        '<div class="abr-info">' +
+          '<div class="abr-title">' + escapeHtml(b.title) + '</div>' +
+          '<div class="abr-class">' + escapeHtml(b.cls) + '</div>' +
+        '</div>' +
+        '<button class="admin-del-btn">Remove</button>';
+      row.querySelector('.admin-del-btn').addEventListener('click', function(){
+        deleteBook(b);
+      });
+      adminManageList.appendChild(row);
+    });
+  }
+
+  function deleteBook(b){
+    if (!confirm('Remove "' + b.title + '" from the library? This cannot be undone.')) return;
+    var dbRemoval = iscmDb.ref('libraryBooks/' + b.id).remove();
+    var storageRemoval = b.storagePath ? iscmStorage.ref().child(b.storagePath).delete().catch(function(){ /* file may already be gone — ignore */ }) : Promise.resolve();
+    Promise.all([dbRemoval, storageRemoval]).then(function(){
+      showAdminMsg(adminUploadSuccess, '🗑️ "' + b.title + '" was removed.');
+    }).catch(function(err){
+      console.error('Delete error:', err);
+      showAdminMsg(adminUploadError, 'Could not remove that book — please try again.');
+    });
   }
 
   // ---------- init ----------
