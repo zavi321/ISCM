@@ -163,8 +163,30 @@
   }
   .hero .short{font-size:13px; letter-spacing:.1em; color:var(--gold); text-transform:uppercase; margin-bottom:22px; font-weight:600;}
   .hero .tagline{
-    font-family:'Amiri', serif; font-style:italic;
-    font-size:19px; color:#D9DCEA; margin-bottom:8px;
+    font-family:'Amiri', serif; font-style:italic; font-weight:700;
+    font-size:34px; margin-bottom:8px;
+    background:linear-gradient(90deg, #B8860B 0%, #FFF6D0 20%, #FFD700 40%, #FFFBEA 50%, #FFD700 60%, #FFF6D0 80%, #B8860B 100%);
+    background-size:300% 100%;
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#FFD700;
+    filter:drop-shadow(0 0 10px rgba(255,215,0,0.85)) drop-shadow(0 0 26px rgba(255,200,0,0.55));
+    animation:sunGlow 2.6s ease-in-out infinite, sunShimmer 4.5s linear infinite;
+  }
+  @keyframes sunGlow{
+    0%,100%{ filter:drop-shadow(0 0 8px rgba(255,215,0,0.7)) drop-shadow(0 0 20px rgba(255,190,0,0.45)); }
+    50%{ filter:drop-shadow(0 0 20px rgba(255,225,0,1)) drop-shadow(0 0 46px rgba(255,200,0,0.85)) drop-shadow(0 0 70px rgba(255,170,0,0.5)); }
+  }
+  @keyframes sunShimmer{
+    0%{ background-position:0% 50%; }
+    100%{ background-position:300% 50%; }
+  }
+  .ray-of-hope-signoff{
+    font-family:'Amiri', serif; font-style:italic; font-weight:700;
+    font-size:28px;
+    background:linear-gradient(90deg, #B8860B 0%, #FFF6D0 20%, #FFD700 40%, #FFFBEA 50%, #FFD700 60%, #FFF6D0 80%, #B8860B 100%);
+    background-size:300% 100%;
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#FFD700;
+    filter:drop-shadow(0 0 10px rgba(255,215,0,0.85)) drop-shadow(0 0 26px rgba(255,200,0,0.55));
+    animation:sunGlow 2.6s ease-in-out infinite, sunShimmer 4.5s linear infinite;
   }
   .hero .loc{font-size:13.5px; color:#B9C0D6; margin-bottom:34px;}
   .hero-cta{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; padding-bottom:60px;}
@@ -1271,7 +1293,7 @@
 
     <p class="msg-body">Our goal is to raise confident, capable, and God-conscious individuals who can serve themselves, their families, and our nation with knowledge and integrity.</p>
 
-    <p style="text-align:center; font-family:'Amiri', serif; color:var(--gold); font-size:17px; font-weight:700; margin-top:20px;">
+    <p class="ray-of-hope-signoff" style="text-align:center; margin-top:20px;">
       Ray of Hope.
     </p>
   </div>
