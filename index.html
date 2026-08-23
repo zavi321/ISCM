@@ -299,6 +299,22 @@
   .iqra-badge .mean{font-size:13px; color:#C7CCDE; margin-top:6px;}
   .intro-grid p{font-size:15px; line-height:1.85; color:var(--ink); margin-bottom:16px;}
 
+  /* ---------- word-by-word zoom animation (each word pops one after another) ---------- */
+  .word-pop .word-anim{
+    display:inline-block;
+    transform-origin:center bottom;
+    animation:wordZoomPop 3.4s ease-in-out infinite;
+    will-change:transform;
+  }
+  @keyframes wordZoomPop{
+    0%, 100%{ transform:scale(1) translateY(0); color:inherit; text-shadow:none; }
+    12%{ transform:scale(1.4) translateY(-4px); color:var(--gold); text-shadow:0 6px 14px rgba(201,162,39,.55); }
+    24%{ transform:scale(1) translateY(0); color:inherit; text-shadow:none; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .word-pop .word-anim{ animation:none !important; }
+  }
+
   /* ---------- vision/mission ---------- */
   .vm-grid{
     display:grid; grid-template-columns:1fr 1fr; gap:30px;
@@ -424,15 +440,15 @@
 
   /* ---------- photo gallery with captions ---------- */
   .gallery-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
-    gap:22px; max-width:1100px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+    gap:14px; max-width:1100px; margin:0 auto;
   }
   .gallery-item{
     background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden;
   }
   .gallery-item img{width:100%; aspect-ratio:3/4; object-fit:cover; display:block;}
   .gallery-item .gallery-caption{
-    font-size:13px; color:var(--ink); line-height:1.6; padding:12px 14px;
+    font-size:11.5px; color:var(--ink); line-height:1.5; padding:8px 10px;
     border-top:1px solid var(--line);
   }
 
@@ -840,7 +856,7 @@
   .hero{perspective:700px;}
   @keyframes floatLogo3D{
     0%,100%{transform:translateY(0) translateZ(0) scale(1);}
-    50%{transform:translateY(-9px) translateZ(34px) scale(1.05);}
+    50%{transform:translateY(-14px) translateZ(60px) scale(1.08);}
   }
   body.hero-animate .hero-logo{
     animation:heroPop .9s cubic-bezier(.34,1.56,.64,1) both, floatLogo3D 5s ease-in-out .9s infinite, ringPulse 2.6s ease-out .9s infinite;
@@ -867,6 +883,75 @@
       transform-style:flat;
     }
   }
+
+  /* ---------- 3D POP BOOST — deeper bevel + stronger lift on every card ---------- */
+  .vm-card, .calendar-card, .news-card, .records-box, .message-card,
+  .book-card, .staff-card, .map-wrap, .cal-table, .info-card{
+    box-shadow:0 5px 0 rgba(16,25,63,0.07), 0 3px 6px rgba(16,25,63,0.08), 0 28px 48px rgba(16,25,63,0.2) !important;
+  }
+  .library-promo-card{
+    box-shadow:0 5px 0 rgba(16,25,63,0.06), 0 3px 6px rgba(16,25,63,0.07), 0 24px 42px rgba(16,25,63,0.16) !important;
+  }
+  .iqra-badge{
+    box-shadow:0 5px 0 rgba(0,0,0,0.22), 0 3px 6px rgba(0,0,0,0.2), 0 28px 48px rgba(0,0,0,0.35) !important;
+  }
+  .contact-card{
+    box-shadow:0 5px 0 rgba(0,0,0,0.2), 0 3px 6px rgba(0,0,0,0.18), 0 32px 56px rgba(0,0,0,0.4) !important;
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease;
+  }
+  .pillar-card{
+    box-shadow:inset 0 0 0 1px rgba(250,246,237,0.08), 0 22px 42px rgba(0,0,0,0.35);
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1), background .3s ease, box-shadow .3s ease;
+  }
+
+  .calendar-card:hover, .news-card:hover, .info-card:hover, .library-promo-card:hover,
+  .book-card:hover, .message-card:hover, .records-box:hover, .iqra-badge:hover{
+    transform:translateY(-14px) scale(1.045) !important;
+    box-shadow:0 8px 0 rgba(16,25,63,0.1), 0 36px 62px rgba(16,25,63,0.3) !important;
+  }
+  .vm-card:hover{
+    transform:translateY(-13px) scale(1.04) !important;
+    box-shadow:0 8px 0 rgba(16,25,63,0.08), 0 32px 56px rgba(16,25,63,0.22) !important;
+  }
+  .contact-card:hover{
+    transform:translateY(-10px) scale(1.02);
+    box-shadow:0 8px 0 rgba(0,0,0,0.24), 0 36px 62px rgba(0,0,0,0.48) !important;
+  }
+  .staff-card:hover{
+    transform:translateY(-13px) rotate(-1.4deg) scale(1.02) !important;
+    box-shadow:0 8px 0 rgba(16,25,63,0.1), 0 32px 56px rgba(16,25,63,0.28) !important;
+  }
+  .book-card:hover{ transform:translateY(-11px) scale(1.06) !important; }
+  .library-promo-card:hover{
+    transform:translateY(-9px) scale(1.02) !important;
+    box-shadow:0 7px 0 rgba(16,25,63,0.08), 0 28px 48px rgba(16,25,63,0.24) !important;
+  }
+  .lead-card:hover .arch-photo{
+    transform:translateY(-10px) scale(1.06) rotateX(8deg) !important;
+    box-shadow:0 22px 40px rgba(201,162,39,0.5) !important;
+  }
+  .pillar-card:hover{
+    transform:translateY(-8px) scale(1.03) rotateX(5deg);
+    background:#131f4d;
+    box-shadow:inset 0 0 0 1px rgba(201,162,39,0.35), 0 30px 54px rgba(0,0,0,0.5);
+  }
+  .val-pill{transition:transform .22s cubic-bezier(.34,1.56,.64,1), background .22s ease, color .22s ease, border-color .22s ease, box-shadow .22s ease;}
+  .val-pill:hover{
+    transform:translateY(-9px) scale(1.12) !important;
+    box-shadow:0 16px 28px rgba(16,25,63,0.3);
+  }
+  .btn{ box-shadow:0 6px 0 rgba(0,0,0,0.18), 0 14px 26px rgba(16,25,63,0.24) !important; }
+  .btn:hover{
+    transform:translateY(-6px) scale(1.05) !important;
+    box-shadow:0 8px 0 rgba(0,0,0,0.18), 0 22px 38px rgba(16,25,63,0.3) !important;
+  }
+
+  /* deeper perspective on card grids so tilt reads more three-dimensional */
+  .vm-grid, .pillar-grid, .lead-grid, .calendar-cards, .news-grid,
+  .info-grid, .staff-grid, .library-promo-grid, .books-grid{
+    perspective:1700px;
+  }
+
   /* ---------- 3D text — site-wide ---------- */
   h1, h2, h3, h4, .brand .b-text{
     text-shadow:0 1px 0 rgba(201,162,39,.4), 0 2px 0 rgba(201,162,39,.25), 0 4px 8px rgba(16,25,63,.18);
@@ -987,8 +1072,8 @@
     <div>
       <div class="kicker i18n" data-en="꧁༺Introduction༻꧂" data-ur="تعارف">꧁༺Introduction༻꧂</div>
       <h2 style="margin-bottom:16px;" class="i18n" data-en="𝑾𝒉𝒆𝒓𝒆 𝑭𝒂𝒊𝒕𝒉 𝑴𝒆𝒆𝒕𝒔 𝑴𝒐𝒅𝒆𝒓𝒏 𝑳𝒆𝒂𝒓𝒏𝒊𝒏𝒈" data-ur="جہاں ایمان جدید تعلیم سے ملتا ہے">𝑾𝒉𝒆𝒓𝒆 𝑭𝒂𝒊𝒕𝒉 𝑴𝒆𝒆𝒕𝒔 𝑴𝒐𝒅𝒆𝒓𝒏 𝑳𝒆𝒂𝒓𝒏𝒊𝒏𝒈</h2>
-      <p class="i18n" data-en="Islamia School &amp; College Martung is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings." data-ur="اسلامیہ سکول اینڈ کالج مارتونگ طلبہ کو جدید تعلیم، اسلامی اقدار، اخلاقی تربیت اور کردار سازی کا متوازن امتزاج فراہم کرنے کے لیے پرعزم ہے۔ ایک ایسی نسل کی پرورش جو تعلیمی میدان میں نمایاں ہو اور اسلامی تعلیمات سے مضبوطی سے جڑی رہے۔">Islamia School &amp; College Martung is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings.</p>
-      <p class="i18n" data-en="The school&#39;s vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community." data-ur="سکول کا وژن کلاس روم سے آگے تک پھیلا ہوا ہے۔ یہ طلبہ میں مضبوط ابلاغی صلاحیتیں، تنقیدی سوچ، قیادت، اعتماد اور معاشرے، خاندان اور برادری کے تئیں ذمہ داری کا احساس پیدا کرتا ہے۔">The school's vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community.</p>
+      <p class="i18n word-pop" data-en="Islamia School &amp; College Martung is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings." data-ur="اسلامیہ سکول اینڈ کالج مارتونگ طلبہ کو جدید تعلیم، اسلامی اقدار، اخلاقی تربیت اور کردار سازی کا متوازن امتزاج فراہم کرنے کے لیے پرعزم ہے۔ ایک ایسی نسل کی پرورش جو تعلیمی میدان میں نمایاں ہو اور اسلامی تعلیمات سے مضبوطی سے جڑی رہے۔">Islamia School &amp; College Martung is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings.</p>
+      <p class="i18n word-pop" data-en="The school&#39;s vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community." data-ur="سکول کا وژن کلاس روم سے آگے تک پھیلا ہوا ہے۔ یہ طلبہ میں مضبوط ابلاغی صلاحیتیں، تنقیدی سوچ، قیادت، اعتماد اور معاشرے، خاندان اور برادری کے تئیں ذمہ داری کا احساس پیدا کرتا ہے۔">The school's vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community.</p>
     </div>
   </div>
 </section>
@@ -1678,11 +1763,34 @@
     .catch(function(){ document.getElementById('visitCount').innerText = '—'; });
 
   // Language toggle (English / Urdu)
+  function initWordPop(){
+    document.querySelectorAll('.word-pop').forEach(function(el){
+      var text = el.textContent;
+      var tokens = text.split(/(\s+)/);
+      var frag = document.createDocumentFragment();
+      var wordIndex = 0;
+      tokens.forEach(function(tok){
+        if (tok.trim() === '') {
+          frag.appendChild(document.createTextNode(tok));
+        } else {
+          var span = document.createElement('span');
+          span.className = 'word-anim';
+          span.textContent = tok;
+          span.style.animationDelay = (wordIndex * 0.12) + 's';
+          frag.appendChild(span);
+          wordIndex++;
+        }
+      });
+      el.innerHTML = '';
+      el.appendChild(frag);
+    });
+  }
   function setLanguage(lang){
     document.querySelectorAll('.i18n').forEach(function(el){
       var text = el.getAttribute('data-' + lang);
       if (text !== null) el.textContent = text;
     });
+    initWordPop();
     if (lang === 'ur') {
       document.body.setAttribute('dir', 'rtl');
       document.getElementById('langToggle').textContent = 'English';
@@ -1700,6 +1808,7 @@
   (function(){
     var saved = localStorage.getItem('iscm-lang');
     if (saved === 'ur') setLanguage('ur');
+    else initWordPop();
   })();
 
   // ---------- Student Records (staff only) — shared via Firebase across all teachers ----------
@@ -1910,7 +2019,7 @@
       '.lead-card .arch-photo', '.book-card', '.message-card',
       '.records-box', '.iqra-badge'
     ].join(', ');
-    var maxTilt = 9;
+    var maxTilt = 16;
 
     document.querySelectorAll(selector).forEach(function(card){
       var restShadow = window.getComputedStyle(card).boxShadow;
@@ -1920,11 +2029,11 @@
         var py = (e.clientY - r.top) / r.height;
         var rotateY = (px - 0.5) * maxTilt * 2;
         var rotateX = (0.5 - py) * maxTilt * 2;
-        var shadowX = (px - 0.5) * -36;
-        var shadowY = (py - 0.5) * 36 + 18;
+        var shadowX = (px - 0.5) * -54;
+        var shadowY = (py - 0.5) * 54 + 26;
         card.style.transition = 'transform 0.06s linear, box-shadow 0.06s linear';
-        card.style.transform = 'perspective(800px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) scale3d(1.03,1.03,1.03)';
-        card.style.boxShadow = shadowX.toFixed(1) + 'px ' + shadowY.toFixed(1) + 'px 34px rgba(16,25,63,0.32), 0 2px 4px rgba(16,25,63,0.06)';
+        card.style.transform = 'perspective(700px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) scale3d(1.07,1.07,1.07) translateZ(20px)';
+        card.style.boxShadow = shadowX.toFixed(1) + 'px ' + shadowY.toFixed(1) + 'px 54px rgba(16,25,63,0.4), 0 8px 0 rgba(16,25,63,0.1)';
       });
       card.addEventListener('mouseleave', function(){
         card.style.transition = 'transform 0.5s cubic-bezier(.2,.8,.2,1), box-shadow 0.5s cubic-bezier(.2,.8,.2,1)';
