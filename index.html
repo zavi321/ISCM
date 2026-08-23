@@ -299,22 +299,6 @@
   .iqra-badge .mean{font-size:13px; color:#C7CCDE; margin-top:6px;}
   .intro-grid p{font-size:15px; line-height:1.85; color:var(--ink); margin-bottom:16px;}
 
-  /* ---------- word-by-word zoom animation (each word pops one after another) ---------- */
-  .word-pop .word-anim{
-    display:inline-block;
-    transform-origin:center bottom;
-    animation:wordZoomPop 3.4s ease-in-out infinite;
-    will-change:transform;
-  }
-  @keyframes wordZoomPop{
-    0%, 100%{ transform:scale(1) translateY(0); color:inherit; text-shadow:none; }
-    12%{ transform:scale(1.4) translateY(-4px); color:var(--gold); text-shadow:0 6px 14px rgba(201,162,39,.55); }
-    24%{ transform:scale(1) translateY(0); color:inherit; text-shadow:none; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .word-pop .word-anim{ animation:none !important; }
-  }
-
   /* ---------- vision/mission ---------- */
   .vm-grid{
     display:grid; grid-template-columns:1fr 1fr; gap:30px;
@@ -1072,8 +1056,8 @@
     <div>
       <div class="kicker i18n" data-en="꧁༺Introduction༻꧂" data-ur="تعارف">꧁༺Introduction༻꧂</div>
       <h2 style="margin-bottom:16px;" class="i18n" data-en="𝑾𝒉𝒆𝒓𝒆 𝑭𝒂𝒊𝒕𝒉 𝑴𝒆𝒆𝒕𝒔 𝑴𝒐𝒅𝒆𝒓𝒏 𝑳𝒆𝒂𝒓𝒏𝒊𝒏𝒈" data-ur="جہاں ایمان جدید تعلیم سے ملتا ہے">𝑾𝒉𝒆𝒓𝒆 𝑭𝒂𝒊𝒕𝒉 𝑴𝒆𝒆𝒕𝒔 𝑴𝒐𝒅𝒆𝒓𝒏 𝑳𝒆𝒂𝒓𝒏𝒊𝒏𝒈</h2>
-      <p class="i18n word-pop" data-en="Islamia School &amp; College Martung is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings." data-ur="اسلامیہ سکول اینڈ کالج مارتونگ طلبہ کو جدید تعلیم، اسلامی اقدار، اخلاقی تربیت اور کردار سازی کا متوازن امتزاج فراہم کرنے کے لیے پرعزم ہے۔ ایک ایسی نسل کی پرورش جو تعلیمی میدان میں نمایاں ہو اور اسلامی تعلیمات سے مضبوطی سے جڑی رہے۔">Islamia School &amp; College Martung is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings.</p>
-      <p class="i18n word-pop" data-en="The school&#39;s vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community." data-ur="سکول کا وژن کلاس روم سے آگے تک پھیلا ہوا ہے۔ یہ طلبہ میں مضبوط ابلاغی صلاحیتیں، تنقیدی سوچ، قیادت، اعتماد اور معاشرے، خاندان اور برادری کے تئیں ذمہ داری کا احساس پیدا کرتا ہے۔">The school's vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community.</p>
+      <p class="i18n" data-en="Islamia School &amp; College Martung is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings." data-ur="اسلامیہ سکول اینڈ کالج مارتونگ طلبہ کو جدید تعلیم، اسلامی اقدار، اخلاقی تربیت اور کردار سازی کا متوازن امتزاج فراہم کرنے کے لیے پرعزم ہے۔ ایک ایسی نسل کی پرورش جو تعلیمی میدان میں نمایاں ہو اور اسلامی تعلیمات سے مضبوطی سے جڑی رہے۔">Islamia School &amp; College Martung is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings.</p>
+      <p class="i18n" data-en="The school&#39;s vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community." data-ur="سکول کا وژن کلاس روم سے آگے تک پھیلا ہوا ہے۔ یہ طلبہ میں مضبوط ابلاغی صلاحیتیں، تنقیدی سوچ، قیادت، اعتماد اور معاشرے، خاندان اور برادری کے تئیں ذمہ داری کا احساس پیدا کرتا ہے۔">The school's vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community.</p>
     </div>
   </div>
 </section>
@@ -1763,34 +1747,11 @@
     .catch(function(){ document.getElementById('visitCount').innerText = '—'; });
 
   // Language toggle (English / Urdu)
-  function initWordPop(){
-    document.querySelectorAll('.word-pop').forEach(function(el){
-      var text = el.textContent;
-      var tokens = text.split(/(\s+)/);
-      var frag = document.createDocumentFragment();
-      var wordIndex = 0;
-      tokens.forEach(function(tok){
-        if (tok.trim() === '') {
-          frag.appendChild(document.createTextNode(tok));
-        } else {
-          var span = document.createElement('span');
-          span.className = 'word-anim';
-          span.textContent = tok;
-          span.style.animationDelay = (wordIndex * 0.12) + 's';
-          frag.appendChild(span);
-          wordIndex++;
-        }
-      });
-      el.innerHTML = '';
-      el.appendChild(frag);
-    });
-  }
   function setLanguage(lang){
     document.querySelectorAll('.i18n').forEach(function(el){
       var text = el.getAttribute('data-' + lang);
       if (text !== null) el.textContent = text;
     });
-    initWordPop();
     if (lang === 'ur') {
       document.body.setAttribute('dir', 'rtl');
       document.getElementById('langToggle').textContent = 'English';
@@ -1808,7 +1769,6 @@
   (function(){
     var saved = localStorage.getItem('iscm-lang');
     if (saved === 'ur') setLanguage('ur');
-    else initWordPop();
   })();
 
   // ---------- Student Records (staff only) — shared via Firebase across all teachers ----------
