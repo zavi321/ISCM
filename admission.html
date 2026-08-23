@@ -44,15 +44,15 @@
     position:fixed; inset:0;
     background:url('logo.png') center/cover no-repeat;
     filter:blur(10px);
-    opacity:0.2;
+    opacity:0.5;
     z-index:-1;
     pointer-events:none;
   }
   .top-bar{
     background:var(--navy); color:var(--paper);
-    padding:16px 20px; display:flex; align-items:center; gap:12px;
+    padding:16px 20px; display:flex; align-items:flex-start; gap:12px;
   }
-  .top-bar img{width:42px; height:42px; border-radius:50%; border:2px solid var(--gold);}
+  .top-bar img{width:42px; height:42px; border-radius:50%; border:2px solid var(--gold); object-fit:cover; display:block; margin-top:1px;}
   .top-bar .name{font-family:'Amiri', serif; font-weight:700; font-size:16px; line-height:1.25;}
   .top-bar .name span{display:block; font-size:10.5px; letter-spacing:.12em; color:var(--gold); font-weight:600; margin-top:2px;}
   .top-bar a{margin-left:auto; color:var(--paper); font-size:13px; text-decoration:none; opacity:.85; border:1px solid rgba(255,255,255,.3); padding:7px 14px; border-radius:20px;}
@@ -433,8 +433,9 @@
 
     // Header
     var logoSize = 46;
+    var logoTop = y - 10;
     try {
-      doc.addImage(LOGO_BASE64, 'JPEG', margin, y - 10, logoSize, logoSize);
+      doc.addImage(LOGO_BASE64, 'JPEG', margin, logoTop, logoSize, logoSize);
     } catch (e) { console.error('Logo failed to load in PDF:', e); }
 
     doc.setFont('helvetica', 'bold');
@@ -447,7 +448,7 @@
     doc.setTextColor(91, 100, 120);
     doc.text('Martung, District Shangla, Khyber Pakhtunkhwa, Pakistan', pageWidth / 2, y, { align: 'center' });
     y += 12;
-    y = Math.max(y, logoSize + 4);
+    y = Math.max(y, logoTop + logoSize + 8);
     doc.setDrawColor(201, 162, 39);
     doc.setLineWidth(1);
     doc.line(margin, y, pageWidth - margin, y);
@@ -466,15 +467,14 @@
     function sectionTitle(title){
       checkPageBreak(20);
       y += 5;
-      doc.setFillColor(16, 25, 63);
-      doc.roundedRect(margin, y - 10, pageWidth - margin * 2, 15, 3, 3, 'F');
-      doc.setFillColor(201, 162, 39);
-      doc.rect(margin, y - 10, pageWidth - margin * 2, 1.6, 'F');
+      doc.setDrawColor(201, 162, 39);
+      doc.setLineWidth(1.1);
+      doc.line(margin, y - 3, pageWidth - margin, y - 3);
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(9.5);
-      doc.setTextColor(255, 255, 255);
-      doc.text(title, margin + 8, y);
-      y += 12;
+      doc.setFontSize(10);
+      doc.setTextColor(16, 25, 63);
+      doc.text(title, margin, y + 6);
+      y += 15;
     }
 
     function field(label, value){
