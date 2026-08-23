@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Library — Islamia School & College Martung (ISCM)</title>
+<meta name="description" content="Download textbooks, Islamiyat material, and study guides for Islamia School & College Martung — organized by class.">
+<link rel="canonical" href="https://theiscm.github.io/books.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#10193F;
+    --royal:#1B2C6B;
+    --gold:#C9A227;
+    --paper:#FAF6ED;
+    --ink:#1E2430;
+    --mist:#5B6478;
+    --line: rgba(16,25,63,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:500;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+  .display{font-family:'Amiri', serif;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 6vw;}
+  body[dir="rtl"] .i18n{ font-family:'Noto Nastaliq Urdu', serif; }
+  body[dir="rtl"]{ direction:rtl; }
+
+  /* ---------- nav ---------- */
+  nav{
+    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;
+    padding:16px 6vw;
+    position:sticky; top:0; z-index:60;
+    background:rgba(250,246,237,0.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand img{width:42px; height:42px; border-radius:50%;}
+  .brand .b-text{font-family:'Amiri', serif; font-weight:700; font-size:16px; line-height:1.2; color:var(--navy);}
+  .brand .b-text span{display:block; font-family:'Work Sans',sans-serif; font-size:10px; letter-spacing:.12em; color:var(--gold); font-weight:600;}
+  .nav-actions{display:flex; align-items:center; gap:10px;}
+  .back-link{
+    font-size:13.5px; font-weight:600; color:var(--navy);
+    border:1.5px solid var(--navy); padding:8px 16px; border-radius:3px;
+  }
+  .back-link:hover{ background:var(--navy); color:#fff; }
+  .nav-lang-btn{
+    background:transparent; border:1.5px solid var(--gold); color:var(--navy);
+    font-family:inherit; font-weight:600; font-size:13px; padding:8px 14px;
+    border-radius:3px; cursor:pointer; transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .nav-lang-btn:hover{transform:translateY(-2px) scale(1.03); box-shadow:0 4px 12px rgba(16,25,63,0.25);}
+
+  /* ---------- header ---------- */
+  .lib-header{ padding:56px 6vw 20px; text-align:center; }
+  .kicker{
+    font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--gold); font-weight:700; margin-bottom:10px;
+  }
+  h1.lib-title{
+    font-family:'Amiri', serif; font-weight:700; font-size:clamp(26px,4.4vw,40px);
+    color:var(--navy); margin-bottom:10px;
+  }
+  .lib-sub{ color:var(--mist); font-size:15px; max-width:560px; margin:0 auto; }
+
+  /* ---------- class filter tabs ---------- */
+  .filter-wrap{
+    display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
+    max-width:1000px; margin:28px auto 8px; padding:0 6vw;
+  }
+  .filter-btn{
+    background:#fff; border:1.5px solid var(--line); color:var(--navy);
+    font-family:inherit; font-size:13px; font-weight:600;
+    padding:8px 16px; border-radius:20px; cursor:pointer;
+    transition:all .18s ease;
+  }
+  .filter-btn:hover{ border-color:var(--gold); }
+  .filter-btn.active{ background:var(--navy); color:#fff; border-color:var(--navy); }
+
+  /* ---------- search ---------- */
+  .search-wrap{ max-width:420px; margin:18px auto 0; padding:0 6vw; }
+  .search-input{
+    width:100%; padding:12px 16px; border-radius:8px; border:1.5px solid var(--line);
+    font-family:inherit; font-size:14px; background:#fff; color:var(--ink);
+  }
+  .search-input:focus{ outline:none; border-color:var(--gold); }
+
+  /* ---------- books grid ---------- */
+  .lib-body{ padding:36px 6vw 90px; }
+  .books-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:22px;
+    max-width:1100px; margin:0 auto;
+  }
+  .book-card{
+    background:#fff; border:1px solid var(--line); border-radius:10px;
+    padding:24px 18px; text-align:center;
+    box-shadow:0 2px 4px rgba(16,25,63,0.05), 0 14px 28px rgba(16,25,63,0.11);
+    transition:transform .18s ease, box-shadow .18s ease;
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+  }
+  .book-card:hover{transform:translateY(-4px); box-shadow:0 8px 22px rgba(16,25,63,0.12);}
+  .book-icon{font-size:34px; margin-bottom:4px;}
+  .book-title{font-weight:700; color:var(--navy); font-size:15px;}
+  .book-class{color:var(--mist); font-size:12.5px;}
+  .book-dl{
+    margin-top:12px; display:inline-block; width:100%;
+    background:var(--navy); color:#fff; font-size:13px; font-weight:600;
+    padding:10px 14px; border-radius:6px;
+  }
+  .book-dl:hover{ background:var(--royal); }
+  .empty-msg{
+    text-align:center; color:var(--mist); font-size:14.5px; padding:60px 20px;
+    grid-column:1/-1;
+  }
+
+  footer{
+    text-align:center; padding:34px 6vw; font-size:12.5px; color:var(--mist);
+    border-top:1px solid var(--line); background:#fff;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">
+    <img src="logo.png" alt="ISCM Logo">
+    <div class="b-text">The ISCM<span>MARTUNG · SHANGLA</span></div>
+  </a>
+  <div class="nav-actions">
+    <a href="index.html#library" class="back-link i18n" data-en="← Back to Home" data-ur="← ہوم پیج پر واپس">← Back to Home</a>
+    <button id="langToggle" onclick="toggleLanguage()" class="nav-lang-btn">اردو</button>
+  </div>
+</nav>
+
+<div class="lib-header">
+  <div class="kicker i18n" data-en="꧁༺Digital Library༻꧂" data-ur="ڈیجیٹل لائبریری">꧁༺Digital Library༻꧂</div>
+  <h1 class="lib-title i18n" data-en="Books &amp; Study Material" data-ur="کتابیں اور تعلیمی مواد">Books &amp; Study Material</h1>
+  <p class="lib-sub i18n" data-en="Browse and download textbooks, Islamiyat material, and study guides — organized by class." data-ur="نصابی کتابیں، اسلامیات کا مواد اور تعلیمی رہنما — جماعت کے لحاظ سے ترتیب دی گئی۔">Browse and download textbooks, Islamiyat material, and study guides — organized by class.</p>
+</div>
+
+<div class="search-wrap">
+  <input type="text" id="bookSearch" class="search-input i18n" data-en="🔍 Search by subject or class..." data-ur="🔍 مضمون یا جماعت تلاش کریں..." placeholder="🔍 Search by subject or class...">
+</div>
+
+<div class="filter-wrap" id="filterTabs"></div>
+
+<div class="lib-body">
+  <div class="books-grid" id="booksGrid"></div>
+</div>
+
+<footer>
+  <span class="i18n" data-en="Copyright © 2026 The ISCM — Islamia School &amp; College Martung, Martung, Shangla, KPK, Pakistan" data-ur="کاپی رائٹ © 2026 دی آئی ایس سی ایم — اسلامیہ سکول اینڈ کالج مارتونگ، مارتونگ، شانگلہ، خیبر پختونخوا، پاکستان">Copyright © 2026 The ISCM — Islamia School &amp; College Martung, Martung, Shangla, KPK, Pakistan</span>
+</footer>
+
+<script>
+  /* =====================================================================
+     HOW TO ADD A NEW BOOK (for Nadeem):
+     1. Upload the PDF file into a folder named "books" next to this file
+        (e.g. books/class-1-english.pdf)
+     2. Add one line below in the BOOKS array, following the same pattern:
+        { title:"English", cls:"Class 1", file:"books/class-1-english.pdf" }
+     3. Save — the new book card appears automatically, no other edits needed.
+     ===================================================================== */
+  var BOOKS = [
+    // -------- Nursery / KG --------
+    { title:"Qaida (Noorani)", cls:"Nursery", file:"books/nursery-qaida.pdf" },
+    { title:"English", cls:"Nursery", file:"books/nursery-english.pdf" },
+    { title:"Urdu", cls:"Nursery", file:"books/nursery-urdu.pdf" },
+    { title:"Numbers / Math", cls:"KG", file:"books/kg-math.pdf" },
+
+    // -------- Class 1–5 (Primary) --------
+    { title:"English", cls:"Class 1", file:"books/class-1-english.pdf" },
+    { title:"Urdu", cls:"Class 1", file:"books/class-1-urdu.pdf" },
+    { title:"Mathematics", cls:"Class 1", file:"books/class-1-math.pdf" },
+    { title:"Islamiyat", cls:"Class 1", file:"books/class-1-islamiyat.pdf" },
+    { title:"English", cls:"Class 5", file:"books/class-5-english.pdf" },
+    { title:"Mathematics", cls:"Class 5", file:"books/class-5-math.pdf" },
+    { title:"Science", cls:"Class 5", file:"books/class-5-science.pdf" },
+
+    // -------- Class 6–8 (Middle) --------
+    { title:"English", cls:"Class 8", file:"books/class-8-english.pdf" },
+    { title:"Mathematics", cls:"Class 8", file:"books/class-8-math.pdf" },
+    { title:"General Science", cls:"Class 8", file:"books/class-8-science.pdf" },
+    { title:"Islamiyat", cls:"Class 8", file:"books/class-8-islamiyat.pdf" },
+
+    // -------- Class 9–10 (Matric) --------
+    { title:"Physics", cls:"Class 9", file:"books/class-9-physics.pdf" },
+    { title:"Chemistry", cls:"Class 9", file:"books/class-9-chemistry.pdf" },
+    { title:"Biology", cls:"Class 10", file:"books/class-10-biology.pdf" },
+    { title:"Mathematics", cls:"Class 10", file:"books/class-10-math.pdf" },
+
+    // -------- Intermediate (FSc/FA) --------
+    { title:"Physics Part 1", cls:"FSc Part 1", file:"books/fsc1-physics.pdf" },
+    { title:"Chemistry Part 1", cls:"FSc Part 1", file:"books/fsc1-chemistry.pdf" },
+    { title:"Physics Part 2", cls:"FSc Part 2", file:"books/fsc2-physics.pdf" }
+  ];
+
+  var grid = document.getElementById('booksGrid');
+  var tabsWrap = document.getElementById('filterTabs');
+  var searchInput = document.getElementById('bookSearch');
+  var currentFilter = 'All';
+  var currentLang = 'en';
+
+  function uniqueClasses(){
+    var seen = {}, list = [];
+    BOOKS.forEach(function(b){
+      if (!seen[b.cls]) { seen[b.cls] = true; list.push(b.cls); }
+    });
+    return list;
+  }
+
+  function renderTabs(){
+    var classes = ['All'].concat(uniqueClasses());
+    tabsWrap.innerHTML = '';
+    classes.forEach(function(c){
+      var btn = document.createElement('button');
+      btn.className = 'filter-btn' + (c === currentFilter ? ' active' : '');
+      btn.textContent = c;
+      btn.onclick = function(){
+        currentFilter = c;
+        renderTabs();
+        renderBooks();
+      };
+      tabsWrap.appendChild(btn);
+    });
+  }
+
+  function renderBooks(){
+    var query = (searchInput.value || '').trim().toLowerCase();
+    var filtered = BOOKS.filter(function(b){
+      var matchesClass = (currentFilter === 'All' || b.cls === currentFilter);
+      var matchesSearch = !query || (b.title.toLowerCase().indexOf(query) > -1 || b.cls.toLowerCase().indexOf(query) > -1);
+      return matchesClass && matchesSearch;
+    });
+
+    grid.innerHTML = '';
+    if (filtered.length === 0){
+      var empty = document.createElement('div');
+      empty.className = 'empty-msg';
+      empty.textContent = currentLang === 'ur' ? 'کوئی کتاب نہیں ملی۔' : 'No books found.';
+      grid.appendChild(empty);
+      return;
+    }
+
+    filtered.forEach(function(b){
+      var card = document.createElement('a');
+      card.className = 'book-card';
+      card.href = b.file;
+      card.setAttribute('download', '');
+      card.innerHTML =
+        '<div class="book-icon">📘</div>' +
+        '<div class="book-title">' + b.title + '</div>' +
+        '<div class="book-class">' + b.cls + '</div>' +
+        '<span class="book-dl">' + (currentLang === 'ur' ? '📥 ڈاؤن لوڈ کریں' : '📥 Download PDF') + '</span>';
+      grid.appendChild(card);
+    });
+  }
+
+  searchInput.addEventListener('input', renderBooks);
+
+  // ---------- Language toggle (shared with main site) ----------
+  function setLanguage(lang){
+    currentLang = lang;
+    document.querySelectorAll('.i18n').forEach(function(el){
+      var text = el.getAttribute('data-' + lang);
+      if (text !== null) {
+        if (el.tagName === 'INPUT') el.setAttribute('placeholder', text);
+        else el.textContent = text;
+      }
+    });
+    if (lang === 'ur') {
+      document.body.setAttribute('dir', 'rtl');
+      document.getElementById('langToggle').textContent = 'English';
+    } else {
+      document.body.setAttribute('dir', 'ltr');
+      document.getElementById('langToggle').textContent = 'اردو';
+    }
+    localStorage.setItem('iscm-lang', lang);
+    renderBooks();
+  }
+  function toggleLanguage(){
+    var current = document.body.getAttribute('dir') === 'rtl' ? 'ur' : 'en';
+    setLanguage(current === 'ur' ? 'en' : 'ur');
+  }
+
+  // ---------- init ----------
+  renderTabs();
+  renderBooks();
+  (function(){
+    var saved = localStorage.getItem('iscm-lang');
+    if (saved === 'ur') setLanguage('ur');
+  })();
+</script>
+
+</body>
+</html>
