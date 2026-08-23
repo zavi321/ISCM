@@ -97,6 +97,26 @@
   .brand .b-text span{display:block; font-family:'Work Sans',sans-serif; font-size:10px; letter-spacing:.12em; color:var(--gold); font-weight:600;}
   nav .links{display:flex; gap:26px; font-size:14px; font-weight:500; color:var(--navy);}
   @media(max-width:800px){ nav .links{display:none;} }
+
+  /* ---------- mobile hamburger nav ---------- */
+  .mobile-nav-toggle{
+    display:none; align-items:center; justify-content:center;
+    width:40px; height:40px; border-radius:8px; border:1.5px solid var(--navy);
+    background:transparent; color:var(--navy); cursor:pointer; flex-shrink:0;
+  }
+  @media(max-width:800px){ .mobile-nav-toggle{display:inline-flex;} }
+  .mobile-nav-panel{
+    display:none; flex-direction:column;
+    background:var(--navy); overflow:hidden;
+    max-height:0; transition:max-height .35s ease;
+  }
+  .mobile-nav-panel.open{ max-height:600px; }
+  @media(max-width:800px){ .mobile-nav-panel{display:flex;} }
+  .mobile-nav-panel a{
+    color:#fff; font-size:16px; font-weight:600; text-decoration:none;
+    padding:16px 22px; border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .mobile-nav-panel a:active{ background:rgba(255,255,255,0.06); }
   .nav-cta{
     background:var(--navy); color:var(--paper);
     padding:9px 20px; border-radius:3px; font-size:13px; font-weight:600;
@@ -1048,11 +1068,25 @@
     <a href="#leadership"><span class="i18n" data-en="Leadership" data-ur="قیادت">Leadership</span></a>
     <a href="#contact"><span class="i18n" data-en="Contact" data-ur="رابطہ">Contact</span></a>
   </div>
+  <button id="mobileNavToggle" class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
   <div class="nav-actions">
     <a href="#contact" class="nav-cta"><span class="i18n" data-en="Contacts" data-ur="رابطہ کریں">Contacts</span></a>
     <button id="langToggle" onclick="toggleLanguage()" class="nav-lang-btn">اردو</button>
   </div>
 </nav>
+
+<div id="mobileNavPanel" class="mobile-nav-panel">
+  <a href="#about" onclick="closeMobileNav()"><span class="i18n" data-en="About" data-ur="تعارف">About</span></a>
+  <a href="#history" onclick="closeMobileNav()"><span class="i18n" data-en="History" data-ur="تاریخ">History</span></a>
+  <a href="#academics" onclick="closeMobileNav()"><span class="i18n" data-en="Academics" data-ur="تعلیمی نظام">Academics</span></a>
+  <a href="#calendar" onclick="closeMobileNav()"><span class="i18n" data-en="Calendar" data-ur="کیلنڈر">Calendar</span></a>
+  <a href="#news" onclick="closeMobileNav()"><span class="i18n" data-en="News" data-ur="خبریں">News</span></a>
+  <a href="#gallery" onclick="closeMobileNav()"><span class="i18n" data-en="Gallery" data-ur="تصاویر">Gallery</span></a>
+  <a href="#leadership" onclick="closeMobileNav()"><span class="i18n" data-en="Leadership" data-ur="قیادت">Leadership</span></a>
+  <a href="#contact" onclick="closeMobileNav()"><span class="i18n" data-en="Contact" data-ur="رابطہ">Contact</span></a>
+</div>
 
 <section class="hero">
   <div class="hero-logo-wrap">
@@ -1773,6 +1807,13 @@
     }
     localStorage.setItem('iscm-lang', lang);
   }
+  function toggleMobileNav(){
+    document.getElementById('mobileNavPanel').classList.toggle('open');
+  }
+  function closeMobileNav(){
+    document.getElementById('mobileNavPanel').classList.remove('open');
+  }
+
   function toggleLanguage(){
     var current = document.body.getAttribute('dir') === 'rtl' ? 'ur' : 'en';
     setLanguage(current === 'ur' ? 'en' : 'ur');
