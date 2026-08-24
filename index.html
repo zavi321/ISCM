@@ -4,6 +4,7 @@
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script>
   var firebaseConfig = {
     apiKey: "AIzaSyA4D-iXeB8vqrFOKG_-vzO8F2QooKIt05g",
@@ -16,6 +17,7 @@
   };
   firebase.initializeApp(firebaseConfig);
   var iscmDb = firebase.database();
+  var iscmAuth = firebase.auth();
 </script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -53,7 +55,7 @@
 <meta name="twitter:description" content="A school in Martung, Shangla combining modern education with Islamic values.">
 <meta name="twitter:image" content="https://theiscm.github.io/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#10193F;
@@ -140,6 +142,33 @@
     padding:9px 20px; border-radius:3px; font-size:13px; font-weight:600;
   }
 
+  /* ---------- nav "More" dropdown (desktop) ---------- */
+  .nav-more{position:relative;}
+  .nav-more-btn{
+    background:none; border:none; font:inherit; font-size:14px; font-weight:500;
+    color:var(--navy); cursor:pointer; padding:0; display:flex; align-items:center; gap:4px;
+  }
+  .nav-more-btn svg{transition:transform .2s ease;}
+  .nav-more.open .nav-more-btn svg{transform:rotate(180deg);}
+  .nav-more-menu{
+    position:absolute; top:calc(100% + 14px); left:50%; transform:translateX(-50%);
+    background:#fff; border:1px solid var(--line); border-radius:8px;
+    box-shadow:0 10px 28px rgba(16,25,63,0.14); min-width:170px; padding:6px;
+    display:none; z-index:60;
+  }
+  .nav-more.open .nav-more-menu{display:block;}
+  .nav-more-menu a{
+    display:block; padding:9px 12px; font-size:13.5px; color:var(--navy);
+    border-radius:5px; text-decoration:none;
+  }
+  .nav-more-menu a:hover{background:var(--paper);}
+
+  /* ---------- mobile nav group labels ---------- */
+  .mobile-nav-group-label{
+    color:var(--gold); font-size:11px; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; padding:14px 22px 6px; background:rgba(255,255,255,0.03);
+  }
+
   /* ---------- hero ---------- */
   .hero{
     position:relative;
@@ -167,6 +196,7 @@
   }
   .hero h1{
     font-family:'Amiri', serif;
+    font-style:italic;
     font-size:clamp(30px,5.2vw,50px);
     font-weight:700;
     line-height:1.2;
@@ -303,13 +333,15 @@
     50%{ text-shadow:0 0 16px rgba(214,0,28,1), 0 0 34px rgba(214,0,28,0.75); opacity:1; }
   }
   .section h2{
-    font-family:'Amiri', serif; font-size:clamp(26px,4vw,36px); font-weight:700;
+    font-family:'Amiri', serif; font-style:italic; font-size:clamp(26px,4vw,36px); font-weight:700;
     margin-bottom:14px; position:relative; display:inline-block;
+    -webkit-text-stroke:0.6px rgba(90,66,16,0.55);
     background:linear-gradient(100deg, #8a6a1f 0%, #d4af37 30%, #fff3c4 50%, #d4af37 70%, #8a6a1f 100%);
     background-size:220% auto; -webkit-background-clip:text; background-clip:text; color:transparent;
     text-shadow:
       1px 1px 0 #8a6a1f, 2px 2px 0 #7a5c19, 3px 3px 0 #6a4f14,
-      4px 4px 6px rgba(0,0,0,.35), 0 0 18px rgba(212,175,55,.5);
+      4px 4px 0 #5a4210, 5px 5px 0 #4a370c, 6px 6px 0 #3a2b09,
+      8px 8px 12px rgba(0,0,0,.45), 0 0 26px rgba(212,175,55,.65);
     animation:shimmerText 6s linear infinite, textPulseGlow 3.4s ease-in-out infinite;
   }
   .pillars .section-head h2, .contact .section-head h2{
@@ -610,7 +642,7 @@
     background:#fff;
   }
   .staff-card:hover{transform:translateY(-4px); box-shadow:0 8px 22px rgba(16,25,63,0.14);}
-  .staff-card img{width:100%; height:auto; display:block;}
+  .staff-card img{width:100%; aspect-ratio:4/5; object-fit:cover; display:block;}
 
   /* ---------- map ---------- */
   .map-wrap{
@@ -1060,12 +1092,21 @@
   </div>
   <div class="links">
     <a href="#about"><span class="i18n" data-en="About" data-ur="تعارف">About</span></a>
-    <a href="#history"><span class="i18n" data-en="History" data-ur="تاریخ">History</span></a>
     <a href="#academics"><span class="i18n" data-en="Academics" data-ur="تعلیمی نظام">Academics</span></a>
-    <a href="#calendar"><span class="i18n" data-en="Calendar" data-ur="کیلنڈر">Calendar</span></a>
+    <a href="books.html"><span class="i18n" data-en="Digital Library" data-ur="ڈیجیٹل لائبریری">Digital Library</span></a>
     <a href="#news"><span class="i18n" data-en="News" data-ur="خبریں">News</span></a>
-    <a href="#gallery"><span class="i18n" data-en="Gallery" data-ur="تصاویر">Gallery</span></a>
-    <a href="#leadership"><span class="i18n" data-en="Leadership" data-ur="قیادت">Leadership</span></a>
+    <div class="nav-more" id="navMore">
+      <button class="nav-more-btn" id="navMoreBtn" aria-haspopup="true" aria-expanded="false">
+        <span class="i18n" data-en="More" data-ur="مزید">More</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="nav-more-menu">
+        <a href="#history"><span class="i18n" data-en="History" data-ur="تاریخ">History</span></a>
+        <a href="#calendar"><span class="i18n" data-en="Calendar" data-ur="کیلنڈر">Calendar</span></a>
+        <a href="#gallery"><span class="i18n" data-en="Gallery" data-ur="تصاویر">Gallery</span></a>
+        <a href="#leadership"><span class="i18n" data-en="Leadership" data-ur="قیادت">Leadership</span></a>
+      </div>
+    </div>
     <a href="#contact"><span class="i18n" data-en="Contact" data-ur="رابطہ">Contact</span></a>
   </div>
   <button id="mobileNavToggle" class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="Menu">
@@ -1079,13 +1120,15 @@
 
 <div id="mobileNavPanel" class="mobile-nav-panel">
   <a href="#about" onclick="closeMobileNav()"><span class="i18n" data-en="About" data-ur="تعارف">About</span></a>
-  <a href="#history" onclick="closeMobileNav()"><span class="i18n" data-en="History" data-ur="تاریخ">History</span></a>
   <a href="#academics" onclick="closeMobileNav()"><span class="i18n" data-en="Academics" data-ur="تعلیمی نظام">Academics</span></a>
-  <a href="#calendar" onclick="closeMobileNav()"><span class="i18n" data-en="Calendar" data-ur="کیلنڈر">Calendar</span></a>
+  <a href="books.html"><span class="i18n" data-en="📚 Digital Library" data-ur="📚 ڈیجیٹل لائبریری">📚 Digital Library</span></a>
   <a href="#news" onclick="closeMobileNav()"><span class="i18n" data-en="News" data-ur="خبریں">News</span></a>
+  <a href="#contact" onclick="closeMobileNav()"><span class="i18n" data-en="Contact" data-ur="رابطہ">Contact</span></a>
+  <div class="mobile-nav-group-label i18n" data-en="More" data-ur="مزید">More</div>
+  <a href="#history" onclick="closeMobileNav()"><span class="i18n" data-en="History" data-ur="تاریخ">History</span></a>
+  <a href="#calendar" onclick="closeMobileNav()"><span class="i18n" data-en="Calendar" data-ur="کیلنڈر">Calendar</span></a>
   <a href="#gallery" onclick="closeMobileNav()"><span class="i18n" data-en="Gallery" data-ur="تصاویر">Gallery</span></a>
   <a href="#leadership" onclick="closeMobileNav()"><span class="i18n" data-en="Leadership" data-ur="قیادت">Leadership</span></a>
-  <a href="#contact" onclick="closeMobileNav()"><span class="i18n" data-en="Contact" data-ur="رابطہ">Contact</span></a>
 </div>
 
 <section class="hero">
@@ -1093,7 +1136,7 @@
     <img src="logo.png" class="hero-logo" alt="Islamia School &amp; College Martung">
   </div>
   <div class="eyebrow i18n" data-en="Martung · Shangla · Khyber Pakhtunkhwa" data-ur="مارتونگ · شانگلہ · خیبر پختونخوا">Martung · Shangla · Khyber Pakhtunkhwa</div>
-  <h1 class="i18n" data-en="𝑰𝒔𝒍𝒂𝒎𝒊𝒂 𝑺𝒄𝒉𝒐𝒐𝒍 &amp; 𝑪𝒐𝒍𝒍𝒆𝒈𝒆 𝑴𝒂𝒓𝒕𝒖𝒏𝒈" data-ur="اسلامیہ سکول اینڈ کالج مارتونگ">𝑰𝒔𝒍𝒂𝒎𝒊𝒂 𝑺𝒄𝒉𝒐𝒐𝒍 &amp; 𝑪𝒐𝒍𝒍𝒆𝒈𝒆 𝑴𝒂𝒓𝒕𝒖𝒏𝒈</h1>
+  <h1 class="i18n" data-en="Islamia School &amp; College Martung" data-ur="اسلامیہ سکول اینڈ کالج مارتونگ">Islamia School &amp; College Martung</h1>
   <div class="short">ISCM</div>
   <p class="tagline i18n" data-en="&quot;Ray of Hope&quot;" data-ur="&quot;امید کی کرن&quot;">"Ray of Hope"</p>
   <p class="loc i18n" data-en="📍 Martung, District Shangla, Khyber Pakhtunkhwa, Pakistan" data-ur="📍 مارتونگ، ضلع شانگلہ، خیبر پختونخوا، پاکستان">📍 Martung, District Shangla, Khyber Pakhtunkhwa, Pakistan</p>
@@ -1111,7 +1154,7 @@
   <div class="intro-grid">
     <div>
       <div class="kicker i18n" data-en="꧁༺Introduction༻꧂" data-ur="تعارف">꧁༺Introduction༻꧂</div>
-      <h2 style="margin-bottom:16px;" class="i18n" data-en="𝑾𝒉𝒆𝒓𝒆 𝑭𝒂𝒊𝒕𝒉 𝑴𝒆𝒆𝒕𝒔 𝑴𝒐𝒅𝒆𝒓𝒏 𝑳𝒆𝒂𝒓𝒏𝒊𝒏𝒈" data-ur="جہاں ایمان جدید تعلیم سے ملتا ہے">𝑾𝒉𝒆𝒓𝒆 𝑭𝒂𝒊𝒕𝒉 𝑴𝒆𝒆𝒕𝒔 𝑴𝒐𝒅𝒆𝒓𝒏 𝑳𝒆𝒂𝒓𝒏𝒊𝒏𝒈</h2>
+      <h2 style="margin-bottom:16px;" class="i18n" data-en="Where Faith Meets Modern Learning" data-ur="جہاں ایمان جدید تعلیم سے ملتا ہے">Where Faith Meets Modern Learning</h2>
       <p class="i18n" data-en="Islamia School &amp; College Martung is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings." data-ur="اسلامیہ سکول اینڈ کالج مارتونگ طلبہ کو جدید تعلیم، اسلامی اقدار، اخلاقی تربیت اور کردار سازی کا متوازن امتزاج فراہم کرنے کے لیے پرعزم ہے۔ ایک ایسی نسل کی پرورش جو تعلیمی میدان میں نمایاں ہو اور اسلامی تعلیمات سے مضبوطی سے جڑی رہے۔">Islamia School &amp; College Martung is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings.</p>
       <p class="i18n" data-en="The school&#39;s vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community." data-ur="سکول کا وژن کلاس روم سے آگے تک پھیلا ہوا ہے۔ یہ طلبہ میں مضبوط ابلاغی صلاحیتیں، تنقیدی سوچ، قیادت، اعتماد اور معاشرے، خاندان اور برادری کے تئیں ذمہ داری کا احساس پیدا کرتا ہے۔">The school's vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community.</p>
     </div>
@@ -1121,7 +1164,7 @@
 <section class="section" style="background:var(--paper);" id="history">
   <div class="section-head">
     <div class="kicker i18n" data-en="꧁༺Our Journey༻꧂" data-ur="ہمارا سفر">꧁༺Our Journey༻꧂</div>
-    <h2 class="i18n" data-en="𝑶𝒖𝒓 𝑯𝒊𝒔𝒕𝒐𝒓𝒚" data-ur="ہماری تاریخ">𝑶𝒖𝒓 𝑯𝒊𝒔𝒕𝒐𝒓𝒚</h2>
+    <h2 class="i18n" data-en="Our History" data-ur="ہماری تاریخ">Our History</h2>
   </div>
   <div style="max-width:800px; margin:0 auto;">
     <p class="i18n" style="font-size:15px; line-height:1.85; color:var(--ink); margin-bottom:16px;" data-en="Islamia School &amp; College Martung (The ISCM) was established in 2017 with the great vision of providing the children of the region with a quality educational environment — one where Islamic education, high moral character, and modern knowledge come together in perfect harmony." data-ur="اسلامیہ سکول اینڈ کالج مارتونگ (آئی ایس سی ایم) کا قیام سن 2017ء میں اس عظیم وژن کے ساتھ عمل میں آیا کہ علاقے کے بچوں کو ایسا معیاری تعلیمی ماحول فراہم کیا جائے، جہاں اسلامی تعلیم، اعلیٰ اخلاق اور جدید علوم کا حسین امتزاج موجود ہو۔">Islamia School &amp; College Martung (The ISCM) was established in 2017 with the great vision of providing the children of the region with a quality educational environment — one where Islamic education, high moral character, and modern knowledge come together in perfect harmony.</p>
@@ -1135,7 +1178,7 @@
 <section class="section" style="background:#fff;">
   <div class="section-head">
     <div class="kicker i18n" data-en="꧁༺Guiding Principles༻꧂" data-ur="رہنما اصول">꧁༺Guiding Principles༻꧂</div>
-    <h2 class="i18n" data-en="𝑽𝒊𝒔𝒊𝒐𝒏 &amp; 𝑴𝒊𝒔𝒔𝒊𝒐𝒏" data-ur="وژن اور مشن">𝑽𝒊𝒔𝒊𝒐𝒏 &amp; 𝑴𝒊𝒔𝒔𝒊𝒐𝒏</h2>
+    <h2 class="i18n" data-en="Vision &amp; Mission" data-ur="وژن اور مشن">Vision &amp; Mission</h2>
   </div>
   <div class="vm-grid">
     <div class="vm-card">
@@ -1159,7 +1202,7 @@
 <section class="section pillars" id="academics">
   <div class="section-head">
     <div class="kicker i18n" data-en="꧁༺What We Teach༻꧂" data-ur="ہم کیا پڑھاتے ہیں">꧁༺What We Teach༻꧂</div>
-    <h2 class="i18n" data-en="𝑨𝒄𝒂𝒅𝒆𝒎𝒊𝒄 𝑬𝒙𝒄𝒆𝒍𝒍𝒆𝒏𝒄𝒆 &amp; 𝑰𝒔𝒍𝒂𝒎𝒊𝒄 𝑬𝒅𝒖𝒄𝒂𝒕𝒊𝒐𝒏" data-ur="علمی مہارت اور اسلامی تعلیم">𝑨𝒄𝒂𝒅𝒆𝒎𝒊𝒄 𝑬𝒙𝒄𝒆𝒍𝒍𝒆𝒏𝒄𝒆 &amp; 𝑰𝒔𝒍𝒂𝒎𝒊𝒄 𝑬𝒅𝒖𝒄𝒂𝒕𝒊𝒐𝒏</h2>
+    <h2 class="i18n" data-en="Academic Excellence &amp; Islamic Education" data-ur="علمی مہارت اور اسلامی تعلیم">Academic Excellence &amp; Islamic Education</h2>
   </div>
   <div class="pillar-grid">
     <div class="pillar-card">
@@ -1204,7 +1247,7 @@
 <section class="section" style="background:#fff;">
   <div class="section-head">
     <div class="kicker i18n" data-en="꧁༺Core Values༻꧂" data-ur="بنیادی اقدار">꧁༺Core Values༻꧂</div>
-    <h2 class="i18n" data-en="𝑾𝒉𝒂𝒕 𝑾𝒆 𝑰𝒏𝒔𝒕𝒊𝒍𝒍 𝒊𝒏 𝑬𝒗𝒆𝒓𝒚 𝑺𝒕𝒖𝒅𝒆𝒏𝒕" data-ur="ہر طالب علم میں کیا پیدا کرتے ہیں">𝑾𝒉𝒂𝒕 𝑾𝒆 𝑰𝒏𝒔𝒕𝒊𝒍𝒍 𝒊𝒏 𝑬𝒗𝒆𝒓𝒚 𝑺𝒕𝒖𝒅𝒆𝒏𝒕</h2>
+    <h2 class="i18n" data-en="What We Instill in Every Student" data-ur="ہر طالب علم میں کیا پیدا کرتے ہیں">What We Instill in Every Student</h2>
   </div>
   <div class="values-strip">
     <span class="val-pill i18n" data-en="Honesty" data-ur="دیانتداری">Honesty</span>
@@ -1221,7 +1264,7 @@
 <section class="section" id="leadership">
   <div class="section-head">
     <div class="kicker i18n" data-en="꧁༺Our Leadership༻꧂" data-ur="ہماری قیادت">꧁༺Our Leadership༻꧂</div>
-    <h2 class="i18n" data-en="𝑺𝒄𝒉𝒐𝒐𝒍 𝑶𝒘𝒏𝒆𝒓𝒔" data-ur="سکول کے مالکان">𝑺𝒄𝒉𝒐𝒐𝒍 𝑶𝒘𝒏𝒆𝒓𝒔</h2>
+    <h2 class="i18n" data-en="School Owners" data-ur="سکول کے مالکان" style="font-style:italic;">School Owners</h2>
   </div>
   <div class="lead-grid">
     <div class="lead-card">
@@ -1240,7 +1283,7 @@
 
   <div class="section-head" style="margin-top:56px;">
     <div class="kicker i18n" data-en="꧁༺Behind the Scenes༻꧂" data-ur="پس منظر کی ٹیم">꧁༺Behind the Scenes༻꧂</div>
-    <h2 class="i18n" data-en="𝑴𝒂𝒏𝒂𝒈𝒆𝒎𝒆𝒏𝒕 𝑺𝒕𝒂𝒇𝒇" data-ur="انتظامی عملہ">𝑴𝒂𝒏𝒂𝒈𝒆𝒎𝒆𝒏𝒕 𝑺𝒕𝒂𝒇𝒇</h2>
+    <h2 class="i18n" data-en="Management Staff" data-ur="انتظامی عملہ">Management Staff</h2>
   </div>
   <div class="lead-grid">
     <div class="lead-card">
@@ -1259,7 +1302,7 @@
 
   <div class="section-head" style="margin-top:56px;">
     <div class="kicker i18n" data-en="꧁༺Meet the Team༻꧂" data-ur="ٹیم سے ملیں">꧁༺Meet the Team༻꧂</div>
-    <h2 class="i18n" data-en="𝑶𝒖𝒓 𝑻𝒆𝒂𝒄𝒉𝒊𝒏𝒈 𝑺𝒕𝒂𝒇𝒇" data-ur="ٹیچنگ سٹاف">𝑶𝒖𝒓 𝑻𝒆𝒂𝒄𝒉𝒊𝒏𝒈 𝑺𝒕𝒂𝒇𝒇</h2>
+    <h2 class="i18n" data-en="Our Teaching Staff" data-ur="ٹیچنگ سٹاف">Our Teaching Staff</h2>
   </div>
   <div class="staff-grid">
     <div class="staff-card"><img src="staff-1.jpg" alt="Principal"></div>
@@ -1336,7 +1379,7 @@
 <section class="section" style="background:var(--paper);" id="admission-info">
   <div class="section-head">
     <div class="kicker i18n" data-en="꧁༺Admission Details༻꧂" data-ur="داخلہ کی تفصیلات">꧁༺Admission Details༻꧂</div>
-    <h2 class="i18n" data-en="𝑨𝒈𝒆, 𝑭𝒆𝒆𝒔 &amp; 𝑹𝒆𝒈𝒊𝒔𝒕𝒓𝒂𝒕𝒊𝒐𝒏" data-ur="عمر، فیس اور رجسٹریشن">𝑨𝒈𝒆, 𝑭𝒆𝒆𝒔 &amp; 𝑹𝒆𝒈𝒊𝒔𝒕𝒓𝒂𝒕𝒊𝒐𝒏</h2>
+    <h2 class="i18n" data-en="Age, Fees &amp; Registration" data-ur="عمر، فیس اور رجسٹریشن">Age, Fees &amp; Registration</h2>
   </div>
   <div class="info-grid">
     <div class="info-card">
@@ -1391,7 +1434,7 @@
 <section class="section" style="background:var(--paper);" id="calendar">
   <div class="section-head">
     <div class="kicker i18n" data-en="꧁༺Session 2026–27༻꧂" data-ur="سیشن 2026–27">꧁༺Session 2026–27༻꧂</div>
-    <h2 class="i18n" data-en="𝑨𝒄𝒂𝒅𝒆𝒎𝒊𝒄 𝑪𝒂𝒍𝒆𝒏𝒅𝒂𝒓" data-ur="تعلیمی کیلنڈر">𝑨𝒄𝒂𝒅𝒆𝒎𝒊𝒄 𝑪𝒂𝒍𝒆𝒏𝒅𝒂𝒓</h2>
+    <h2 class="i18n" data-en="Academic Calendar" data-ur="تعلیمی کیلنڈر">Academic Calendar</h2>
   </div>
 
   <div class="calendar-cards">
@@ -1467,7 +1510,7 @@
 
   <div class="section-head" style="margin-top:56px;">
     <div class="kicker i18n" data-en="꧁༺Government Announced༻꧂" data-ur="حکومتی اعلان کردہ">꧁༺Government Announced༻꧂</div>
-    <h2 class="i18n" data-en="𝑷𝒖𝒃𝒍𝒊𝒄 𝑯𝒐𝒍𝒊𝒅𝒂𝒚𝒔" data-ur="اہم تعطیلات">𝑷𝒖𝒃𝒍𝒊𝒄 𝑯𝒐𝒍𝒊𝒅𝒂𝒚𝒔</h2>
+    <h2 class="i18n" data-en="Public Holidays" data-ur="اہم تعطیلات">Public Holidays</h2>
   </div>
   <table class="cal-table">
     <tr><th class="i18n" data-en="Holiday" data-ur="تعطیل">Holiday</th><th class="i18n" data-en="Date" data-ur="تاریخ">Date</th></tr>
@@ -1487,7 +1530,7 @@
 <section class="section" style="background:#fff;" id="news">
   <div class="section-head">
     <div class="kicker i18n" data-en="꧁༺Stay Updated༻꧂" data-ur="تازہ ترین معلومات">꧁༺Stay Updated༻꧂</div>
-    <h2 class="i18n" data-en="𝑳𝒂𝒕𝒆𝒔𝒕 𝑵𝒆𝒘𝒔 &amp; 𝑬𝒗𝒆𝒏𝒕𝒔" data-ur="تازہ ترین خبریں اور تقریبات">𝑳𝒂𝒕𝒆𝒔𝒕 𝑵𝒆𝒘𝒔 &amp; 𝑬𝒗𝒆𝒏𝒕𝒔</h2>
+    <h2 class="i18n" data-en="Latest News &amp; Events" data-ur="تازہ ترین خبریں اور تقریبات">Latest News &amp; Events</h2>
   </div>
 
   <!-- ============================================================
@@ -1547,7 +1590,7 @@
 <section class="section" style="background:#fff;" id="gallery">
   <div class="section-head">
     <div class="kicker i18n" data-en="꧁༺Captured Moments༻꧂" data-ur="یادگار لمحات">꧁༺Captured Moments༻꧂</div>
-    <h2 class="i18n" data-en="𝑷𝒂𝒓𝒆𝒏𝒕𝒔 𝑫𝒂𝒚 & 𝑷𝒓𝒊𝒛𝒆 𝑫𝒊𝒔𝒕𝒓𝒊𝒃𝒖𝒕𝒊𝒐𝒏" data-ur="پیرنٹس ڈے اور انعامات کی تقسیم">𝑷𝒂𝒓𝒆𝒏𝒕𝒔 𝑫𝒂𝒚 & 𝑷𝒓𝒊𝒛𝒆 𝑫𝒊𝒔𝒕𝒓𝒊𝒃𝒖𝒕𝒊𝒐𝒏</h2>
+    <h2 class="i18n" data-en="Parents Day & Prize Distribution" data-ur="پیرنٹس ڈے اور انعامات کی تقسیم">Parents Day & Prize Distribution</h2>
   </div>
 
   <div class="gallery-grid">
@@ -1639,7 +1682,7 @@
 <section class="section" id="library">
   <div class="section-head">
     <div class="kicker i18n" data-en="꧁༺Digital Library༻꧂" data-ur="ڈیجیٹل لائبریری">꧁༺Digital Library༻꧂</div>
-    <h2 class="i18n" data-en="𝑩𝒐𝒐𝒌𝒔 &amp; 𝑺𝒕𝒖𝒅𝒚 𝑴𝒂𝒕𝒆𝒓𝒊𝒂𝒍" data-ur="کتابیں اور تعلیمی مواد">𝑩𝒐𝒐𝒌𝒔 &amp; 𝑺𝒕𝒖𝒅𝒚 𝑴𝒂𝒕𝒆𝒓𝒊𝒂𝒍</h2>
+    <h2 class="i18n" data-en="Books &amp; Study Material" data-ur="کتابیں اور تعلیمی مواد">Books &amp; Study Material</h2>
   </div>
 
   <a href="books.html" class="library-promo-card">
@@ -1682,7 +1725,7 @@
 <section class="section contact" id="contact">
   <div class="section-head">
     <div class="kicker i18n" data-en="꧁༺Get In Touch༻꧂" data-ur="رابطہ کریں">꧁༺Get In Touch༻꧂</div>
-    <h2 class="i18n" data-en="𝑨𝒅𝒎𝒊𝒔𝒔𝒊𝒐𝒏𝒔 &amp; 𝑰𝒏𝒒𝒖𝒊𝒓𝒊𝒆𝒔" data-ur="داخلہ اور معلومات">𝑨𝒅𝒎𝒊𝒔𝒔𝒊𝒐𝒏𝒔 &amp; 𝑰𝒏𝒒𝒖𝒊𝒓𝒊𝒆𝒔</h2>
+    <h2 class="i18n" data-en="Admissions &amp; Inquiries" data-ur="داخلہ اور معلومات">Admissions &amp; Inquiries</h2>
   </div>
   <div class="contact-card">
     <div class="row"><strong class="i18n" data-en="School" data-ur="سکول">School</strong> — Islamia School &amp; College Martung (ISCM)</div>
@@ -1709,18 +1752,23 @@
 <section class="section" style="background:var(--paper);" id="staff-records">
   <div class="section-head">
     <div class="kicker i18n" data-en="꧁༺Staff Only༻꧂" data-ur="صرف عملہ">꧁༺Staff Only༻꧂</div>
-    <h2 class="i18n" data-en="𝑺𝒕𝒖𝒅𝒆𝒏𝒕 𝑹𝒆𝒄𝒐𝒓𝒅𝒔" data-ur="طلبہ کا ریکارڈ">𝑺𝒕𝒖𝒅𝒆𝒏𝒕 𝑹𝒆𝒄𝒐𝒓𝒅𝒔</h2>
-    <p class="lede i18n" data-en="This section is for school staff to keep a quick internal record. It is protected by a password and saved only on this device/browser." data-ur="یہ حصہ سکول کے عملے کے لیے ہے تاکہ فوری اندرونی ریکارڈ رکھا جا سکے۔ یہ پاس ورڈ سے محفوظ ہے اور صرف اسی ڈیوائس/براؤزر پر محفوظ رہتا ہے۔">This section is for school staff to keep a quick internal record. It is protected by a password and saved only on this device/browser.</p>
+    <h2 class="i18n" data-en="Student Records" data-ur="طلبہ کا ریکارڈ" style="font-style:italic;">Student Records</h2>
+    <p class="lede i18n" data-en="This section is for school staff to keep a quick internal record. It requires a staff login." data-ur="یہ حصہ سکول کے عملے کے لیے ہے تاکہ فوری اندرونی ریکارڈ رکھا جا سکے۔ اس کے لیے عملے کا لاگ ان درکار ہے۔">This section is for school staff to keep a quick internal record. It requires a staff login.</p>
   </div>
 
   <div id="recordsGate" class="records-box records-gate">
     <div class="i18n" data-en="🔒 Enter staff password to view/edit records" data-ur="🔒 ریکارڈ دیکھنے کے لیے عملے کا پاس ورڈ درج کریں">🔒 Enter staff password to view/edit records</div>
-    <div><input type="password" id="recordsPassword" placeholder="Password"></div>
+    <div><input type="password" id="recordsPassword" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter') checkRecordsPassword();"></div>
     <button class="btn btn-gold" onclick="checkRecordsPassword()" style="border:none; cursor:pointer;"><span class="i18n" data-en="Unlock" data-ur="کھولیں">Unlock</span></button>
-    <div id="recordsError" style="color:#B0413E; font-size:13px; margin-top:10px; display:none;" class="i18n" data-en="❌ Wrong password" data-ur="❌ غلط پاس ورڈ">❌ Wrong password</div>
+    <div id="recordsError" style="color:#B0413E; font-size:13px; margin-top:10px; display:none;"></div>
   </div>
 
   <div id="recordsContent" style="display:none;">
+    <div style="text-align:right; max-width:900px; margin:0 auto 10px;">
+      <button onclick="staffLogout()" style="background:none; border:1px solid var(--line); border-radius:5px; padding:6px 12px; font-size:12.5px; color:var(--mist); cursor:pointer;">
+        <span class="i18n" data-en="Log out" data-ur="لاگ آؤٹ">Log out</span>
+      </button>
+    </div>
     <div class="records-form">
       <div>
         <label class="i18n" data-en="Student Name" data-ur="طالب علم کا نام">Student Name</label>
@@ -1890,6 +1938,29 @@
     document.getElementById('mobileNavPanel').classList.remove('open');
   }
 
+  (function(){
+    var navMore = document.getElementById('navMore');
+    var navMoreBtn = document.getElementById('navMoreBtn');
+    if(!navMore || !navMoreBtn) return;
+    navMoreBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var isOpen = navMore.classList.toggle('open');
+      navMoreBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    document.addEventListener('click', function(e){
+      if(!navMore.contains(e.target)){
+        navMore.classList.remove('open');
+        navMoreBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    navMore.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        navMore.classList.remove('open');
+        navMoreBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+
   function toggleLanguage(){
     var current = document.body.getAttribute('dir') === 'rtl' ? 'ur' : 'en';
     setLanguage(current === 'ur' ? 'en' : 'ur');
@@ -1900,20 +1971,35 @@
     if (saved === 'ur') setLanguage('ur');
   })();
 
-  // ---------- Student Records (staff only) — shared via Firebase across all teachers ----------
-  var RECORDS_PASSWORD = "iscm2026"; // Staff: change this text to set your own password
+  // ---------- Student Records (staff only) — protected by real Firebase login ----------
+  // Only ONE field shows on screen (password), but it still signs in for real via
+  // Firebase Auth behind the scenes — this fixed email is the staff account's username.
+  // Create this exact account in Firebase Console -> Authentication -> Users -> Add user
+  // (or edit the line below to match whichever email you used there).
+  var STAFF_EMAIL = "staff@iscm-records.pk";
+
   var cachedRecords = []; // { key, name, cls, parent }
+  var recordsListenerAttached = false;
 
   function checkRecordsPassword(){
-    var input = document.getElementById('recordsPassword').value;
-    if (input === RECORDS_PASSWORD) {
-      document.getElementById('recordsGate').style.display = 'none';
-      document.getElementById('recordsContent').style.display = 'block';
-      document.getElementById('recordsError').style.display = 'none';
-      renderRecords();
-    } else {
-      document.getElementById('recordsError').style.display = 'block';
+    var pw = document.getElementById('recordsPassword').value;
+    var errEl = document.getElementById('recordsError');
+    errEl.style.display = 'none';
+    if(!pw){
+      errEl.textContent = 'Please enter the password.';
+      errEl.style.display = 'block';
+      return;
     }
+    iscmAuth.signInWithEmailAndPassword(STAFF_EMAIL, pw).catch(function(err){
+      var msg = 'Wrong password.';
+      if(err && err.code === 'auth/too-many-requests') msg = 'Too many attempts — please wait and try again.';
+      errEl.textContent = '❌ ' + msg;
+      errEl.style.display = 'block';
+    });
+  }
+
+  function staffLogout(){
+    iscmAuth.signOut();
   }
 
   function lockRecords(){
@@ -1922,13 +2008,25 @@
     document.getElementById('recordsPassword').value = '';
   }
 
-  // Live sync: whenever ANY teacher adds/removes a student, every open browser updates automatically.
-  iscmDb.ref('students').on('value', function(snapshot){
-    var data = snapshot.val() || {};
-    cachedRecords = Object.keys(data).map(function(key){
-      return { key: key, name: data[key].name, cls: data[key].cls, parent: data[key].parent };
-    });
-    renderRecords();
+  // Drives the gate purely off real auth state — reflects sign-in/out from any tab.
+  iscmAuth.onAuthStateChanged(function(user){
+    if(user){
+      document.getElementById('recordsGate').style.display = 'none';
+      document.getElementById('recordsContent').style.display = 'block';
+      if(!recordsListenerAttached){
+        recordsListenerAttached = true;
+        // Live sync: whenever ANY signed-in staff member adds/removes a student, every open browser updates automatically.
+        iscmDb.ref('students').on('value', function(snapshot){
+          var data = snapshot.val() || {};
+          cachedRecords = Object.keys(data).map(function(key){
+            return { key: key, name: data[key].name, cls: data[key].cls, parent: data[key].parent };
+          });
+          renderRecords();
+        });
+      }
+    } else {
+      lockRecords();
+    }
   });
 
   function getRecords(){
