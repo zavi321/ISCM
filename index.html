@@ -863,55 +863,44 @@
   /* ---------- floating WhatsApp button ---------- */
   .wa-float{
     position:fixed; left:20px; bottom:20px; z-index:999;
-    width:56px; height:56px; border-radius:50%;
-    background:#25D366; color:#fff;
+    width:56px; height:56px;
+    background:transparent; color:#25D366;
     display:flex; align-items:center; justify-content:center;
-    box-shadow:0 4px 16px rgba(0,0,0,0.28);
-    transition:transform .18s ease, box-shadow .18s ease;
-    animation:waPulse 2.4s ease-in-out infinite;
+    box-shadow:none;
+    transition:transform .18s ease;
   }
-  .wa-float:hover{transform:scale(1.1) rotate(6deg); box-shadow:0 6px 22px rgba(0,0,0,0.35);}
-  .wa-float svg{width:30px; height:30px; fill:#fff;}
-  @keyframes waPulse{
-    0%,100%{box-shadow:0 4px 16px rgba(37,211,102,0.35);}
-    50%{box-shadow:0 4px 22px rgba(37,211,102,0.65);}
-  }
-  @media(max-width:480px){ .wa-float{left:14px; bottom:14px; width:50px; height:50px;} .wa-float svg{width:26px; height:26px;} }
+  .wa-float:hover{transform:scale(1.1) rotate(6deg);}
+  .wa-float svg{width:34px; height:34px; fill:#25D366;}
+  @media(max-width:480px){ .wa-float{left:14px; bottom:14px; width:50px; height:50px;} .wa-float svg{width:30px; height:30px;} }
 
   /* ---------- AI school assistant bubble ---------- */
   .ai-float{
     position:fixed; right:20px; bottom:20px; z-index:999;
-    width:56px; height:56px; border-radius:50%;
-    background:linear-gradient(135deg, var(--navy), #1b2a4a);
-    color:#fff; border:2px solid var(--gold);
+    width:56px; height:56px;
+    background:transparent;
+    color:var(--navy); border:none;
     display:flex; align-items:center; justify-content:center;
-    box-shadow:0 4px 16px rgba(0,0,0,0.28); cursor:pointer;
-    transition:transform .18s ease, box-shadow .18s ease;
-    animation:aiPulse 2.4s ease-in-out infinite;
+    box-shadow:none; cursor:pointer;
+    transition:transform .18s ease;
   }
-  .ai-float:hover{transform:scale(1.1) rotate(-6deg); box-shadow:0 6px 22px rgba(0,0,0,0.35);}
-  .ai-float svg{width:28px; height:28px; fill:var(--gold);}
-  @keyframes aiPulse{
-    0%,100%{box-shadow:0 4px 16px rgba(212,175,55,0.35);}
-    50%{box-shadow:0 4px 22px rgba(212,175,55,0.65);}
-  }
-  @media(max-width:480px){ .ai-float{right:14px; bottom:14px; width:50px; height:50px;} .ai-float svg{width:24px; height:24px;} }
+  .ai-float:hover{transform:scale(1.1) rotate(-6deg);}
+  .ai-float svg{width:32px; height:32px; fill:var(--navy);}
+  @media(max-width:480px){ .ai-float{right:14px; bottom:14px; width:50px; height:50px;} .ai-float svg{width:28px; height:28px;} }
 
   /* ---------- Listen (text-to-speech) floating button ---------- */
   .listen-float{
     position:fixed; left:20px; bottom:88px; z-index:999;
-    width:52px; height:52px; border-radius:50%;
-    background:linear-gradient(135deg, var(--gold), #b8912a);
-    color:var(--navy); border:2px solid #fff;
+    width:52px; height:52px;
+    background:transparent;
+    color:var(--navy); border:none;
     display:flex; align-items:center; justify-content:center;
-    box-shadow:0 4px 16px rgba(0,0,0,0.28); cursor:pointer;
-    transition:transform .18s ease, box-shadow .18s ease;
-    font-size:22px;
+    box-shadow:none; cursor:pointer;
+    transition:transform .18s ease;
+    font-size:26px;
   }
-  .listen-float:hover{transform:scale(1.1); box-shadow:0 6px 22px rgba(0,0,0,0.35);}
+  .listen-float:hover{transform:scale(1.1);}
   .listen-float.active{
-    background:linear-gradient(135deg, #1e824c, #3fae6a);
-    color:#fff; animation:listenPulse 1.6s ease-in-out infinite;
+    color:#1e824c; animation:listenPulse 1.6s ease-in-out infinite;
   }
   @keyframes listenPulse{
     0%,100%{box-shadow:0 4px 16px rgba(63,174,106,0.4);}
@@ -2503,6 +2492,6 @@
   })();
 </script>
 
-<button id="forceRefreshBtn" onclick="(function(){var u=window.location.href.split('?')[0];window.location.href=u+'?v='+Date.now();})()" title="Refresh / تازہ کریں" aria-label="Refresh page" style="position:fixed; bottom:20px; left:20px; z-index:9999; width:50px; height:50px; border-radius:50%; border:none; background:#1b1f27; color:#fff; font-size:20px; box-shadow:0 4px 14px rgba(0,0,0,0.3); cursor:pointer; display:flex; align-items:center; justify-content:center;">⟳</button>
+<button id="forceRefreshBtn" onclick="(function(){var u=window.location.href.split('?')[0];window.location.href=u+'?v='+Date.now();})()" title="Refresh / تازہ کریں" aria-label="Refresh page" style="position:fixed; bottom:100px; right:20px; z-index:9999; width:50px; height:50px; border:none; background:transparent; box-shadow:none; color:#1b1f27; font-size:26px; cursor:pointer; display:flex; align-items:center; justify-content:center;">⟳</button>
 </body>
 </html>
