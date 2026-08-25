@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
@@ -2500,5 +2503,6 @@
   })();
 </script>
 
+<button id="forceRefreshBtn" onclick="(function(){var u=window.location.href.split('?')[0];window.location.href=u+'?v='+Date.now();})()" title="Refresh / تازہ کریں" aria-label="Refresh page" style="position:fixed; bottom:20px; left:20px; z-index:9999; width:50px; height:50px; border-radius:50%; border:none; background:#1b1f27; color:#fff; font-size:20px; box-shadow:0 4px 14px rgba(0,0,0,0.3); cursor:pointer; display:flex; align-items:center; justify-content:center;">⟳</button>
 </body>
 </html>
