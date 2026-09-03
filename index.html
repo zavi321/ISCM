@@ -1135,10 +1135,41 @@
   .iqra-badge, .map-wrap, .cal-table{
     position:relative;
   }
-  .vm-card::after, .pillar-card::after, .calendar-card::after, .news-card::after,
+  /* reduced (70% less) golden glow — every pop card except Academic Excellence & Islamic Education subjects */
+  .vm-card::after, .calendar-card::after, .news-card::after,
   .info-card::after, .staff-card::after, .contact-card::after, .library-promo-card::after,
   .book-card::after, .message-card::after, .records-box::after, .iqra-badge::after,
   .map-wrap::after, .cal-table::after{
+    content:"";
+    position:absolute; inset:0;
+    border-radius:inherit;
+    border:3px solid rgba(255,215,0,0.3);
+    box-shadow:
+      0 0 4px 1px rgba(255,215,0,0.27),
+      0 0 10px 3px rgba(255,200,0,0.18),
+      inset 0 0 5px rgba(255,215,0,0.12);
+    pointer-events:none;
+    z-index:3;
+    animation:goldBorderGlowSoft 1.7s ease-in-out infinite;
+  }
+  @keyframes goldBorderGlowSoft{
+    0%,100%{
+      border-color:rgba(255,215,0,0.3);
+      box-shadow:
+        0 0 4px 1px rgba(255,215,0,0.27),
+        0 0 10px 3px rgba(255,200,0,0.18),
+        inset 0 0 5px rgba(255,215,0,0.12);
+    }
+    50%{
+      border-color:rgba(255,251,234,0.3);
+      box-shadow:
+        0 0 8px 2px rgba(255,225,0,0.3),
+        0 0 19px 5px rgba(255,200,0,0.29),
+        inset 0 0 9px rgba(255,225,0,0.2);
+    }
+  }
+  /* full-strength golden glow — Academic Excellence & Islamic Education subject cards */
+  .pillar-card::after{
     content:"";
     position:absolute; inset:0;
     border-radius:inherit;
