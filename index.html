@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
@@ -19,28 +21,37 @@
   var iscmDb = firebase.database();
   var iscmAuth = firebase.auth();
 </script>
+<!--
+  OneSignal aur Google Analytics disable kar diye hain kyunki inme placeholder ID thi
+  ([YOUR-ONESIGNAL-APP-ID] aur G-XXXXXXXXXX) — ye kabhi kaam nahi karengi aur console
+  mein error dengi. Asli OneSignal App ID aur GA4 Measurement ID milte hi neeche wala
+  block un-comment kar dein aur ID replace kar dein.
+
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
-      appId: "[YOUR-ONESIGNAL-APP-ID]",
+      appId: "PASTE-REAL-ONESIGNAL-APP-ID-HERE",
       notifyButton: { enable: false },
       promptOptions: {},
     });
     OneSignal.Notifications.requestPermission();
   });
 </script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PASTEREALID"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag("js", new Date());
-  gtag("config", "G-XXXXXXXXXX");
+  gtag("config", "G-PASTEREALID");
+</script>
+-->
+<script>
+  // Placeholder no-op so gtag() calls elsewhere in the page don't throw errors
+  window.gtag = window.gtag || function(){};
 </script>
 
 <meta name="google-site-verification" content="4PX64C8NT2GtjAVzAKP6poDaOQJ1Its-Ccj8QOPVh0k" />
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Islamia School &amp; College Martung (ISCM) — Martung, Shangla</title>
 <meta name="description" content="Islamia School &amp; College Martung (ISCM) is a school in Martung, Shangla, Khyber Pakhtunkhwa, Pakistan, combining modern education with Islamic values — offering Nursery to Intermediate (FSc/FA), Quran, Tajweed, and character building.">
 <meta name="keywords" content="ISCM, Islamia School and College Martung, school in Martung, school in Shangla, Islamic school KPK, Quran school Shangla, best school Martung Shangla">
