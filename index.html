@@ -1128,6 +1128,45 @@
     transform:translateY(-9px) scale(1.12) !important;
     box-shadow:0 16px 28px rgba(16,25,63,0.3);
   }
+
+  /* ---------- glowing golden border on all 4 sides of every pop card ---------- */
+  .vm-card, .pillar-card, .calendar-card, .news-card, .info-card, .staff-card,
+  .contact-card, .library-promo-card, .book-card, .message-card, .records-box,
+  .iqra-badge, .map-wrap, .cal-table{
+    position:relative;
+  }
+  .vm-card::after, .pillar-card::after, .calendar-card::after, .news-card::after,
+  .info-card::after, .staff-card::after, .contact-card::after, .library-promo-card::after,
+  .book-card::after, .message-card::after, .records-box::after, .iqra-badge::after,
+  .map-wrap::after, .cal-table::after{
+    content:"";
+    position:absolute; inset:0;
+    border-radius:inherit;
+    border:3px solid #FFD700;
+    box-shadow:
+      0 0 14px 3px rgba(255,215,0,0.9),
+      0 0 32px 9px rgba(255,200,0,0.6),
+      inset 0 0 16px rgba(255,215,0,0.4);
+    pointer-events:none;
+    z-index:3;
+    animation:goldBorderGlow 1.7s ease-in-out infinite;
+  }
+  @keyframes goldBorderGlow{
+    0%,100%{
+      border-color:#FFD700;
+      box-shadow:
+        0 0 14px 3px rgba(255,215,0,0.9),
+        0 0 32px 9px rgba(255,200,0,0.6),
+        inset 0 0 16px rgba(255,215,0,0.4);
+    }
+    50%{
+      border-color:#FFFBEA;
+      box-shadow:
+        0 0 28px 7px rgba(255,225,0,1),
+        0 0 64px 18px rgba(255,200,0,0.95),
+        inset 0 0 30px rgba(255,225,0,0.65);
+    }
+  }
   .btn{ box-shadow:0 6px 0 rgba(0,0,0,0.18), 0 14px 26px rgba(16,25,63,0.24) !important; }
   .btn:hover{
     transform:translateY(-6px) scale(1.05) !important;
