@@ -1126,13 +1126,12 @@
     box-shadow:0 16px 28px rgba(16,25,63,0.3);
   }
 
-  /* ---------- glowing golden border on all 4 sides of every pop card ---------- */
+  /* ---------- plain golden border on all 4 sides — every pop card ---------- */
   .vm-card, .pillar-card, .calendar-card, .news-card, .info-card, .staff-card,
   .contact-card, .library-promo-card, .book-card, .message-card, .records-box,
   .iqra-badge, .map-wrap, .cal-table{
     position:relative;
   }
-  /* reduced (70% less) golden glow — every pop card except Academic Excellence & Islamic Education subjects */
   .vm-card::after, .calendar-card::after, .news-card::after,
   .info-card::after, .staff-card::after, .contact-card::after, .library-promo-card::after,
   .book-card::after, .message-card::after, .records-box::after, .iqra-badge::after,
@@ -1140,31 +1139,12 @@
     content:"";
     position:absolute; inset:0;
     border-radius:inherit;
-    border:3px solid rgba(255,215,0,0.3);
-    box-shadow:
-      0 0 4px 1px rgba(255,215,0,0.27),
-      0 0 10px 3px rgba(255,200,0,0.18),
-      inset 0 0 5px rgba(255,215,0,0.12);
+    border:2px solid #C9A227;
     pointer-events:none;
     z-index:3;
-    animation:goldBorderGlowSoft 1.7s ease-in-out infinite;
   }
-  @keyframes goldBorderGlowSoft{
-    0%,100%{
-      border-color:rgba(255,215,0,0.3);
-      box-shadow:
-        0 0 4px 1px rgba(255,215,0,0.27),
-        0 0 10px 3px rgba(255,200,0,0.18),
-        inset 0 0 5px rgba(255,215,0,0.12);
-    }
-    50%{
-      border-color:rgba(255,251,234,0.3);
-      box-shadow:
-        0 0 8px 2px rgba(255,225,0,0.3),
-        0 0 19px 5px rgba(255,200,0,0.29),
-        inset 0 0 9px rgba(255,225,0,0.2);
-    }
-  }
+
+  /* ---------- glowing golden border — Academic Excellence & Islamic Education subject cards only ---------- */
   /* full-strength golden glow — Academic Excellence & Islamic Education subject cards */
   .pillar-card::after{
     content:"";
@@ -1226,6 +1206,43 @@
     .news-tag, .nav-cta, .nav-lang-btn, .val-pill, .staff-card .cap, .gallery-item .cap,
     p, li, span, td, div, .hero .tagline, .hero .loc{
       text-shadow:none !important;
+    }
+  }
+
+  /* ---------- Performance: reduce constant repaint load ----------
+     Many infinite animations above animate box-shadow/filter, which
+     force a repaint every frame. This is the main cause of stutter,
+     especially on phones. Below we tone them down / turn them off
+     on smaller screens and for users who prefer reduced motion,
+     without removing the one-time entrance animations. */
+  @media (max-width: 768px) {
+    .hero-logo-wrap::before,
+    body.hero-animate .hero-logo,
+    .ray-of-hope-signoff,
+    .hero::after,
+    .sparkle,
+    .kicker,
+    .pillar-card .icon,
+    .staff-card, .calendar-card, .news-card, .info-card, .contact-card, .library-page,
+    .listen-float.active {
+      animation: none !important;
+    }
+    .hero h1, .hero .tagline, .section h2 {
+      animation: none !important;
+      filter: none !important;
+    }
+    #splashScreen .splash-character,
+    #splashScreen .splash-hint,
+    #splashScreen img.splash-banner {
+      animation-duration: 0s !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
     }
   }
 </style>
