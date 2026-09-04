@@ -326,63 +326,6 @@
     </div>
 
     <div class="form-section">
-    <div class="section-label">Emergency Contact</div>
-    <div class="row3">
-      <div class="field">
-        <label>Name</label>
-        <input type="text" id="emergencyName">
-      </div>
-      <div class="field">
-        <label>Relationship</label>
-        <select id="emergencyRelation">
-          <option value="" disabled selected>Select</option>
-          <option>Mother</option>
-          <option>Grandfather</option>
-          <option>Grandmother</option>
-          <option>Uncle</option>
-          <option>Aunt</option>
-          <option>Elder Sibling</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Mobile No.</label>
-        <input type="tel" id="emergencyMobile" placeholder="03XX-XXXXXXX">
-      </div>
-    </div>
-
-    </div>
-
-    <div class="form-section">
-    <div class="section-label">Documents Attached</div>
-    <div class="check-list">
-      <label><input type="checkbox" name="docs" value="Birth Certificate / B-Form"> Birth Certificate / B-Form</label>
-      <label><input type="checkbox" name="docs" value="Father's CNIC Copy"> Father's CNIC Copy</label>
-      <label><input type="checkbox" name="docs" value="Mother's CNIC Copy"> Mother's CNIC Copy</label>
-      <label><input type="checkbox" name="docs" value="School Leaving Certificate"> School Leaving Certificate</label>
-      <label><input type="checkbox" name="docs" value="Previous Result Card"> Previous Result Card</label>
-      <label><input type="checkbox" name="docs" value="4 Passport Size Photographs"> 4 Passport Size Photographs</label>
-      <label><input type="checkbox" name="docs" value="Other"> Other (if any)</label>
-    </div>
-
-    </div>
-
-    <div class="form-section">
-    <div class="section-label">Transport Facility</div>
-    <div class="field">
-      <div class="radio-group">
-        <label><input type="radio" name="transport" value="Yes"> Yes</label>
-        <label><input type="radio" name="transport" value="No" checked> No</label>
-      </div>
-    </div>
-    <div class="field">
-      <label>If Yes, Pickup Location</label>
-      <input type="text" id="pickupLocation">
-    </div>
-
-    </div>
-
-    <div class="form-section">
     <div class="section-label">Parent's Declaration</div>
     <div class="declaration-box">
       I hereby declare that all the information provided in this admission form is true and correct to the best of my knowledge. I agree to abide by all the rules, regulations, and policies of Islamia School &amp; College Martung (ISCM).
@@ -514,18 +457,6 @@
     field('Tehsil', data.tehsil);
     field('District', data.district);
 
-    sectionTitle('Emergency Contact');
-    field('Name', data.emergencyName);
-    field('Relationship', data.emergencyRelation);
-    field('Mobile No.', data.emergencyMobile);
-
-    sectionTitle('Documents Attached');
-    field('Documents', (data.documentsAttached && data.documentsAttached.length) ? data.documentsAttached.join(', ') : 'None selected');
-
-    sectionTitle('Transport Facility');
-    field('Transport Required', data.transport);
-    field('Pickup Location', data.pickupLocation);
-
     sectionTitle("Parent's Declaration");
     field('Declaration Agreed', data.agreeDeclaration ? 'Yes' : 'No');
     field('Parent/Guardian Signature', data.guardianSignature);
@@ -599,8 +530,6 @@
     errorMsg.style.display = 'none';
 
     var genderEl = document.querySelector('input[name="gender"]:checked');
-    var transportEl = document.querySelector('input[name="transport"]:checked');
-    var docsChecked = Array.from(document.querySelectorAll('input[name="docs"]:checked')).map(function(el){ return el.value; });
 
     var data = {
       classFor: document.getElementById('classFor').value,
@@ -622,14 +551,6 @@
       villageArea: document.getElementById('villageArea').value.trim(),
       tehsil: document.getElementById('tehsil').value.trim(),
       district: document.getElementById('district').value.trim(),
-
-      emergencyName: document.getElementById('emergencyName').value.trim(),
-      emergencyRelation: document.getElementById('emergencyRelation').value,
-      emergencyMobile: document.getElementById('emergencyMobile').value.trim(),
-
-      documentsAttached: docsChecked,
-      transport: transportEl ? transportEl.value : 'No',
-      pickupLocation: document.getElementById('pickupLocation').value.trim(),
 
       guardianSignature: document.getElementById('guardianSignature').value.trim(),
       agreeDeclaration: document.getElementById('agreeDeclaration').checked,
